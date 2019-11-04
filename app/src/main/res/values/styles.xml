@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TitleTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iransansmobile_bold</item>
+        <item name="android:textColor">@color/PrimaryTextColor</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="CategoryTitleTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iransansmobile_medium</item>
+        <item name="android:textColor">@color/PrimaryTextColor</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="ItemTitleTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iransansmobile_light</item>
+        <item name="android:textColor">@color/PrimaryTextColor</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="PriceTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iransansmobile_light</item>
+        <item name="android:textColor">@color/PrimaryTextColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="backTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iransansmobile_light</item>
+        <item name="android:textColor">@color/backBlue</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+</resources>
