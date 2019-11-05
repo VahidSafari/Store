@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/fragment_profile"
+        android:enabled="true"
+        android:icon="@drawable/profile_not_registered_user2x"
+        android:title="@string/menu_profile"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/fragment_search"
+        android:enabled="true"
+        android:icon="@drawable/search_result_search_2x"
+        android:title="@string/menu_search"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/empty"
+        android:title=""/>
+
+    <item
+        android:id="@+id/fragment_list"
+        android:enabled="true"
+        android:icon="@drawable/profile_not_registred_list_2x"
+        android:title="@string/menu_list"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/fragment_home"
+        android:enabled="true"
+        android:icon="@drawable/search_result_home2x"
+        android:title="@string/menu_home"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+</menu>

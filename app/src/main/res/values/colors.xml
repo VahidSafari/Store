@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorSecondaryDark">#595959</color>
+    <color name="colorSecondaryDark">#494949</color>
     <color name="colorAccent">#E52A3D</color>
     <color name="PrimaryTextColor">#000000</color>
-    <color name="backBlue">#498FE1</color>
+    <color name="CategoryMoreDetailTextColor">#498FE1</color>
 </resources>

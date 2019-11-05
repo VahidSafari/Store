@@ -5,9 +5,49 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/dashBoardFragment">
 
+    <action
+        android:id="@+id/action_to_homeFragment"
+        app:destination="@id/dashBoardFragment"
+        app:popUpTo="@id/profileFragment"
+        app:popUpToInclusive="true"/>
+
+    <action
+        android:id="@+id/action_to_profileFragment"
+        app:destination="@id/profileFragment"
+        app:popUpTo="@id/profileFragment"
+        app:popUpToInclusive="true"/>
+    <action
+        android:id="@+id/action_to_searchFragment"
+        app:destination="@id/searchFragment"
+        app:popUpTo="@id/searchFragment"
+        app:popUpToInclusive="true"/>
+    <action
+        android:id="@+id/action_to_listFragment"
+        app:destination="@id/listFragment"
+        app:popUpTo="@id/listFragment"
+        app:popUpToInclusive="true"/>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.store.features.User.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.store.features.dashboard.ui.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/dashBoardFragment"
-        android:name="com.example.store.features.DashBoardFragment"
+        android:name="com.example.store.features.dashboard.ui.DashBoardFragment"
         android:label="fragment_dash_board"
-        tools:layout="@layout/fragment_dash_board" />
+        tools:layout="@layout/fragment_dash_board" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.store.features.dashboard.ui.ListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" />
 </navigation>

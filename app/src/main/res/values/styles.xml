@@ -9,7 +9,7 @@
     </style>
 
     <style name="TitleTextView" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/iransansmobile_bold</item>
+        <item name="android:fontFamily">@font/iransansmobile_medium</item>
         <item name="android:textColor">@color/PrimaryTextColor</item>
         <item name="android:textSize">20sp</item>
     </style>
@@ -34,7 +34,7 @@
 
     <style name="backTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/iransansmobile_light</item>
-        <item name="android:textColor">@color/backBlue</item>
+        <item name="android:textColor">@color/CategoryMoreDetailTextColor</item>
         <item name="android:textSize">14sp</item>
     </style>
 

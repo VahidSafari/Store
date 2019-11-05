@@ -3,4 +3,12 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dash_board_name">فروشگاه</string>
+    <string name="menu_profile">پروفایل</string>
+    <string name="menu_search">جستجو</string>
+    <string name="menu_list">دسته ها</string>
+    <string name="menu_home">خانه</string>
+    <string name="profile_text">صفحه پروفایل</string>
+    <string name="search">جستجو</string>
+    <string name="list">لیست</string>
+    <string name="home_text">خانه</string>
 </resources>
