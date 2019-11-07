@@ -107,7 +107,7 @@
         app:layout_dodgeInsetEdges="none"
         app:tint="@color/colorPrimary"
         app:borderWidth="0dp"
-        app:rippleColor="@color/colorPrimaryDark"
+        app:rippleColor="@color/colorPrimary"
         app:elevation="8dp"/>
 
 

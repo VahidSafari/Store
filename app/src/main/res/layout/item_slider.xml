@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
+    <data>
+        <variable
+            name="topSliderView"
+            type="com.example.store.features.dashboard.ui.TopSliderView" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        app:cardElevation="0dp">
 
-</com.google.android.material.card.MaterialCardView>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            RoundedCornerImage="@{topSliderView.imageUrl}" />
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
