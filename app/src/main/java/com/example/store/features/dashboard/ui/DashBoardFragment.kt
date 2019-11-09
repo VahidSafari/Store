@@ -1,5 +1,6 @@
 package com.example.store.features.dashboard.ui
 
+import android.graphics.Rect
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -141,9 +142,21 @@ class DashBoardFragment : Fragment() {
         val categoryAdapter = CategoryAdapter()
         rv_categories.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         rv_categories.adapter = categoryAdapter
-        val metrics = DisplayMetrics()
-        activity?.windowManager?.defaultDisplay?.getMetrics(metrics)
-//        rv_categories.layoutParams.width = metrics.widthPixels / 3
+        rv_categories.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                val itemSize = view.width + view.paddingStart + view.paddingEnd
+                parent.adapter?.let {
+                    val padding = (parent.width - (it.itemCount * itemSize)) / 2
+                    outRect.set(padding,0,0,0)
+                }
+                super.getItemOffsets(outRect, view, parent, state)
+            }
+        })
         categoryAdapter.submitList(categories)
     }
 }

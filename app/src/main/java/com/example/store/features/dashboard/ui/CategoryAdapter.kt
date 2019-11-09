@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.store.R
 import com.example.store.databinding.ItemCategoryBinding
 import com.example.store.features.dashboard.ui.PieceRecyclerAdapter
+import kotlin.math.roundToInt
 
 private object CategoryRecyclerAdapterCallback : DiffUtil.ItemCallback<CategoryView>() {
     override fun areItemsTheSame(oldItem: CategoryView, newItem: CategoryView): Boolean {
@@ -44,7 +45,7 @@ ListAdapter<CategoryView,CategoryAdapter.ViewHolder>(CategoryRecyclerAdapterCall
         holder.pieceRecyclerView.setHasFixedSize(true)
         holder.pieceRecyclerView.layoutManager = object:LinearLayoutManager(context,HORIZONTAL,true){
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-                lp?.width = width / 3
+                lp?.width = (width / 3.5) . roundToInt()
                 lp?.setMargins(8,8,8,8)
                 return super.checkLayoutParams(lp)
             }
