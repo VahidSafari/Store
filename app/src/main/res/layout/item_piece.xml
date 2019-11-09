@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="itemView"
+            type="com.example.store.features.dashboard.ui.ItemView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_piece"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            RoundedCornerImage = "@{itemView.imageUrl}"/>
+
+        <TextView
+            android:id="@+id/tv_piece_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_piece"
+            style="@style/ItemTitleTextView"
+            android:text="@{itemView.name}" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_piece_name"
+            style="@style/PriceTextView"
+            android:textDirection="rtl"
+            android:text="@{itemView.endPrice + ` تومان ` + itemView.startPrice + ` تا`}" />
+        <TextView
+            android:id="@+id/tv_off_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_price"
+            style="@style/OffPriceTextView"
+            android:textDirection="rtl"
+            android:text="@{itemView.endOffPrice + ` تومان ` + itemView.startOffPrice + ` تا`}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

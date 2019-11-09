@@ -21,7 +21,7 @@
     </style>
 
     <style name="ItemTitleTextView" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/iransansmobile_light</item>
+        <item name="android:fontFamily">@font/iransansmobile_medium</item>
         <item name="android:textColor">@color/PrimaryTextColor</item>
         <item name="android:textSize">16sp</item>
     </style>
@@ -32,10 +32,16 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="OffPriceTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iransansmobile_light</item>
+        <item name="android:textColor">@color/OffPriceGreen</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="backTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/iransansmobile_light</item>
         <item name="android:textColor">@color/CategoryMoreDetailTextColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 

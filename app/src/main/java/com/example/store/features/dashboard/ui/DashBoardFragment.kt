@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.store.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dash_board.*
+import android.util.DisplayMetrics
+
+
 
 class DashBoardFragment : Fragment() {
 
@@ -34,7 +37,6 @@ class DashBoardFragment : Fragment() {
 
         //top slider
         rv_top_slider.setHasFixedSize(true)
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val topSliderList = listOf(
             TopSliderView(
                 1,
@@ -50,12 +52,98 @@ class DashBoardFragment : Fragment() {
             )
         )
         val topSliderAdapter = TopSliderAdapter()
-        rv_top_slider.layoutManager = layoutManager
+        rv_top_slider.layoutManager = object:LinearLayoutManager(context,HORIZONTAL,true){
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
+                lp?.width = width * 85 / 100
+                lp?.setMargins(12,12,12,12)
+                return super.checkLayoutParams(lp)
+            }
+        }
         rv_top_slider.adapter = topSliderAdapter
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(rv_top_slider)
-        val divider = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
-        rv_top_slider.addItemDecoration(divider)
         topSliderAdapter.submitList(topSliderList)
+
+        //category recycler view
+        rv_categories.setHasFixedSize(true)
+        val categories = listOf<CategoryView>(
+            CategoryView(
+                "پرفروش ها",
+                listOf(
+                    ItemView(
+                        0,
+                        "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                        "کفش خوب",
+                        10000,
+                        20000,
+                        12,
+                        140000,
+                        160000
+                    ),
+                    ItemView(
+                        0,
+                        "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                        "کفش خوب",
+                        10000,
+                        20000,
+                        12,
+                        140000,
+                        160000
+                    ),
+                    ItemView(
+                        0,
+                        "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                        "کفش خوب",
+                        10000,
+                        20000,
+                        12,
+                        140000,
+                        160000
+                    )
+                )
+            ),
+            CategoryView(
+                "کم فروش ها",
+                listOf(
+                    ItemView(
+                        0,
+                        "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                        "کفش خوب",
+                        10000,
+                        20000,
+                        12,
+                        140000,
+                        160000
+                    ),
+                    ItemView(
+                        0,
+                        "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                        "کفش خوب",
+                        10000,
+                        20000,
+                        12,
+                        140000,
+                        160000
+                    ),
+                    ItemView(
+                        0,
+                        "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                        "کفش خوب",
+                        10000,
+                        20000,
+                        12,
+                        140000,
+                        160000
+                    )
+                )
+            )
+        )
+        val categoryAdapter = CategoryAdapter()
+        rv_categories.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+        rv_categories.adapter = categoryAdapter
+        val metrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(metrics)
+//        rv_categories.layoutParams.width = metrics.widthPixels / 3
+        categoryAdapter.submitList(categories)
     }
 }

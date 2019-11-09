@@ -1,5 +1,7 @@
 package com.example.store.features.dashboard.ui
 
+import android.content.Context
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -22,7 +24,6 @@ private object TopSliderRecyclerAdapterCallback : DiffUtil.ItemCallback<TopSlide
 
 class TopSliderAdapter:
     ListAdapter<TopSliderView,TopSliderAdapter.ViewHolder>(TopSliderRecyclerAdapterCallback){
-
     inner class ViewHolder(iBinding: ItemSliderBinding) : RecyclerView.ViewHolder(iBinding.root){
         val holderBinding = iBinding
     }

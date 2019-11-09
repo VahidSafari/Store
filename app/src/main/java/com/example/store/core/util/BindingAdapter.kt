@@ -8,13 +8,14 @@ import com.squareup.picasso.Picasso
 
 @BindingAdapter("RoundedCornerImage")
 fun loadRoundCornerImage(view: ImageView, imageUrl: String) {
-    val radius = 16
+    val radius = 32
     val margin = 0
     val transformation = RoundedCornerTransformation(radius,margin)
     Picasso.get()
         .load(imageUrl)
         .transform(transformation)
         .fit()
+        .centerInside()
         .placeholder(R.drawable.place_holder)
         .into(view)
 }
