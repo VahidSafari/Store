@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.dashboard.ui.SearchFragment">
+    tools:context=".features.dashboard.ui.SearchFragment"
+    android:background="@color/colorPrimary">
 
     <TextView
         style="@style/TitleTextView"

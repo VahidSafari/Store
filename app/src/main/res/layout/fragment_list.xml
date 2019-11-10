@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.dashboard.ui.ListFragment">
+    tools:context=".features.dashboard.ui.ListFragment"
+    android:background="@color/colorPrimary">
 
     <TextView
         style="@style/TitleTextView"

@@ -45,7 +45,7 @@ ListAdapter<CategoryView,CategoryAdapter.ViewHolder>(CategoryRecyclerAdapterCall
         holder.pieceRecyclerView.setHasFixedSize(true)
         holder.pieceRecyclerView.layoutManager = object:LinearLayoutManager(context,HORIZONTAL,true){
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-                lp?.width = (width / 3.5) . roundToInt()
+                lp?.width = (width / 3.25) . roundToInt()
                 lp?.setMargins(8,8,8,8)
                 return super.checkLayoutParams(lp)
             }

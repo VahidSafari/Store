@@ -16,6 +16,7 @@
             android:id="@+id/iv_piece"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             RoundedCornerImage = "@{itemView.imageUrl}"/>
@@ -25,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_piece"
             style="@style/ItemTitleTextView"
@@ -37,9 +39,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_piece_name"
+            android:gravity="center"
             style="@style/PriceTextView"
             android:textDirection="rtl"
-            android:text="@{itemView.endPrice + ` تومان ` + itemView.startPrice + ` تا`}" />
+            android:text="@{` تا ` + itemView.startPrice + ` تومان ` + itemView.endPrice}" />
         <TextView
             android:id="@+id/tv_off_price"
             android:layout_width="match_parent"
@@ -47,9 +50,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_price"
+            android:gravity="center"
             style="@style/OffPriceTextView"
             android:textDirection="rtl"
-            android:text="@{itemView.endOffPrice + ` تومان ` + itemView.startOffPrice + ` تا`}"/>
+            android:text="@{` تا ` + itemView.startOffPrice + ` تومان ` + itemView.endOffPrice}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

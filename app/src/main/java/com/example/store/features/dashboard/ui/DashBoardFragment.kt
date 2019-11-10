@@ -7,14 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.store.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dash_board.*
-import android.util.DisplayMetrics
-
+import kotlinx.coroutines.*
 
 
 class DashBoardFragment : Fragment() {
@@ -64,7 +64,7 @@ class DashBoardFragment : Fragment() {
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(rv_top_slider)
         topSliderAdapter.submitList(topSliderList)
-
+        autoScrollTopSlider()
         //category recycler view
         rv_categories.setHasFixedSize(true)
         val categories = listOf<CategoryView>(
@@ -74,7 +74,7 @@ class DashBoardFragment : Fragment() {
                     ItemView(
                         0,
                         "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
-                        "کفش خوب",
+                        " کفش خوب",
                         10000,
                         20000,
                         12,
@@ -119,7 +119,7 @@ class DashBoardFragment : Fragment() {
                     ItemView(
                         0,
                         "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
-                        "کفش خوب",
+                        "کفش عالی",
                         10000,
                         20000,
                         12,
@@ -129,7 +129,7 @@ class DashBoardFragment : Fragment() {
                     ItemView(
                         0,
                         "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
-                        "کفش خوب",
+                        "کفش آشغال",
                         10000,
                         20000,
                         12,
@@ -158,5 +158,25 @@ class DashBoardFragment : Fragment() {
             }
         })
         categoryAdapter.submitList(categories)
+    }
+
+    private fun autoScrollTopSlider() {
+        lifecycleScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT){
+            while (isActive){
+                var preScrollPosition = (rv_top_slider.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                delay(3000)
+                var postScrollPosition = (rv_top_slider.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                if (postScrollPosition != preScrollPosition)
+                    continue
+                when(postScrollPosition){
+                    rv_top_slider.adapter?.itemCount?.minus(1) -> {
+                        rv_top_slider.smoothScrollToPosition(0)
+                    }
+                    else -> {
+                        rv_top_slider.smoothScrollToPosition(++postScrollPosition)
+                    }
+                }
+            }
+        }
     }
 }
