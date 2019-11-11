@@ -11,13 +11,13 @@ import javax.inject.Singleton
 @Module
 class StoreModule {
 
-    @Provides
-    @Singleton
-    fun provideRemoteDataSource() = RemoteDataSource()
+//    @Provides
+//    @Singleton
+//    fun provideRemoteDataSource() = RemoteDataSource()
 
-    @Provides
-    @Singleton
-    fun provideStoreRepository() = StoreRepository()
+//    @Provides
+//    @Singleton
+//    fun provideStoreRepository() = StoreRepository()
 
     @Provides
     @Singleton

@@ -9,13 +9,14 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_piece"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="70dp"
             android:layout_margin="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -53,7 +54,8 @@
             android:gravity="center"
             style="@style/OffPriceTextView"
             android:textDirection="rtl"
-            android:text="@{` تا ` + itemView.startOffPrice + ` تومان ` + itemView.endOffPrice}"/>
+            hideIfZero="@{itemView.offPrice}"/>
+<!--            android:text="@{` تا ` + itemView.offPrice.startOffPrice + ` تومان ` + itemView.offPrice.endOffPrice}"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

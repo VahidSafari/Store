@@ -23,13 +23,13 @@ class RetrofitModule {
                 chain.proceed(request)
             }
             .build()
-
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient) =
         Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org")
+            .baseUrl("http://my-dms.ir/api/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
 }

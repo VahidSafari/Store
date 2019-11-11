@@ -1,19 +1,18 @@
 package com.example.store.features.dashboard.data
 
-import com.example.store.MainActivity
 import javax.inject.Inject
 import com.example.store.core.api.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class RemoteDataSource {
-
-    @Inject lateinit var storeService: StoreService
-
-    init {
-        MainActivity.daggerStoreComponent.inject(this)
-    }
+class RemoteDataSource @Inject constructor(val storeService: StoreService) {
+//    @Inject lateinit var storeService: StoreService
+//
+//    init {
+//        AndroidInjection.inject(this)
+//    }
+//
 
     suspend fun getStoreInformation(): Result<StoreResponse>? {
         var result : Result<StoreResponse>? = null

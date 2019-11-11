@@ -1,8 +1,10 @@
 package com.example.store.core.util
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.store.R
+import com.example.store.features.dashboard.ui.OffPrice
 import com.squareup.picasso.Picasso
 
 
@@ -18,4 +20,11 @@ fun loadRoundCornerImage(view: ImageView, imageUrl: String) {
         .centerInside()
         .placeholder(R.drawable.place_holder)
         .into(view)
+}
+
+@BindingAdapter("hideIfZero")
+fun hideIfZero(view:TextView, offPrice: OffPrice) {
+    if (offPrice.startOffPrice == 0 || offPrice.endOffPrice == 0)
+        view.text = ""
+    else view.text = " تا ${offPrice.startOffPrice} تومان ${offPrice.endOffPrice}"
 }
