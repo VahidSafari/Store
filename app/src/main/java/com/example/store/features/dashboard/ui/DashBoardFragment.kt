@@ -1,6 +1,5 @@
 package com.example.store.features.dashboard.ui
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,11 +15,13 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.store.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_dash_board.*
 import kotlinx.coroutines.*
 import com.example.store.core.api.Result
 import com.example.store.features.dashboard.data.StoreResponse
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_dash_board.*
+import kotlinx.android.synthetic.main.recycler_item_categories.*
+import kotlinx.android.synthetic.main.recycler_item_top_slider.*
 import javax.inject.Inject
 
 class DashBoardFragment : DaggerFragment() {
@@ -34,6 +35,7 @@ class DashBoardFragment : DaggerFragment() {
     private val storeViewModel: StoreViewModel by viewModels {
         storeViewModelFactory
     }
+
 //        ViewModelProviders.of(this,storeViewModelFactory)
 //        .get(StoreViewModel::class.java)
 
@@ -53,31 +55,30 @@ class DashBoardFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //top slider
-        rv_top_slider.setHasFixedSize(true)
-        topSliderAdapter = TopSliderAdapter()
-        rv_top_slider.layoutManager = object : LinearLayoutManager(context, HORIZONTAL, true) {
-            override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-                lp?.width = width * 85 / 100
-                lp?.setMargins(12, 12, 12, 12)
-                return super.checkLayoutParams(lp)
-            }
-        }
-        rv_top_slider.adapter = topSliderAdapter
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rv_top_slider)
-        autoScrollTopSlider()
-
-        /*
-         *category recycler view
-         */
-        rv_categories.setHasFixedSize(true)
-
-        rv_categories.layoutManager =
-            LinearLayoutManager(context)
-        categoryAdapter = CategoryAdapter()
-        rv_categories.adapter = categoryAdapter
-        //categoryAdapter.submitList(categories)
+//        //top slider
+//        rv_top_slider.setHasFixedSize(true)
+//        topSliderAdapter = TopSliderAdapter()
+//        rv_top_slider.layoutManager = object : LinearLayoutManager(context, HORIZONTAL, true) {
+//            override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
+//                lp?.width = width * 85 / 100
+//                lp?.setMargins(12, 12, 12, 12)
+//                return super.checkLayoutParams(lp)
+//            }
+//        }
+//        rv_top_slider.adapter = topSliderAdapter
+//        val snapHelper = LinearSnapHelper()
+//        snapHelper.attachToRecyclerView(rv_top_slider)
+//        autoScrollTopSlider()
+//
+//        /*
+//         *category recycler view
+//         */
+//        rv_categories.setHasFixedSize(true)
+//
+//        rv_categories.layoutManager =
+//            LinearLayoutManager(context)
+//        categoryAdapter = CategoryAdapter()
+//        rv_categories.adapter = categoryAdapter
 
         //fetching data and submit to the adapter
         storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer {
@@ -96,33 +97,19 @@ class DashBoardFragment : DaggerFragment() {
     }
 
     private fun applyDataToAdapters(response: StoreResponse) {
-        topSliderAdapter.submitList(response.data.toTopSliderViewList())
-        categoryAdapter.submitList(response.data.toCategoryViewList())
-    }
+        rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
+        val headerAdapter =
+            HeaderAdapter(
+                StoreView(
+                    response.data.toTopSliderViewList(),
+                    response.data.toCategoryViewList()
+                ),
+                viewLifecycleOwner
+            )
+        rv_fragment_dash_board.adapter = headerAdapter
 
-    private fun autoScrollTopSlider() {
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT){
-            while (isActive){
-                val preScrollPosition = (rv_top_slider.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-                delay(3000)
-                var postScrollPosition = -1
-                rv_top_slider?.let {
-                    postScrollPosition = (rv_top_slider.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-                }
-                if (postScrollPosition != preScrollPosition)
-                    continue
-                rv_top_slider?.let {
-                    when(postScrollPosition){
-                        rv_top_slider.adapter?.itemCount?.minus(1) -> {
-                            rv_top_slider.smoothScrollToPosition(0)
-                        }
-                        else -> {
-                            rv_top_slider.smoothScrollToPosition(++postScrollPosition)
-                        }
-                    }
-                }
-            }
-        }
+//        topSliderAdapter.submitList(response.data.toTopSliderViewList())
+//        categoryAdapter.submitList(response.data.toCategoryViewList())
     }
 
 }

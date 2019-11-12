@@ -10,13 +10,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/iv_piece"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="70dp"
             android:layout_margin="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,6 +28,7 @@
             android:id="@+id/tv_piece_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="10dp"
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +58,6 @@
             style="@style/OffPriceTextView"
             android:textDirection="rtl"
             hideIfZero="@{itemView.offPrice}"/>
-<!--            android:text="@{` تا ` + itemView.offPrice.startOffPrice + ` تومان ` + itemView.offPrice.endOffPrice}"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
