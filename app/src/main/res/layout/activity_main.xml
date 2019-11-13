@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/cl_main"
-    tools:context=".MainActivity"
-    app:layout_insetEdge="bottom">
+    app:layout_insetEdge="bottom"
+    tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abl_dashboard"
+        style="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        style="@style/AppTheme"
-        android:layout_gravity="top"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_gravity="top">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_dashboard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentInsetStart="0dp">
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="scroll|snap">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -32,9 +31,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="4dp"
-                    android:paddingBottom="8dp"
-                    android:paddingEnd="8dp"
                     android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
                     android:src="@drawable/profile_not_registred_bitmap_2x"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -45,10 +44,10 @@
                     style="@style/TitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/dash_board_name"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_storeIcon"
-                    android:gravity="center"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -63,18 +62,18 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="?android:attr/actionBarSize"
-        android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_gravity="center"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_marginBottom="?android:attr/actionBarSize"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
+        app:navGraph="@navigation/nav_graph"/>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bap_main"
+        style="@style/Widget.MaterialComponents.BottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:layout_gravity="bottom"
-        style="@style/Widget.MaterialComponents.BottomAppBar"
         app:contentInsetStart="0dp">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -82,10 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:itemIconTint="@color/bottom_nav_item_color"
-            app:itemTextColor="@color/PrimaryBlack"
             app:itemRippleColor="@color/colorSecondaryDark"
+            app:itemTextColor="@color/PrimaryBlack"
             app:labelVisibilityMode="selected"
-            app:menu="@menu/bottom_nav_menu"/>
+            app:menu="@menu/bottom_nav_menu" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -94,22 +93,22 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         app:layout_anchor="@id/bap_main"
-        app:layout_anchorGravity="center"/>
+        app:layout_anchorGravity="center" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchorGravity="top|center"
-        app:layout_anchor="@id/v_anchor_view_for_fab"
         android:src="@drawable/main_list_1_2x"
         app:backgroundTint="@color/colorAccent"
-        app:layout_dodgeInsetEdges="none"
-        app:tint="@color/colorPrimary"
         app:borderWidth="0dp"
-        app:rippleColor="@color/colorPrimary"
         app:elevation="8dp"
-        app:fabCustomSize="65dp"/>
+        app:fabCustomSize="@dimen/_50sdp"
+        app:layout_anchor="@id/v_anchor_view_for_fab"
+        app:layout_anchorGravity="top|center"
+        app:layout_dodgeInsetEdges="none"
+        app:rippleColor="@color/colorPrimary"
+        app:tint="@color/colorPrimary" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

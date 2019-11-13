@@ -3,7 +3,6 @@ package com.example.store
 import android.os.Bundle
 import androidx.navigation.findNavController
 import com.example.store.features.dashboard.ui.DashBoardFragment
-import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -12,11 +11,11 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        AndroidInjection.inject(this)
         supportFragmentManager.beginTransaction().replace(
             R.id.nav_host_fragment, DashBoardFragment()
         ).commit()
 
+        bottom_navigation_view.menu.getItem(2).isEnabled = false
         bottom_navigation_view.selectedItemId = R.id.fragment_home
 
         bottom_navigation_view.setOnNavigationItemSelectedListener {

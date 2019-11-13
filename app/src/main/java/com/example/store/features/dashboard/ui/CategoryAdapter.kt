@@ -27,10 +27,6 @@ class CategoryAdapter :
     ListAdapter<CategoryView, CategoryAdapter.ViewHolder>(CategoryRecyclerAdapterCallback) {
     private lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        if (viewType == 0) {
-
-        }
         val inflater = LayoutInflater.from(parent.context)
         val binding: ItemCategoryBinding =
             DataBindingUtil.inflate(
@@ -51,7 +47,7 @@ class CategoryAdapter :
         holder.pieceRecyclerView.layoutManager =
             object : LinearLayoutManager(context, HORIZONTAL, true) {
                 override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-                    lp?.width = (width / 3.25).roundToInt()
+                    lp?.width = (width / 3)
                     lp?.setMargins(8, 8, 8, 8)
                     return super.checkLayoutParams(lp)
                 }
@@ -60,12 +56,6 @@ class CategoryAdapter :
         val pieceRecyclerAdapter = PieceRecyclerAdapter()
         holder.pieceRecyclerView.adapter = pieceRecyclerAdapter
         pieceRecyclerAdapter.submitList(item.items)
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0)
-            0
-        else 1
     }
 
     inner class ViewHolder(cBinding: ItemCategoryBinding) : RecyclerView.ViewHolder(cBinding.root) {

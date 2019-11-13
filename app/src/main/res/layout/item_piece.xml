@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
         android:background="?attr/selectableItemBackground">
@@ -18,8 +18,8 @@
         <ImageView
             android:id="@+id/iv_piece"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_margin="@dimen/_8sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             RoundedCornerImage = "@{itemView.imageUrl}"/>
@@ -28,7 +28,8 @@
             android:id="@+id/tv_piece_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="10dp"
+            android:lines="2"
+            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,7 @@
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_piece_name"
@@ -50,7 +51,7 @@
         <TextView
             android:id="@+id/tv_off_price"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_price"

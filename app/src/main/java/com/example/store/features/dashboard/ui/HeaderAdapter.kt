@@ -6,16 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.example.store.R
 import kotlinx.coroutines.*
 
+private object HeaderRecyclerAdapterCallback : DiffUtil.ItemCallback<StoreView>() {
+    override fun areItemsTheSame(oldItem: StoreView, newItem: StoreView): Boolean {
+        return (oldItem.hashCode() == newItem.hashCode())
+    }
+
+    override fun areContentsTheSame(oldItem: StoreView, newItem: StoreView): Boolean {
+        return (oldItem.categoryViewList == oldItem.categoryViewList &&
+                oldItem.categoryViewList == oldItem.topSliderViewList)
+    }
+}
+
 class HeaderAdapter(
-    private val storeView: StoreView,
     private val viewLifecycleOwner: LifecycleOwner
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<StoreView, RecyclerView.ViewHolder>(HeaderRecyclerAdapterCallback) {
     private lateinit var headerRecyclerView: RecyclerView
     private lateinit var categoryRecyclerView: RecyclerView
     private lateinit var context: Context
@@ -58,7 +66,7 @@ class HeaderAdapter(
             snapHelper.attachToRecyclerView(holder.headerRecyclerView)
             val topSliderAdapter = TopSliderAdapter()
             holder.headerRecyclerView.adapter = topSliderAdapter
-            topSliderAdapter.submitList(storeView.topSliderViewList)
+            topSliderAdapter.submitList(getItem(0).topSliderViewList)
             holder.headerRecyclerView.setHasFixedSize(true)
             autoScrollTopSlider(holder.headerRecyclerView)
         } else if (holder is CategoryRecyclerViewHolder) {
@@ -67,7 +75,7 @@ class HeaderAdapter(
             val categoryAdapter = CategoryAdapter()
             holder.categoryRecyclerView.adapter = categoryAdapter
             holder.categoryRecyclerView.setHasFixedSize(true)
-            categoryAdapter.submitList(storeView.categoryViewList)
+            categoryAdapter.submitList(getItem(0).categoryViewList)
         }
     }
 

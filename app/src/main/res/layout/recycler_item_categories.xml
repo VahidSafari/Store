@@ -7,6 +7,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal"
-    android:layout_marginBottom="4dp">
+    android:layout_marginBottom="@dimen/_4sdp">
 
 </androidx.recyclerview.widget.RecyclerView>

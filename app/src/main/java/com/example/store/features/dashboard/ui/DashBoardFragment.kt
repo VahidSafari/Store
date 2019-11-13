@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.store.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
@@ -24,9 +25,8 @@ import kotlinx.android.synthetic.main.recycler_item_categories.*
 import kotlinx.android.synthetic.main.recycler_item_top_slider.*
 import javax.inject.Inject
 
-class DashBoardFragment : DaggerFragment() {
+class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener {
 
-    private lateinit var inflatedView: View
     private lateinit var topSliderAdapter: TopSliderAdapter
     private lateinit var categoryAdapter: CategoryAdapter
 
@@ -48,8 +48,7 @@ class DashBoardFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        inflatedView = inflater.inflate(R.layout.fragment_dash_board, container, false)
-        return inflatedView
+        return inflater.inflate(R.layout.fragment_dash_board, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -81,16 +80,18 @@ class DashBoardFragment : DaggerFragment() {
 //        rv_categories.adapter = categoryAdapter
 
         //fetching data and submit to the adapter
+        srl_dashboard.setOnRefreshListener(this)
+        storeViewModel.getStoreInfo()
         storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Result.Success -> {
                     applyDataToAdapters(it.data)
                 }
                 is Result.Error -> {
-                    Toast.makeText(context, "connection error", Toast.LENGTH_LONG).show()
+                    srl_dashboard.isRefreshing = false
                 }
                 is Result.Loading -> {
-                    Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+                    srl_dashboard.isRefreshing = true
                 }
             }
         })
@@ -100,16 +101,24 @@ class DashBoardFragment : DaggerFragment() {
         rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
         val headerAdapter =
             HeaderAdapter(
-                StoreView(
-                    response.data.toTopSliderViewList(),
-                    response.data.toCategoryViewList()
-                ),
                 viewLifecycleOwner
             )
+        headerAdapter.submitList(listOf(StoreView(
+            response.data.toTopSliderViewList(),
+            response.data.toCategoryViewList()
+        )))
         rv_fragment_dash_board.adapter = headerAdapter
 
 //        topSliderAdapter.submitList(response.data.toTopSliderViewList())
 //        categoryAdapter.submitList(response.data.toCategoryViewList())
+    }
+
+    override fun onRefresh() {
+        storeViewModel.getStoreInfo()
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(1000)
+            srl_dashboard.isRefreshing = false
+        }
     }
 
 }
