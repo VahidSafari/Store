@@ -1,14 +1,9 @@
 package com.example.store.core.di.components
 
 import com.example.store.App
-import com.example.store.MainActivity
 import com.example.store.core.di.modules.ActivityModule
 import com.example.store.core.di.modules.RetrofitModule
-import com.example.store.core.di.modules.StoreModule
-import com.example.store.features.dashboard.data.RemoteDataSource
-import com.example.store.features.dashboard.data.StoreRepository
-import com.example.store.features.dashboard.ui.DashBoardFragment
-import com.example.store.features.dashboard.ui.StoreViewModel
+import com.example.store.core.di.modules.RoomModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -19,8 +14,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
     RetrofitModule::class,
-    StoreModule::class,
     ActivityModule::class,
+        RoomModule::class,
     AndroidSupportInjectionModule::class
     ]
 )

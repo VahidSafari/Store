@@ -1,5 +1,6 @@
 package com.example.store.core.di.modules
 
+import com.example.store.features.dashboard.data.StoreService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -31,5 +32,10 @@ class RetrofitModule {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+    @Provides
+    @Singleton
+    fun provideStoreService(retrofit: Retrofit) =
+        retrofit.create(StoreService::class.java)
 
 }

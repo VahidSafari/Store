@@ -7,4 +7,10 @@ data class Slider (
 	val image : String,
 	val tag : Int,
 	val link : String
-)
+) {
+	fun toTopSliderEntity() =
+		TopSliderEntity(
+			id,
+			image
+		)
+}

@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class RemoteDataSource @Inject constructor(val storeService: StoreService) {
+class StoreRemoteDataSource @Inject constructor(val storeService: StoreService) {
 //    @Inject lateinit var storeService: StoreService
 //
 //    init {

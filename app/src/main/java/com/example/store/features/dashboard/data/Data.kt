@@ -9,10 +9,10 @@ import com.example.store.features.dashboard.ui.TopSliderView
 data class Data (
 
     val slider : List<Slider>,
-    val special_offers : List<SpecialOffers>,
-    val best_sellers : List<BestSellers>,
-    val most_viewed : List<MostViewed>,
-    val newest : List<Newest>
+    val special_offers : List<DiscountPieceResponse>,
+    val best_sellers : List<PieceResponse>,
+    val most_viewed : List<PieceResponse>,
+    val newest : List<PieceResponse>
 ) {
     fun toTopSliderViewList() : List<TopSliderView>{
         return slider.map {

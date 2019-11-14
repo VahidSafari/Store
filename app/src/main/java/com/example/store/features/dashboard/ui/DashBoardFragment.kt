@@ -27,9 +27,6 @@ import javax.inject.Inject
 
 class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener {
 
-    private lateinit var topSliderAdapter: TopSliderAdapter
-    private lateinit var categoryAdapter: CategoryAdapter
-
     @Inject
     lateinit var storeViewModelFactory: ViewModelProvider.Factory
     private val storeViewModel: StoreViewModel by viewModels {
