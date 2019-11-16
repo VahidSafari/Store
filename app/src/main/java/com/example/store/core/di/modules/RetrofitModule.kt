@@ -1,5 +1,7 @@
 package com.example.store.core.di.modules
 
+import com.example.store.App
+import com.example.store.core.api.NetworkHandler
 import com.example.store.features.dashboard.data.StoreService
 import dagger.Module
 import dagger.Provides
@@ -37,5 +39,9 @@ class RetrofitModule {
     @Singleton
     fun provideStoreService(retrofit: Retrofit) =
         retrofit.create(StoreService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideNetworkHandler(app: App) = NetworkHandler(app)
 
 }

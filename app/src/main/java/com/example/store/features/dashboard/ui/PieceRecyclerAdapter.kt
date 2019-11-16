@@ -45,8 +45,4 @@ ListAdapter<ItemView,PieceRecyclerAdapter.ViewHolder>(PieceRecyclerAdapterCallba
     inner class ViewHolder(pBinding : ItemPieceBinding) : RecyclerView.ViewHolder(pBinding.root){
         internal val holderBinding = pBinding
     }
-
-    override fun getItemCount(): Int {
-        return 3
-    }
 }

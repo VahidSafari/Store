@@ -1,7 +1,7 @@
 package com.example.store.core.di.components
 
 import com.example.store.App
-import com.example.store.core.di.modules.ActivityModule
+import com.example.store.core.di.modules.StoreModule
 import com.example.store.core.di.modules.RetrofitModule
 import com.example.store.core.di.modules.RoomModule
 import dagger.BindsInstance
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
     RetrofitModule::class,
-    ActivityModule::class,
+    StoreModule::class,
         RoomModule::class,
     AndroidSupportInjectionModule::class
     ]

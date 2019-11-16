@@ -15,4 +15,16 @@ class DiscountPieceResponse(
     image,
     start_price,
     end_price
-)
+) {
+    override fun toPieceEntity(categoryId: Int) = PieceEntity(
+        id,
+        title,
+        image,
+        start_price,
+        end_price,
+        off_percent,
+        start_off_price,
+        end_off_price,
+        categoryId
+    )
+}

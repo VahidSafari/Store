@@ -18,7 +18,9 @@ import com.example.store.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import com.example.store.core.api.Result
+import com.example.store.features.dashboard.data.PiecesDto
 import com.example.store.features.dashboard.data.StoreResponse
+import com.example.store.features.dashboard.data.TopSliderEntity
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_dash_board.*
 import kotlinx.android.synthetic.main.recycler_item_categories.*
@@ -78,7 +80,9 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
 
         //fetching data and submit to the adapter
         srl_dashboard.setOnRefreshListener(this)
-        storeViewModel.getStoreInfo()
+        lifecycleScope.launch{
+            storeViewModel.getStoreInfo()
+        }
         storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Result.Success -> {
@@ -94,15 +98,15 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
         })
     }
 
-    private fun applyDataToAdapters(response: StoreResponse) {
+    private fun applyDataToAdapters(response: Pair<List<TopSliderEntity>, List<PiecesDto>>) {
         rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
         val headerAdapter =
             HeaderAdapter(
                 viewLifecycleOwner
             )
         headerAdapter.submitList(listOf(StoreView(
-            response.data.toTopSliderViewList(),
-            response.data.toCategoryViewList()
+            response.first.map { it.toTopSliderView() },
+            response.second.map { it.toCategoryView() }
         )))
         rv_fragment_dash_board.adapter = headerAdapter
 

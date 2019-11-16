@@ -17,13 +17,7 @@ class StoreLocalDataSource @Inject constructor(
         }
     }
 
-    suspend fun getAllCategories() = withContext(Dispatchers.IO) {
-        return@withContext try {
-            db.getStoreDao().getAllCategories()
-        } catch (e: Exception){
-            e.printStackTrace()
-        }
-    }
+    suspend fun getAllCategories() = db.getStoreDao().getAllCategories()
 
     suspend fun insertTopSliderItems(topSliderItems: List<TopSliderEntity>) = withContext(Dispatchers.IO) {
         return@withContext try {
@@ -33,11 +27,5 @@ class StoreLocalDataSource @Inject constructor(
         }
     }
 
-    suspend fun getTopSliderItems() = withContext(Dispatchers.IO) {
-        return@withContext try {
-            db.getStoreDao().getTopSliderItems()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
+    suspend fun getTopSliderItems() = db.getStoreDao().getTopSliderItems()
 }

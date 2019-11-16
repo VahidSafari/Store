@@ -1,5 +1,6 @@
 package com.example.store
 
+import com.example.store.core.api.NetworkHandler
 import com.example.store.core.di.components.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication

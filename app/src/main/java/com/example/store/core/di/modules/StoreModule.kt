@@ -1,5 +1,6 @@
 package com.example.store.core.di.modules
 
+import android.app.Application
 import com.example.store.MainActivity
 import com.example.store.features.dashboard.data.StoreLocalDataSource
 import com.example.store.features.dashboard.data.StoreRemoteDataSource
@@ -9,7 +10,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module(includes = [ViewModelModule::class])
-abstract class ActivityModule {
+abstract class StoreModule {
 
     @ContributesAndroidInjector
     abstract fun contributeActivity() : MainActivity

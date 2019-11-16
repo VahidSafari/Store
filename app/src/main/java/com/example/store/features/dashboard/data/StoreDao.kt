@@ -1,9 +1,6 @@
 package com.example.store.features.dashboard.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -25,9 +22,11 @@ abstract class StoreDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertPieces(pieces: List<PieceEntity>)
 
+    @Transaction
     @Query("SELECT * FROM CategoryEntity")
     abstract suspend fun getAllCategories(): List<PiecesDto>
 
+    @Transaction
     @Query("SELECT * FROM CategoryEntity WHERE title = :categoryTitle")
     abstract suspend fun getCategory(categoryTitle: String): PiecesDto
 
