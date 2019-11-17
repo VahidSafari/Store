@@ -65,8 +65,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_marginBottom="?android:attr/actionBarSize"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"/>
+        app:defaultNavHost="true"/>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bap_main"

@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -18,6 +19,8 @@ class RetrofitModule {
     @Singleton
     fun provideOkHttpClient() =
         OkHttpClient.Builder()
+            .connectTimeout(40,TimeUnit.SECONDS)
+            .readTimeout(20, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val request: Request = chain
                     .request()

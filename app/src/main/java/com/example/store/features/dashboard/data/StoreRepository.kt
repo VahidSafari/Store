@@ -52,10 +52,12 @@ class StoreRepository @Inject constructor(
                         result = Result.Error(response.message)
                     }
                 }
-            } else result = Result.Success(Pair<List<TopSliderEntity>, List<PiecesDto>>(
-                storeLocalDataSource.getTopSliderItems(),
-                storeLocalDataSource.getAllCategories()
-            ))
+            } else {
+                result = Result.Success(Pair<List<TopSliderEntity>, List<PiecesDto>>(
+                    storeLocalDataSource.getTopSliderItems(),
+                    storeLocalDataSource.getAllCategories()
+                ))
+            }
         }
         return result
     }

@@ -49,8 +49,18 @@ class HeaderAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is HeaderRecyclerViewHolder) {
-            holder.headerRecyclerView.layoutManager =
+        if (holder is HeaderRecyclerViewHolder)
+            holder.topSliderAdapter.submitList(getItem(0).topSliderViewList)
+        else if (holder is CategoryRecyclerViewHolder)
+            holder.categoryAdapter.submitList(getItem(0).categoryViewList)
+    }
+
+    inner class HeaderRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val headerRecyclerView = view.findViewById<RecyclerView>(R.id.rv_top_slider)
+        internal val topSliderAdapter = TopSliderAdapter()
+
+        init {
+            headerRecyclerView.layoutManager =
                 object : LinearLayoutManager(
                     context,
                     HORIZONTAL,
@@ -62,29 +72,25 @@ class HeaderAdapter(
                         return super.checkLayoutParams(lp)
                     }
                 }
+            headerRecyclerView.adapter = topSliderAdapter
+            headerRecyclerView.setHasFixedSize(true)
             val snapHelper = LinearSnapHelper()
-            snapHelper.attachToRecyclerView(holder.headerRecyclerView)
-            val topSliderAdapter = TopSliderAdapter()
-            holder.headerRecyclerView.adapter = topSliderAdapter
-            topSliderAdapter.submitList(getItem(0).topSliderViewList)
-            holder.headerRecyclerView.setHasFixedSize(true)
-            autoScrollTopSlider(holder.headerRecyclerView)
-        } else if (holder is CategoryRecyclerViewHolder) {
-            holder.categoryRecyclerView.layoutManager =
-                LinearLayoutManager(context)
-            val categoryAdapter = CategoryAdapter()
-            holder.categoryRecyclerView.adapter = categoryAdapter
-            holder.categoryRecyclerView.setHasFixedSize(true)
-            categoryAdapter.submitList(getItem(0).categoryViewList)
+            snapHelper.attachToRecyclerView(headerRecyclerView)
+            autoScrollTopSlider(headerRecyclerView)
         }
     }
 
-    inner class HeaderRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        internal val headerRecyclerView = view.findViewById<RecyclerView>(R.id.rv_top_slider)
-    }
-
     inner class CategoryRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        internal val categoryRecyclerView = view.findViewById<RecyclerView>(R.id.rv_categories)
+        private val categoryRecyclerView = view.findViewById<RecyclerView>(R.id.rv_categories)
+        internal val categoryAdapter = CategoryAdapter()
+
+        init {
+            categoryRecyclerView.layoutManager =
+                LinearLayoutManager(context)
+
+            categoryRecyclerView.adapter = categoryAdapter
+            categoryRecyclerView.setHasFixedSize(true)
+        }
     }
 
     override fun getItemViewType(position: Int) =
@@ -100,15 +106,15 @@ class HeaderAdapter(
                     (topSliderRecyclerView.layoutManager as LinearLayoutManager)
                         .findFirstCompletelyVisibleItemPosition()
                 delay(3000)
-                var postScrollPosition = -1
-                topSliderRecyclerView?.let {
+                var postScrollPosition: Int
+                topSliderRecyclerView.let {
                     postScrollPosition =
                         (topSliderRecyclerView.layoutManager as LinearLayoutManager)
                             .findFirstCompletelyVisibleItemPosition()
                 }
                 if (postScrollPosition != preScrollPosition)
                     continue
-                topSliderRecyclerView?.let {
+                topSliderRecyclerView.let {
                     when (postScrollPosition) {
                         topSliderRecyclerView.adapter?.itemCount?.minus(1) -> {
                             topSliderRecyclerView.smoothScrollToPosition(0)

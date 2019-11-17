@@ -92,6 +92,9 @@ dependencies {
     // debugImplementation because LeakCanary should only run in debug builds.
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
 
-    //sdp
+    //sdp - scalable size for layout
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    //ssp - scalable font size
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 }

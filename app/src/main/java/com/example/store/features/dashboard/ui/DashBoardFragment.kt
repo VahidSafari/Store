@@ -35,8 +35,6 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
         storeViewModelFactory
     }
 
-//        ViewModelProviders.of(this,storeViewModelFactory)
-//        .get(StoreViewModel::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,40 +51,26 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        //top slider
-//        rv_top_slider.setHasFixedSize(true)
-//        topSliderAdapter = TopSliderAdapter()
-//        rv_top_slider.layoutManager = object : LinearLayoutManager(context, HORIZONTAL, true) {
-//            override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-//                lp?.width = width * 85 / 100
-//                lp?.setMargins(12, 12, 12, 12)
-//                return super.checkLayoutParams(lp)
-//            }
-//        }
-//        rv_top_slider.adapter = topSliderAdapter
-//        val snapHelper = LinearSnapHelper()
-//        snapHelper.attachToRecyclerView(rv_top_slider)
-//        autoScrollTopSlider()
-//
-//        /*
-//         *category recycler view
-//         */
-//        rv_categories.setHasFixedSize(true)
-//
-//        rv_categories.layoutManager =
-//            LinearLayoutManager(context)
-//        categoryAdapter = CategoryAdapter()
-//        rv_categories.adapter = categoryAdapter
-
         //fetching data and submit to the adapter
         srl_dashboard.setOnRefreshListener(this)
         lifecycleScope.launch{
             storeViewModel.getStoreInfo()
         }
-        storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer {
-            when (it) {
+
+        rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
+        val headerAdapter =
+            HeaderAdapter(
+                viewLifecycleOwner
+            )
+        rv_fragment_dash_board.adapter = headerAdapter
+
+        storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
                 is Result.Success -> {
-                    applyDataToAdapters(it.data)
+                    headerAdapter.submitList(listOf(StoreView(
+                        result.data.first.map { it.toTopSliderView() },
+                        result.data.second.map { it.toCategoryView() }
+                    )))
                 }
                 is Result.Error -> {
                     srl_dashboard.isRefreshing = false
@@ -96,22 +80,7 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
                 }
             }
         })
-    }
 
-    private fun applyDataToAdapters(response: Pair<List<TopSliderEntity>, List<PiecesDto>>) {
-        rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
-        val headerAdapter =
-            HeaderAdapter(
-                viewLifecycleOwner
-            )
-        headerAdapter.submitList(listOf(StoreView(
-            response.first.map { it.toTopSliderView() },
-            response.second.map { it.toCategoryView() }
-        )))
-        rv_fragment_dash_board.adapter = headerAdapter
-
-//        topSliderAdapter.submitList(response.data.toTopSliderViewList())
-//        categoryAdapter.submitList(response.data.toCategoryViewList())
     }
 
     override fun onRefresh() {
