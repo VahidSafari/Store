@@ -8,6 +8,7 @@ import com.example.store.features.dashboard.ui.ListFragment
 import com.example.store.features.dashboard.ui.SearchFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -16,31 +17,27 @@ class MainActivity : DaggerAppCompatActivity() {
     private val listFragment = ListFragment()
     private val dashBoardFragment = DashBoardFragment()
     private var currentFragment: Fragment? = dashBoardFragment
-    private var backStackCount = supportFragmentManager.backStackEntryCount
     private val profileFragmentTag = "fragment_profile"
     private val searchFragmentTag = "fragment_search"
     private val listFragmentTag = "fragment_list"
-    private val dashBoardFragmentTag = "fragment_home"
+    private val dashBoardFragmentTag = "fragment_dashboard"
+    private val fragmentStack = Stack<String>()
+    private var isBackPressed = false
+    val ft = supportFragmentManager.beginTransaction()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        supportFragmentManager.beginTransaction().replace(
-//            R.id.nav_host_fragment, DashBoardFragment()
-//        ).commit()
 
         bottom_navigation_view.menu.getItem(2).isEnabled = false
 
-
-        val ft = supportFragmentManager.beginTransaction()
         ft.add(R.id.nav_host_fragment, profileFragment, profileFragmentTag)
         ft.add(R.id.nav_host_fragment, searchFragment, searchFragmentTag)
         ft.add(R.id.nav_host_fragment, listFragment, listFragmentTag)
         ft.add(R.id.nav_host_fragment, dashBoardFragment, dashBoardFragmentTag)
         ft.commit()
 
-        bottom_navigation_view.selectedItemId = R.id.fragment_home
-
+        bottom_navigation_view.selectedItemId = R.id.fragment_dashboard
 
         bottom_navigation_view.setOnNavigationItemSelectedListener {
 
@@ -51,9 +48,11 @@ class MainActivity : DaggerAppCompatActivity() {
                         currentFragment?.let { fragment ->
                             supportFragmentManager.beginTransaction()
                                 .hide(fragment)
-                                .addToBackStack((currentFragment as Fragment).tag)
                                 .commit()
-                            backStackCount++
+                            if (!isBackPressed)
+                                fragmentStack.push(fragment.tag)
+                            isBackPressed = false
+//                            backStackCount++
                         }
 
                         currentFragment = profileFragment
@@ -64,15 +63,17 @@ class MainActivity : DaggerAppCompatActivity() {
 
                 }
 
-                R.id.fragment_home -> {
+                R.id.fragment_dashboard -> {
 
                     if (currentFragment?.tag != dashBoardFragmentTag) {
                         currentFragment?.let { fragment ->
                             supportFragmentManager.beginTransaction()
                                 .hide(fragment)
-                                .addToBackStack((currentFragment as Fragment).tag)
                                 .commit()
-                            backStackCount++
+                            if (!isBackPressed)
+                                fragmentStack.push(fragment.tag)
+                            isBackPressed = false
+//                            backStackCount++
                         }
                         currentFragment = dashBoardFragment
 
@@ -89,9 +90,11 @@ class MainActivity : DaggerAppCompatActivity() {
                         currentFragment?.let { fragment ->
                             supportFragmentManager.beginTransaction()
                                 .hide(fragment)
-                                .addToBackStack((currentFragment as Fragment).tag)
                                 .commit()
-                            backStackCount++
+                            if (!isBackPressed)
+                                fragmentStack.push(fragment.tag)
+                            isBackPressed = false
+//                            backStackCount++
                         }
                         currentFragment = listFragment
 
@@ -108,9 +111,11 @@ class MainActivity : DaggerAppCompatActivity() {
                         currentFragment?.let { fragment ->
                             supportFragmentManager.beginTransaction()
                                 .hide(fragment)
-                                .addToBackStack((currentFragment as Fragment).tag)
                                 .commit()
-                            backStackCount++
+                            if (!isBackPressed)
+                                fragmentStack.push(fragment.tag)
+                            isBackPressed = false
+//                            backStackCount++
                         }
                         currentFragment = searchFragment
 
@@ -118,7 +123,6 @@ class MainActivity : DaggerAppCompatActivity() {
                             .show(searchFragment)
                             .commit()
                     }
-
                 }
             }
 
@@ -126,32 +130,51 @@ class MainActivity : DaggerAppCompatActivity() {
         }
 
 
-
-        supportFragmentManager.addOnBackStackChangedListener {
-            if (supportFragmentManager.backStackEntryCount in 1 until backStackCount) {
-                val currentNavigationItemName =
-                    supportFragmentManager.getBackStackEntryAt(
-                        supportFragmentManager.backStackEntryCount - 1
-                    ).name
-                when (currentNavigationItemName) {
-                    "ListFragment" -> {
-                        bottom_navigation_view.selectedItemId = R.id.fragment_list
-                    }
-                    "ProfileFragment" -> {
-                        bottom_navigation_view.selectedItemId = R.id.fragment_profile
-                    }
-                    "SearchFragment" -> {
-                        bottom_navigation_view.selectedItemId = R.id.fragment_search
-                    }
-                    "DashBoardFragment" -> {
-                        bottom_navigation_view.selectedItemId = R.id.fragment_home
-                    }
-                }
-                backStackCount--
-            }
-        }
-
     }
 
+    override fun onBackPressed() {
+        if (fragmentStack.size > 0) {
+            isBackPressed = true
+            when (fragmentStack.pop()) {
+                listFragmentTag -> {
+                    currentFragment = listFragment
+                    supportFragmentManager.beginTransaction()
+                        .show(listFragment)
+                        .commit()
+                    bottom_navigation_view.selectedItemId = R.id.fragment_list
 
+                }
+                profileFragmentTag -> {
+                    currentFragment = profileFragment
+                    currentFragment = listFragment
+                    supportFragmentManager.beginTransaction()
+                        .show(profileFragment)
+                        .commit()
+                    bottom_navigation_view.selectedItemId = R.id.fragment_profile
+
+                }
+                searchFragmentTag -> {
+                    currentFragment = searchFragment
+                    currentFragment = listFragment
+                    supportFragmentManager.beginTransaction()
+                        .show(searchFragment)
+                        .commit()
+                    bottom_navigation_view.selectedItemId = R.id.fragment_search
+
+                }
+                dashBoardFragmentTag -> {
+                    currentFragment = dashBoardFragment
+                    currentFragment = listFragment
+                    supportFragmentManager.beginTransaction()
+                        .show(dashBoardFragment)
+                        .commit()
+                    bottom_navigation_view.selectedItemId = R.id.fragment_dashboard
+
+                }
+            }
+
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

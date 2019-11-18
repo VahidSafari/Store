@@ -11,21 +11,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.store.R
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.*
 import com.example.store.core.api.Result
-import com.example.store.features.dashboard.data.PiecesDto
-import com.example.store.features.dashboard.data.StoreResponse
-import com.example.store.features.dashboard.data.TopSliderEntity
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dash_board.*
-import kotlinx.android.synthetic.main.recycler_item_categories.*
-import kotlinx.android.synthetic.main.recycler_item_top_slider.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -48,12 +43,11 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
         return inflater.inflate(R.layout.fragment_dash_board, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         //fetching data and submit to the adapter
         srl_dashboard.setOnRefreshListener(this)
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             storeViewModel.getStoreInfo()
         }
 
@@ -67,20 +61,28 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
         storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Success -> {
+                    if (result.data.first.isNotEmpty())
                     headerAdapter.submitList(listOf(StoreView(
                         result.data.first.map { it.toTopSliderView() },
                         result.data.second.map { it.toCategoryView() }
                     )))
                 }
                 is Result.Error -> {
+                    if (result.data?.first?.isNotEmpty() == true)
+                        result.data.let {
+                            headerAdapter.submitList(listOf(StoreView(
+                                result.data.first.map { it.toTopSliderView() },
+                                result.data.second.map { it.toCategoryView() }
+                            )))
+                        }
                     srl_dashboard.isRefreshing = false
+                    Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
                 }
                 is Result.Loading -> {
                     srl_dashboard.isRefreshing = true
                 }
             }
         })
-
     }
 
     override fun onRefresh() {

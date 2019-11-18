@@ -65,7 +65,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="?android:attr/actionBarSize"
         android:layout_marginBottom="?android:attr/actionBarSize"
-        app:defaultNavHost="true"/>
+        app:defaultNavHost="true" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bap_main"
@@ -81,6 +81,8 @@
             android:layout_height="match_parent"
             app:itemIconTint="@color/bottom_nav_item_color"
             app:itemRippleColor="@color/colorSecondaryDark"
+            app:itemTextAppearanceActive="@style/OffPriceTextView"
+            app:itemTextAppearanceInactive="@style/OffPriceTextView"
             app:itemTextColor="@color/PrimaryBlack"
             app:labelVisibilityMode="selected"
             app:menu="@menu/bottom_nav_menu" />

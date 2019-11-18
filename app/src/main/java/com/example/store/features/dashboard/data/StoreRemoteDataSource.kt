@@ -6,19 +6,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class StoreRemoteDataSource @Inject constructor(val storeService: StoreService) {
-//    @Inject lateinit var storeService: StoreService
-//
-//    init {
-//        AndroidInjection.inject(this)
-//    }
-//
+class StoreRemoteDataSource @Inject constructor(private val storeService: StoreService) {
 
     suspend fun getStoreInformation(): Result<StoreResponse>? {
         var result : Result<StoreResponse>? = null
         withContext(Dispatchers.IO){
-            val asyncCall = storeService.getStoreInformation()
             try {
+            val asyncCall = storeService.getStoreInformation()
                 when(asyncCall.code()){
                     200 -> {
                         asyncCall.body()?.let {
@@ -30,7 +24,7 @@ class StoreRemoteDataSource @Inject constructor(val storeService: StoreService) 
                     }
                 }
             } catch (exception:Exception){
-                exception.printStackTrace()
+                result = Result.Error(exception.message?:" EXCEPTION ")
             }
         }
         return result

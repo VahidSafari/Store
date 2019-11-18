@@ -14,6 +14,7 @@
         <item name="android:textSize">@dimen/_20ssp</item>
     </style>
 
+
     <style name="CategoryTitleTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/iran_yekan_bold</item>
         <item name="android:textColor">@color/PrimaryBlack</item>

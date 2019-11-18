@@ -19,8 +19,9 @@ class RetrofitModule {
     @Singleton
     fun provideOkHttpClient() =
         OkHttpClient.Builder()
-            .connectTimeout(40,TimeUnit.SECONDS)
-            .readTimeout(20, TimeUnit.SECONDS)
+            .connectTimeout(20,TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val request: Request = chain
                     .request()
@@ -31,7 +32,7 @@ class RetrofitModule {
             .build()
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient) =
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl("http://my-dms.ir/api/")
             .client(okHttpClient)
@@ -40,7 +41,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideStoreService(retrofit: Retrofit) =
+    fun provideStoreService(retrofit: Retrofit): StoreService =
         retrofit.create(StoreService::class.java)
 
     @Provides

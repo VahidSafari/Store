@@ -49,10 +49,10 @@ class HeaderAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is HeaderRecyclerViewHolder)
-            holder.topSliderAdapter.submitList(getItem(0).topSliderViewList)
-        else if (holder is CategoryRecyclerViewHolder)
-            holder.categoryAdapter.submitList(getItem(0).categoryViewList)
+            if (currentList.size > 0 && holder is HeaderRecyclerViewHolder)
+                holder.topSliderAdapter.submitList(getItem(0).topSliderViewList)
+            else if (currentList.size > 0 && holder is CategoryRecyclerViewHolder)
+                holder.categoryAdapter.submitList(getItem(0).categoryViewList)
     }
 
     inner class HeaderRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {

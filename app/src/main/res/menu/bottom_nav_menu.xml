@@ -32,10 +32,10 @@
         android:visible="true"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/fragment_home"
+        android:id="@+id/fragment_dashboard"
         android:enabled="true"
         android:icon="@drawable/search_result_home2x"
-        android:title="@string/menu_home"
+        android:title="@string/menu_dashboard"
         android:visible="true"
         app:showAsAction="ifRoom" />
 
