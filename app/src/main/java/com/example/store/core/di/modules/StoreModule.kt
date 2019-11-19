@@ -1,7 +1,6 @@
 package com.example.store.core.di.modules
 
-import android.app.Application
-import com.example.store.MainActivity
+import com.example.store.features.dashboard.ui.MainActivity
 import com.example.store.features.dashboard.data.StoreLocalDataSource
 import com.example.store.features.dashboard.data.StoreRemoteDataSource
 import com.example.store.features.dashboard.data.StoreRepository

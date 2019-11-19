@@ -1,4 +1,4 @@
-package com.example.store.features.User
+package com.example.store.features.user
 
 
 import android.os.Bundle

@@ -6,7 +6,7 @@
     tools:context=".features.dashboard.ui.ListFragment"
     android:background="@color/colorPrimary">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         style="@style/TitleTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

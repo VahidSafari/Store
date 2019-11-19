@@ -12,4 +12,5 @@
     <string name="list">لیست</string>
     <string name="home_text">خانه</string>
     <string name="category_item_more">بیشتر</string>
+    <string name="title_activity_cart">CartActivity</string>
 </resources>
