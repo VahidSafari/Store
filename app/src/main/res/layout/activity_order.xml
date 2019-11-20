@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.dashboard.ui.CartActivity">
+    tools:context=".features.dashboard.ui.OrderActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/abl_cart"
+        android:id="@+id/abl_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme">
@@ -26,7 +26,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_back_container"
+                    android:id="@+id/cl_order_back_container"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="?attr/selectableItemBackground"
@@ -65,12 +65,12 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_cart_title"
+                    android:id="@+id/tv_order_title"
                     style="@style/TitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/cart_activity_title"
+                    android:text="@string/tv_order"
                     app:layout_constraintBottom_toBottomOf="@id/cl_back_container"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/cl_back_container" />
@@ -81,25 +81,98 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_cart"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginBottom="?attr/actionBarSize"
-        tools:listitem="@layout/item_cart"
-        tools:itemCount="10"/>
+        android:layout_marginStart="@dimen/_16ssp"
+        android:layout_marginEnd="@dimen/_16ssp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_order_items_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_order_items_title"
+        style="@style/OrderItemsTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_items_title"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_cart" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_order_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/cart_address"
+            style="@style/OrderItemsTextView"
+            app:layout_constraintTop_toBottomOf="@id/rv_order" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/iet_order_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/address_hint"
+            style="@style/PriceTextView"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_order_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            app:layout_constraintTop_toBottomOf="@id/iet_order_address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/OrderItemsTextView"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/iet_order_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="@string/description_hint"
+            style="@style/PriceTextView"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_order_further_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/further_description"
+            app:layout_constraintTop_toBottomOf="@id/iet_order_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/PriceTextView"
+            android:textDirection="rtl"
+            android:textAlignment="center"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_next_step"
+        android:id="@+id/btn_order"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
         android:theme="@style/GreenButtonThemeOverlay"
         android:fontFamily="@font/iran_yekan_regular"
         android:gravity="center"
-        android:text="@string/btn_next_step"
+        android:text="@string/btn_order"
         android:textColor="@color/colorPrimary"
         android:insetRight="0dp"
         android:insetLeft="0dp"

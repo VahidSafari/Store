@@ -1,5 +1,6 @@
 package com.example.store.features.dashboard.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.store.R
@@ -27,6 +28,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         bottom_navigation_view.selectedItemId = R.id.fragment_dashboard
 
+
         supportFragmentManager.beginTransaction()
             .add(
                 R.id.nav_host_fragment,
@@ -34,6 +36,10 @@ class MainActivity : DaggerAppCompatActivity() {
                 dashBoardFragmentTag
             )
             .commitNow()
+
+        fab.setOnClickListener {
+            startActivity(Intent(this, CartActivity::class.java))
+        }
 
         bottom_navigation_view.setOnNavigationItemSelectedListener {
 
@@ -59,13 +65,13 @@ class MainActivity : DaggerAppCompatActivity() {
                             isBackPressed = false
                         }
 
-                        supportFragmentManager.findFragmentByTag(profileFragmentTag)?.let {
-                                fragment ->
-                            currentFragment = profileFragmentTag
-                            supportFragmentManager.beginTransaction()
-                                .show(fragment)
-                                .commitNow()
-                        }
+                        supportFragmentManager.findFragmentByTag(profileFragmentTag)
+                            ?.let { fragment ->
+                                currentFragment = profileFragmentTag
+                                supportFragmentManager.beginTransaction()
+                                    .show(fragment)
+                                    .commitNow()
+                            }
                         supportFragmentManager.beginTransaction().commitNow()
                     }
                 }
@@ -95,13 +101,13 @@ class MainActivity : DaggerAppCompatActivity() {
                             isBackPressed = false
                         }
 
-                        supportFragmentManager.findFragmentByTag(dashBoardFragmentTag)?.let {
-                                fragment ->
-                            currentFragment = dashBoardFragmentTag
-                            supportFragmentManager.beginTransaction()
-                                .show(fragment)
-                                .commitNow()
-                        }
+                        supportFragmentManager.findFragmentByTag(dashBoardFragmentTag)
+                            ?.let { fragment ->
+                                currentFragment = dashBoardFragmentTag
+                                supportFragmentManager.beginTransaction()
+                                    .show(fragment)
+                                    .commitNow()
+                            }
                         supportFragmentManager.beginTransaction().commitNow()
                     }
 
@@ -161,22 +167,18 @@ class MainActivity : DaggerAppCompatActivity() {
                             isBackPressed = false
                         }
 
-                        supportFragmentManager.findFragmentByTag(searchFragmentTag)?.let {
-                                fragment ->
-                            currentFragment = searchFragmentTag
-                            supportFragmentManager.beginTransaction()
-                                .show(fragment)
-                                .commitNow()
-                        }
+                        supportFragmentManager.findFragmentByTag(searchFragmentTag)
+                            ?.let { fragment ->
+                                currentFragment = searchFragmentTag
+                                supportFragmentManager.beginTransaction()
+                                    .show(fragment)
+                                    .commitNow()
+                            }
                     }
                 }
 
             }
             return@setOnNavigationItemSelectedListener true
-        }
-
-        fab.setOnClickListener{
-
         }
     }
 
@@ -234,7 +236,7 @@ class MainActivity : DaggerAppCompatActivity() {
                 }
             }
 
-        }  else {
+        } else {
             if (exitApp) {
                 super.onBackPressed()
             } else {

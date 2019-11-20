@@ -13,4 +13,16 @@
     <string name="home_text">خانه</string>
     <string name="category_item_more">بیشتر</string>
     <string name="title_activity_cart">CartActivity</string>
+    <string name="back">بازگشت</string>
+    <string name="cart_activity_title">سبد خرید</string>
+    <string name="btn_next_step">مرحله بعد</string>
+    <string name="tv_order">ثبت سفارش</string>
+    <string name="btn_order">ثبت سفارش</string>
+    <string name="tv_order_items_title">محصولات</string>
+    <string name="cart_address">آدرس</string>
+    <string name="address_hint">آدرس</string>
+    <string name="description">توضیحات</string>
+    <string name="description_hint">توضیحات (در صورت نیاز)</string>
+    <string name="further_description">توجه داشته باشید که کالا در زمانی که به شما اعلام خواهد شد در آدرسی که در بالا وارد کردید تحویل داده می شود و پرداخت مبلغ آن به صورت نقدی است</string>
+    <string name="code">کد رهگیری: 892132</string>
 </resources>

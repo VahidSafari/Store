@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cartItemView"
+            type="com.example.store.features.dashboard.ui.CartItemView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_cart_piece"
+            RoundedCornerImage="@{cartItemView.imageUrl}"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:padding="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/profile_not_registred_bitmap_2x" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_item_cart_title"
+            style="@style/ItemTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{cartItemView.name}"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@id/iv_cart_piece"
+            app:layout_constraintTop_toTopOf="@id/iv_cart_piece"
+            tools:text="@string/back" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_item_cart_price"
+            style="@style/PriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{` تا ` + cartItemView.startPrice + ` تومان ` + cartItemView.endPrice}"
+            android:textDirection="rtl"
+            app:layout_constraintBottom_toBottomOf="@id/iv_cart_piece"
+            app:layout_constraintEnd_toStartOf="@id/iv_cart_piece"
+            tools:text="@string/dash_board_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_cart_offprice"
+            style="@style/OffPriceTextView"
+            hideIfZero="@{cartItemView.offPrice}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:textDirection="rtl"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_cart_price"
+            app:layout_constraintEnd_toStartOf="@id/tv_item_cart_price"
+            tools:text="@string/category_item_more" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_cart_minus"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:background="@color/lightGray"
+            android:padding="@dimen/_4sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/minus"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_cart_counter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_item_cart_plus" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_item_cart_counter"
+            style="@style/counterTextView"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:gravity="center"
+            android:textDirection="rtl"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_cart_plus"
+            app:layout_constraintStart_toEndOf="@id/iv_item_cart_minus"
+            app:layout_constraintTop_toTopOf="@id/iv_item_cart_plus"
+            tools:text="1" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item_cart_plus"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_2sdp"
+            android:background="@color/lightGray"
+            android:padding="@dimen/_4sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/plus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_item_cart_counter"
+            app:layout_constraintTop_toBottomOf="@id/item_cart_offprice" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

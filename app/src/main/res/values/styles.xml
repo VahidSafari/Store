@@ -14,6 +14,9 @@
         <item name="android:textSize">@dimen/_20ssp</item>
     </style>
 
+    <style name="OrderItemsTextView" parent="TitleTextView">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 
     <style name="CategoryTitleTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/iran_yekan_bold</item>
@@ -35,14 +38,21 @@
 
     <style name="OffPriceTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/iran_yekan_regular</item>
-        <item name="android:textColor">@color/OffPriceGreen</item>
+        <item name="android:textColor">@color/coolGreen</item>
         <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
     <style name="backTextView" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/iran_yekan_regular</item>
-        <item name="android:textColor">@color/CategoryMoreDetailTextColor</item>
+        <item name="android:fontFamily">@font/iran_yekan_bold</item>
+        <item name="android:textColor">@color/coolBlue</item>
         <item name="android:textSize">@dimen/_18ssp</item>
+    </style>
+
+    <style name="counterTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/iran_yekan_bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@color/coolBlue</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -50,9 +60,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="GreenButtonThemeOverlay">
+        <item name="colorPrimary">@color/coolGreen</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 
 </resources>

@@ -18,10 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".features.dashboard.ui.OrderSuccessActivity"></activity>
+        <activity android:name=".features.dashboard.ui.OrderActivity" />
         <activity
-            android:name=".features.cart.ui.CartActivity"
+            android:name=".features.dashboard.ui.CartActivity"
             android:label="@string/title_activity_cart"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".features.dashboard.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
