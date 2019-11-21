@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:screenOrientation="portrait"
+        android:configChanges="orientation|keyboardHidden">
         <activity android:name=".features.dashboard.ui.OrderSuccessActivity"></activity>
         <activity android:name=".features.dashboard.ui.OrderActivity" />
         <activity

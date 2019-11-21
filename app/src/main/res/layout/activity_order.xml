@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:contentInsetEnd="@dimen/_8sdp"
+            app:contentInsetEnd="@dimen/_16sdp"
             app:contentInsetStart="0dp"
             app:popupTheme="@style/AppTheme">
 
@@ -42,8 +42,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:paddingTop="@dimen/_4sdp"
-                        android:paddingBottom="@dimen/_4sdp"
+                        android:paddingTop="@dimen/_6sdp"
+                        android:paddingBottom="@dimen/_6sdp"
                         android:scaleType="fitEnd"
                         android:src="@drawable/back_button"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,9 +71,9 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/tv_order"
-                    app:layout_constraintBottom_toBottomOf="@id/cl_back_container"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/cl_back_container" />
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -97,7 +97,8 @@
         android:text="@string/tv_order_items_title"
         style="@style/OrderItemsTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_8sdp"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -109,7 +110,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_order_items_title"
             tools:itemCount="2"
-            tools:listitem="@layout/item_cart" />
+            tools:listitem="@layout/item_product" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_order_address"
@@ -118,12 +119,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/cart_address"
             style="@style/OrderItemsTextView"
+            android:layout_marginTop="@dimen/_4sdp"
             app:layout_constraintTop_toBottomOf="@id/rv_order" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/iet_order_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textDirection="rtl"
             app:layout_constraintTop_toBottomOf="@id/tv_order_address"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -138,12 +141,14 @@
             app:layout_constraintTop_toBottomOf="@id/iet_order_address"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/OrderItemsTextView"/>
+            style="@style/OrderItemsTextView"
+            android:layout_marginTop="@dimen/_4sdp"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/iet_order_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textDirection="rtl"
             app:layout_constraintTop_toBottomOf="@id/tv_order_description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -154,6 +159,7 @@
             android:id="@+id/tv_order_further_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
             android:hint="@string/further_description"
             app:layout_constraintTop_toBottomOf="@id/iet_order_description"
             app:layout_constraintStart_toStartOf="parent"

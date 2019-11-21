@@ -25,4 +25,10 @@
     <string name="description_hint">توضیحات (در صورت نیاز)</string>
     <string name="further_description">توجه داشته باشید که کالا در زمانی که به شما اعلام خواهد شد در آدرسی که در بالا وارد کردید تحویل داده می شود و پرداخت مبلغ آن به صورت نقدی است</string>
     <string name="code">کد رهگیری: 892132</string>
+    <string name="followup">پیگیری سفارشات</string>
+    <string name="return_to_homepage">بازگشت به صفحه اول</string>
+    <string name="congratulation"> تبریک میگم!&#xA; سفارش شما با موفقیت ثبت شد </string>
+    <string name="download">ذخیره</string>
+    <string name="share">اشتراک</string>
+    <string name="order_accepted">سفارش ثبت شد</string>
 </resources>

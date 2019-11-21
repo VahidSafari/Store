@@ -3,10 +3,11 @@ package com.example.store.features.dashboard.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.store.R
-
 import kotlinx.android.synthetic.main.activity_cart.*
+
 
 class CartActivity : AppCompatActivity() {
 
@@ -27,7 +28,12 @@ class CartActivity : AppCompatActivity() {
         rv_cart.setHasFixedSize(true)
         val cartAdapter = CartAdapter()
         rv_cart.adapter = cartAdapter
-
+        rv_cart.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
         cartAdapter.submitList(
             listOf(
                 CartItemView(
@@ -52,6 +58,8 @@ class CartActivity : AppCompatActivity() {
                 )
             )
         )
+
+
     }
 
 }

@@ -31,7 +31,7 @@ class HeaderAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         context = parent.context
-        return if (viewType == HeaderAdapterItemType.TYPE_HEADER_RECYCLER.type) {
+        return if (viewType == HeaderAdapterItemType.TOP_SLIDER_RECYCLER.type) {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.recycler_item_top_slider, parent, false)
             headerRecyclerView = view.findViewById(R.id.rv_top_slider)
@@ -44,15 +44,11 @@ class HeaderAdapter(
         }
     }
 
-    override fun getItemCount(): Int {
-        return 2
-    }
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            if (currentList.size > 0 && holder is HeaderRecyclerViewHolder)
-                holder.topSliderAdapter.submitList(getItem(0).topSliderViewList)
-            else if (currentList.size > 0 && holder is CategoryRecyclerViewHolder)
-                holder.categoryAdapter.submitList(getItem(0).categoryViewList)
+        when (holder) {
+            is HeaderRecyclerViewHolder -> holder.topSliderAdapter.submitList(getItem(0).topSliderViewList)
+            is CategoryRecyclerViewHolder -> holder.categoryAdapter.submitList(getItem(0).categoryViewList)
+        }
     }
 
     inner class HeaderRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -95,7 +91,7 @@ class HeaderAdapter(
 
     override fun getItemViewType(position: Int) =
         if (position == 0)
-            HeaderAdapterItemType.TYPE_HEADER_RECYCLER.type
+            HeaderAdapterItemType.TOP_SLIDER_RECYCLER.type
         else
             HeaderAdapterItemType.TYPE_CATEGORY_RECYCLER.type
 

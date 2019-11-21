@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="productView"
+            type="com.example.store.features.dashboard.ui.ProductView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_4sdp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_product_name"
+            style="@style/ItemTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{productView.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="کفش مناسب" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/ItemTextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@{` تا ` + productView.startPrice + ` تومان ` + productView.endPrice}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_product_name"
+            app:layout_constraintStart_toEndOf="@id/tv_product_count"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="تا 12000 ت 10000" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_product_count"
+            style="@style/ItemTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Integer.toString(productView.count) + `عدد`}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="عدد 2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

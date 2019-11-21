@@ -13,8 +13,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp">
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
 
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -23,19 +26,22 @@
             android:layout_width="@dimen/_55sdp"
             android:layout_height="@dimen/_55sdp"
             android:padding="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/profile_not_registred_bitmap_2x" />
+            tools:src="@drawable/mock_item_1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_cart_title"
             style="@style/ItemTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
             android:text="@{cartItemView.name}"
             android:textDirection="rtl"
             app:layout_constraintEnd_toStartOf="@id/iv_cart_piece"
             app:layout_constraintTop_toTopOf="@id/iv_cart_piece"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_cart_price"
             tools:text="@string/back" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -43,6 +49,7 @@
             style="@style/PriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_4sdp"
             android:text="@{` تا ` + cartItemView.startPrice + ` تومان ` + cartItemView.endPrice}"
             android:textDirection="rtl"
             app:layout_constraintBottom_toBottomOf="@id/iv_cart_piece"
@@ -65,9 +72,9 @@
             android:id="@+id/iv_item_cart_minus"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:layout_margin="@dimen/_2sdp"
             android:background="@color/lightGray"
             android:padding="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_16sdp"
             android:scaleType="fitXY"
             android:src="@drawable/minus"
             app:layout_constraintBottom_toBottomOf="@id/tv_item_cart_counter"
@@ -79,9 +86,10 @@
             style="@style/counterTextView"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:layout_margin="@dimen/_2sdp"
+            android:layout_margin="@dimen/_4sdp"
             android:gravity="center"
             android:textDirection="rtl"
+            android:text="@{Integer.toString(cartItemView.count)}"
             app:layout_constraintBottom_toBottomOf="@id/iv_item_cart_plus"
             app:layout_constraintStart_toEndOf="@id/iv_item_cart_minus"
             app:layout_constraintTop_toTopOf="@id/iv_item_cart_plus"
@@ -92,7 +100,10 @@
             android:id="@+id/iv_item_cart_plus"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:layout_margin="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
             android:background="@color/lightGray"
             android:padding="@dimen/_4sdp"
             android:scaleType="fitXY"

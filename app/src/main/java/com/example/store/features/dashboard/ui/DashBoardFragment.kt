@@ -61,11 +61,11 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
         storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Success -> {
-                    if (result.data.first.isNotEmpty())
-                    headerAdapter.submitList(listOf(StoreView(
-                        result.data.first.map { it.toTopSliderView() },
-                        result.data.second.map { it.toCategoryView() }
-                    )))
+                    if (result.data.first.isNotEmpty() && result.data.second.isNotEmpty())
+                        headerAdapter.submitList(listOf(StoreView(
+                            result.data.first.map { it.toTopSliderView() },
+                            result.data.second.map { it.toCategoryView() }
+                        )))
                 }
                 is Result.Error -> {
                     if (result.data?.first?.isNotEmpty() == true)
