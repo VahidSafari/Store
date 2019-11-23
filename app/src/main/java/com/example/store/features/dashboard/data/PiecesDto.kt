@@ -13,6 +13,7 @@ class PiecesDto(
     ) var pieces: List<PieceEntity>
 ) {
     fun toCategoryView() = CategoryView(
+        categoryEntity.id,
         categoryEntity.title,
         pieces.map { it.toItemView() }
     )

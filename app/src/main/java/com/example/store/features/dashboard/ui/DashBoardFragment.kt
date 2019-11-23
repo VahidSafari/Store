@@ -1,5 +1,6 @@
 package com.example.store.features.dashboard.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -53,9 +54,11 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
 
         rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
         val headerAdapter =
-            HeaderAdapter(
+            MainPageAdapter(
                 viewLifecycleOwner
-            )
+            ) {
+                startActivity(Intent(activity, ItemSpecificationActivity::class.java))
+            }
         rv_fragment_dash_board.adapter = headerAdapter
 
         storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer { result ->

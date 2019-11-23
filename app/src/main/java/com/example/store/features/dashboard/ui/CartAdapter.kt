@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.store.R
 import com.example.store.databinding.ItemCartBinding
 
+
 private object CartRecyclerAdapterCallback : DiffUtil.ItemCallback<CartItemView>() {
     override fun areItemsTheSame(oldItem: CartItemView, newItem: CartItemView): Boolean {
         return (oldItem.id == newItem.id)
@@ -21,17 +22,16 @@ private object CartRecyclerAdapterCallback : DiffUtil.ItemCallback<CartItemView>
 
 }
 
-class CartAdapter :
-    ListAdapter<CartItemView, CartAdapter.ViewHolder>(
-        CartRecyclerAdapterCallback
-    ) {
+class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
+    CartRecyclerAdapterCallback
+) {
 
     inner class ViewHolder(icBinding: ItemCartBinding) : RecyclerView.ViewHolder(icBinding.root) {
         internal val holderBinding = icBinding
-        internal val plusImageView : AppCompatImageView =
+        internal val plusImageView: AppCompatImageView =
             itemView.findViewById(R.id.iv_item_cart_plus)
 
-        internal val minusImageView : AppCompatImageView =
+        internal val minusImageView: AppCompatImageView =
             itemView.findViewById(R.id.iv_item_cart_minus)
     }
 
@@ -48,12 +48,17 @@ class CartAdapter :
         holder.holderBinding.cartItemView = item
 
         holder.minusImageView.setOnClickListener {
-            item.count--
-            holder.holderBinding.cartItemView = item
+            if (item.count != 0) {
+                item.count--
+                holder.holderBinding.cartItemView = item
+            }
         }
         holder.plusImageView.setOnClickListener {
-            item.count++
-            holder.holderBinding.cartItemView = item
+            if (item.count < 10) {
+                item.count++
+                holder.holderBinding.cartItemView = item
+            }
         }
     }
+
 }

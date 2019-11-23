@@ -29,9 +29,6 @@
                     android:id="@+id/cl_order_back_container"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -92,7 +89,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_congratulation"
-            style="@style/PriceTextView"
+            style="@style/CongratulationTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_16ssp"
@@ -139,6 +136,7 @@
             app:layout_constraintEnd_toEndOf="@id/glr"
             app:layout_constraintStart_toStartOf="@id/gll"
             app:layout_constraintTop_toBottomOf="@id/btn_followup" />
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_download"

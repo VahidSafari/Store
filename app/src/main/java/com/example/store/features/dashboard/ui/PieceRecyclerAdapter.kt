@@ -19,7 +19,9 @@ private object PieceRecyclerAdapterCallback : DiffUtil.ItemCallback<ItemView>() 
     }
 }
 
-class PieceRecyclerAdapter:
+class PieceRecyclerAdapter(
+    val itemListener: ()->Unit
+):
 ListAdapter<ItemView,PieceRecyclerAdapter.ViewHolder>(PieceRecyclerAdapterCallback){
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -40,6 +42,9 @@ ListAdapter<ItemView,PieceRecyclerAdapter.ViewHolder>(PieceRecyclerAdapterCallba
         val item = getItem(position)
         holder.itemView.tag = getItem(position)
         holder.holderBinding.itemView = item
+        holder.itemView.setOnClickListener {
+            itemListener()
+        }
     }
 
     inner class ViewHolder(pBinding : ItemPieceBinding) : RecyclerView.ViewHolder(pBinding.root){

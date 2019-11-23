@@ -12,8 +12,4 @@ data class CategoryEntity @JvmOverloads constructor (
     val title: String,
     @Ignore
     val pieces: List<PieceEntity>? = null
-) {
-    fun toCategoryView() = CategoryView(
-        title,
-        pieces?.map { it.toItemView() }?: listOf())
-}
+)

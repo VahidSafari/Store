@@ -22,6 +22,16 @@ fun loadRoundCornerImage(view: ImageView, imageUrl: String) {
         .into(view)
 }
 
+@BindingAdapter("loadImage")
+fun loadImage(view: ImageView, imageUrl: String) {
+    Picasso.get()
+        .load(imageUrl)
+        .fit()
+        .centerInside()
+        .placeholder(R.drawable.place_holder)
+        .into(view)
+}
+
 @BindingAdapter("hideIfZero")
 fun hideIfZero(view:TextView, offPrice: OffPrice) {
     if (offPrice.startOffPrice == 0 || offPrice.endOffPrice == 0)

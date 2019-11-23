@@ -39,13 +39,13 @@
     <style name="PriceTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/iran_yekan_regular</item>
         <item name="android:textColor">@color/PrimaryBlack</item>
-        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
     </style>
 
     <style name="OffPriceTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/iran_yekan_regular</item>
         <item name="android:textColor">@color/coolGreen</item>
-        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
     </style>
 
     <style name="backTextView" parent="android:Widget.TextView">
@@ -58,6 +58,12 @@
         <item name="android:fontFamily">@font/iran_yekan_bold</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:background">@color/coolBlue</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <style name="CongratulationTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iran_yekan_bold</item>
+        <item name="android:textColor">@color/PrimaryBlack</item>
         <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
@@ -87,6 +93,8 @@
 
     <style name="PurpleBlueButtonThemeOverlay">
         <item name="colorPrimary">@color/purpleBlue</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/iran_yekan_bold</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

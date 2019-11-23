@@ -21,8 +21,9 @@ private object HeaderRecyclerAdapterCallback : DiffUtil.ItemCallback<StoreView>(
     }
 }
 
-class HeaderAdapter(
-    private val viewLifecycleOwner: LifecycleOwner
+class MainPageAdapter(
+    private val viewLifecycleOwner: LifecycleOwner,
+    private val itemListener: () -> Unit
 ) : ListAdapter<StoreView, RecyclerView.ViewHolder>(HeaderRecyclerAdapterCallback) {
     private lateinit var headerRecyclerView: RecyclerView
     private lateinit var categoryRecyclerView: RecyclerView
@@ -35,7 +36,7 @@ class HeaderAdapter(
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.recycler_item_top_slider, parent, false)
             headerRecyclerView = view.findViewById(R.id.rv_top_slider)
-            HeaderRecyclerViewHolder(view)
+            TopSliderViewHolder(view)
         } else {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.recycler_item_categories, parent, false)
@@ -44,14 +45,21 @@ class HeaderAdapter(
         }
     }
 
+
+    override fun getItemCount(): Int {
+        return if(super.getItemCount() == 0) 0 else super.getItemCount()+1
+    }
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = getItem(0)
         when (holder) {
-            is HeaderRecyclerViewHolder -> holder.topSliderAdapter.submitList(getItem(0).topSliderViewList)
-            is CategoryRecyclerViewHolder -> holder.categoryAdapter.submitList(getItem(0).categoryViewList)
+            is TopSliderViewHolder ->
+                holder.topSliderAdapter.submitList(item.topSliderViewList)
+            is CategoryRecyclerViewHolder ->
+                holder.categoryAdapter.submitList(item.categoryViewList)
         }
     }
 
-    inner class HeaderRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class TopSliderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val headerRecyclerView = view.findViewById<RecyclerView>(R.id.rv_top_slider)
         internal val topSliderAdapter = TopSliderAdapter()
 
@@ -78,7 +86,7 @@ class HeaderAdapter(
 
     inner class CategoryRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val categoryRecyclerView = view.findViewById<RecyclerView>(R.id.rv_categories)
-        internal val categoryAdapter = CategoryAdapter()
+        internal val categoryAdapter = CategoryAdapter(itemListener)
 
         init {
             categoryRecyclerView.layoutManager =

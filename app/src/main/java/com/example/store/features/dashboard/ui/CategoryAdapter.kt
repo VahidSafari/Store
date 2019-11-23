@@ -23,7 +23,9 @@ private object CategoryRecyclerAdapterCallback : DiffUtil.ItemCallback<CategoryV
     }
 }
 
-class CategoryAdapter :
+class CategoryAdapter (
+    val itemListener: ()->Unit
+):
     ListAdapter<CategoryView, CategoryAdapter.ViewHolder>(CategoryRecyclerAdapterCallback) {
     private lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -53,7 +55,7 @@ class CategoryAdapter :
                 }
             }
 //            LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,true)
-        val pieceRecyclerAdapter = PieceRecyclerAdapter()
+        val pieceRecyclerAdapter = PieceRecyclerAdapter(itemListener)
         holder.pieceRecyclerView.adapter = pieceRecyclerAdapter
         pieceRecyclerAdapter.submitList(item.items)
     }
