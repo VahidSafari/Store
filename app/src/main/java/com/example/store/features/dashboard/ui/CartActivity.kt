@@ -17,11 +17,11 @@ class CartActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         cl_back_container.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            this.onBackPressed()
         }
 
         btn_next_step.setOnClickListener {
-            startActivity(Intent(this,OrderActivity::class.java))
+            startActivity(Intent(this, OrderActivity::class.java))
         }
 
         rv_cart.layoutManager = LinearLayoutManager(this)
@@ -34,8 +34,8 @@ class CartActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        cartAdapter.submitList(
-            listOf(
+        val adapterList =
+            mutableListOf(
                 CartItemView(
                     0,
                     "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
@@ -43,7 +43,7 @@ class CartActivity : AppCompatActivity() {
                     10000,
                     20000,
                     12,
-                    OffPrice(20000,30000),
+                    OffPrice(20000, 30000),
                     2
                 ),
                 CartItemView(
@@ -53,12 +53,14 @@ class CartActivity : AppCompatActivity() {
                     10000,
                     20000,
                     12,
-                    OffPrice(20000,30000),
+                    OffPrice(20000, 30000),
                     3
                 )
             )
-        )
-
+        cartAdapter.submitList(adapterList)
+        cartAdapter.remove = {
+            adapterList.removeAt(it)
+            cartAdapter.submitList(adapterList)
+        }
     }
-
 }

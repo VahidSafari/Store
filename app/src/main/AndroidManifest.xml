@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.store">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -19,15 +20,19 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".features.dashboard.ui.ItemSpecificationActivity"></activity>
+        android:fullBackupContent="true"
+        android:appCategory="productivity"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".features.dashboard.ui.ItemSpecificationActivity"/>
         <activity android:name=".features.dashboard.ui.OrderSuccessActivity" />
         <activity android:name=".features.dashboard.ui.OrderActivity" />
         <activity
             android:name=".features.dashboard.ui.CartActivity"
             android:label="@string/title_activity_cart"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".features.dashboard.ui.MainActivity">
+        <activity android:name=".features.dashboard.ui.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

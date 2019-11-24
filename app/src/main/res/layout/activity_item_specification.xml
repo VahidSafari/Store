@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="itemSpecificationView"
+            type="com.example.store.features.dashboard.ui.ItemSpecificationView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,14 +22,15 @@
             app:layout_constraintBottom_toTopOf="@id/midGuideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_preview" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/midGuideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.47" />
+            app:layout_constraintGuide_percent="0.45" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_specification_title"
@@ -35,10 +39,24 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:gravity="center"
+            android:text="@{itemSpecificationView.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/midGuideline"
             tools:text="کفش مناسب" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_dollar"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:padding="@dimen/_2sdp"
+            android:scaleType="centerInside"
+            android:src="@drawable/dollar"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_specification_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_item_specification_price"
+            app:tint="@color/mediumGray" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_specification_price"
@@ -46,18 +64,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:text="@string/price"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_title"
             android:layout_marginTop="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_8sdp"/>
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:text="@string/price"
+            app:layout_constraintEnd_toStartOf="@id/iv_dollar"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_title" />
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/CongratulationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
+            android:text="@{` تا ` + itemSpecificationView.startPrice + `  ` + itemSpecificationView.endPrice}"
             app:layout_constraintBottom_toBottomOf="@id/tv_item_specification_price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_item_specification_price"
@@ -69,41 +87,55 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:background="@color/lightGray"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_price"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_price" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_percent"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:padding="@dimen/_2sdp"
+            android:scaleType="centerInside"
+            android:src="@drawable/percent"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_specification_discount_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_item_specification_discount_price"
+            app:tint="@color/mediumGray" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_specification_discount_price"
             style="@style/PriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:text="@string/discount_price"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line_between_price_and_discount_price"
-            android:layout_marginTop="@dimen/_8sdp"/>
+            app:layout_constraintEnd_toStartOf="@id/iv_percent"
+            app:layout_constraintTop_toBottomOf="@id/line_between_price_and_discount_price" />
 
         <View
             android:id="@+id/line_between_price_and_characteristics"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:background="@color/lightGray"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_discount_price"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_discount_price" />
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/CongratulationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
+            android:text="@{` تا ` + itemSpecificationView.startDiscountPrice + `  ` + itemSpecificationView.endDiscountPrice}"
             app:layout_constraintBottom_toBottomOf="@id/tv_item_specification_discount_price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_item_specification_discount_price"
@@ -111,14 +143,14 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_specification_characteristics"
+            style="@style/TitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/line_between_price_and_characteristics"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/characteristics"
-            style="@style/TitleTextView"
             android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"/>
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:text="@string/characteristics"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line_between_price_and_characteristics" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_specification_color"
@@ -126,15 +158,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:text="@string/color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_characteristics"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_characteristics" />
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/CongratulationTextView"
+            loadTextListWithDivider="@{itemSpecificationView.colors}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
@@ -149,41 +182,42 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:background="@color/lightGray"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_color"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_color" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_specification_size"
             style="@style/PriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:text="@string/size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line_between_color_and_size"
-            android:layout_marginTop="@dimen/_8sdp"/>
+            app:layout_constraintTop_toBottomOf="@id/line_between_color_and_size" />
 
         <View
             android:id="@+id/line_between_size_and_button"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:background="@color/lightGray"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_size"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_item_specification_size" />
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/CongratulationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
+            android:text="@{` تا ` + itemSpecificationView.smallestSize + `  ` + itemSpecificationView.biggestSize}"
             app:layout_constraintBottom_toBottomOf="@id/tv_item_specification_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_item_specification_size"
@@ -193,18 +227,17 @@
             android:id="@+id/btn_add_to_cart"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:theme="@style/GreenButtonThemeOverlay"
             android:gravity="center"
-            android:text="@string/btn_next_step"
-            android:insetRight="0dp"
             android:insetLeft="0dp"
-            android:insetBottom="0dp"
             android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/add_to_cart"
+            android:theme="@style/GreenButtonThemeOverlay"
             app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
-        
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

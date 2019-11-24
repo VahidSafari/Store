@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.store.R
 import com.example.store.features.dashboard.ui.OffPrice
+import com.google.android.material.textview.MaterialTextView
 import com.squareup.picasso.Picasso
 
 
@@ -30,6 +31,15 @@ fun loadImage(view: ImageView, imageUrl: String) {
         .centerInside()
         .placeholder(R.drawable.place_holder)
         .into(view)
+}
+
+@BindingAdapter("loadTextListWithDivider")
+fun loadTextListWithDivider(view: MaterialTextView, colorList: List<String>){
+    var resultString = ""
+    for(colorIndex in 0..colorList.size-2)
+        resultString += "${colorList[colorIndex]} | "
+    resultString += colorList[colorList.size-1]
+    view.text = resultString
 }
 
 @BindingAdapter("hideIfZero")

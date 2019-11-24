@@ -17,14 +17,17 @@ private object CartRecyclerAdapterCallback : DiffUtil.ItemCallback<CartItemView>
     }
 
     override fun areContentsTheSame(oldItem: CartItemView, newItem: CartItemView): Boolean {
-        return (oldItem.count == oldItem.count)
+        return (oldItem.count == oldItem.count &&
+                oldItem.name == newItem.name &&
+                oldItem.imageUrl == newItem.imageUrl
+                )
     }
-
 }
 
 class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
     CartRecyclerAdapterCallback
 ) {
+    lateinit var remove: (Int) -> Unit
 
     inner class ViewHolder(icBinding: ItemCartBinding) : RecyclerView.ViewHolder(icBinding.root) {
         internal val holderBinding = icBinding
@@ -51,6 +54,8 @@ class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
             if (item.count != 0) {
                 item.count--
                 holder.holderBinding.cartItemView = item
+            } else {
+                remove(position)
             }
         }
         holder.plusImageView.setOnClickListener {
@@ -60,5 +65,4 @@ class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
             }
         }
     }
-
 }

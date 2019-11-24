@@ -23,7 +23,7 @@
             android:text="@{categoryView.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="@dimen/_4sdp"/>
+            android:layout_marginEnd="@dimen/_8sdp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_piece"

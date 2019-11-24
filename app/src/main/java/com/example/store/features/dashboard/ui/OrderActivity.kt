@@ -13,9 +13,11 @@ class OrderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order)
+        overridePendingTransition(R.anim.right_in, R.anim.left_out)
+
 
         cl_order_back_container.setOnClickListener {
-            startActivity(Intent(this, CartActivity::class.java))
+            this.onBackPressed()
         }
 
         btn_order.setOnClickListener {
@@ -51,5 +53,10 @@ class OrderActivity : AppCompatActivity() {
             )
         )
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.left_in, R.anim.right_out)
     }
 }

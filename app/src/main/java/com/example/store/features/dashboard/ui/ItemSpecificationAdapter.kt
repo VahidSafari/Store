@@ -19,7 +19,7 @@ class ItemSpecificationAdapter(
         val dataBindingUtil: ItemPreviewBinding =
             DataBindingUtil.inflate(
                 inflater,
-                R.layout.,
+                R.layout.item_preview,
                 parent,
                 false
             )

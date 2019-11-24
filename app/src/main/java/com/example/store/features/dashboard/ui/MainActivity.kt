@@ -28,7 +28,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
         bottom_navigation_view.selectedItemId = R.id.fragment_dashboard
 
-
         supportFragmentManager.beginTransaction()
             .add(
                 R.id.nav_host_fragment,
