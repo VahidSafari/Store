@@ -3,14 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.dashboard.ui.SearchFragment"
     android:background="@color/colorPrimary">
 
-    <TextView
-        style="@style/TitleTextView"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/search"
-        android:gravity="center"/>
+        android:layout_height="@dimen/_32sdp"
+        android:layout_margin="@dimen/_12sdp"
+        app:boxCornerRadiusBottomEnd="@dimen/_16sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_16sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_16sdp"
+        style="@style/til"
+        app:boxCornerRadiusTopStart="@dimen/_16sdp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textNoSuggestions"
+            style="@style/til"
+            android:lines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </FrameLayout>

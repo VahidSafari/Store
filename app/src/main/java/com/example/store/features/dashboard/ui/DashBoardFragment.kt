@@ -2,11 +2,11 @@ package com.example.store.features.dashboard.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +16,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.store.R
 import com.example.store.core.api.Result
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dash_board.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,12 +30,6 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
         storeViewModelFactory
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as AppCompatActivity).setSupportActionBar(tb_dashboard)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,9 +41,25 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
         super.onViewCreated(view, savedInstanceState)
         //fetching data and submit to the adapter
         srl_dashboard.setOnRefreshListener(this)
-        lifecycleScope.launch {
-            storeViewModel.getStoreInfo()
+
+
+        val actionBarHeight = with(TypedValue().also {
+            context?.theme?.resolveAttribute(
+                android.R.attr.actionBarSize,
+                it,
+                true
+            )
+        }) {
+            TypedValue.complexToDimensionPixelSize(this.data, resources.displayMetrics)
         }
+
+        srl_dashboard.setProgressViewOffset(
+            true,
+            actionBarHeight,
+            actionBarHeight + actionBarHeight/2
+        )
+
+        storeViewModel.getStoreInfo()
 
         rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
         val headerAdapter =
@@ -86,6 +95,16 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
                 }
             }
         })
+//        rv_fragment_dash_board.setOnScrollListener(object : RecyclerView.OnScrollListener(){
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                val fab = activity?.findViewById<FloatingActionButton>(R.id.fab)
+//                if (dy>0 && fab?.visibility == View.VISIBLE)
+//                    fab.hide()
+//                else if (dy<0 && fab?.visibility != View.VISIBLE)
+//                    fab?.show()
+//            }
+//        })
     }
 
     override fun onRefresh() {

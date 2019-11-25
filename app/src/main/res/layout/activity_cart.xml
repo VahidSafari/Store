@@ -85,21 +85,23 @@
         android:layout_gravity="center"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginBottom="?attr/actionBarSize"
-        tools:listitem="@layout/item_cart"
-        tools:itemCount="10"/>
+        tools:itemCount="10"
+        tools:listitem="@layout/item_cart" />
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_next_step"
+        style="@style/TitleTextView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:theme="@style/GreenButtonThemeOverlay"
+        android:background="@drawable/background_mame"
         android:gravity="center"
-        android:text="@string/btn_next_step"
-        android:insetRight="0dp"
         android:insetLeft="0dp"
-        android:insetBottom="0dp"
         android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/btn_next_step"
+        android:textColor="@color/colorPrimary"
         app:cornerRadius="0dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

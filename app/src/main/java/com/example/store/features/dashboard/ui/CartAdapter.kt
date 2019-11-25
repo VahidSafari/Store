@@ -19,7 +19,11 @@ private object CartRecyclerAdapterCallback : DiffUtil.ItemCallback<CartItemView>
     override fun areContentsTheSame(oldItem: CartItemView, newItem: CartItemView): Boolean {
         return (oldItem.count == oldItem.count &&
                 oldItem.name == newItem.name &&
-                oldItem.imageUrl == newItem.imageUrl
+                oldItem.imageUrl == newItem.imageUrl &&
+                oldItem.startPrice == newItem.startPrice &&
+                oldItem.endPrice == newItem.endPrice &&
+                oldItem.offPrice.startOffPrice == newItem.offPrice.startOffPrice &&
+                newItem.offPrice.endOffPrice == newItem.offPrice.endOffPrice
                 )
     }
 }
@@ -51,7 +55,7 @@ class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
         holder.holderBinding.cartItemView = item
 
         holder.minusImageView.setOnClickListener {
-            if (item.count != 0) {
+            if (item.count > 1) {
                 item.count--
                 holder.holderBinding.cartItemView = item
             } else {

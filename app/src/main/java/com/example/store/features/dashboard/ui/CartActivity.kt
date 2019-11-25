@@ -37,30 +37,63 @@ class CartActivity : AppCompatActivity() {
         val adapterList =
             mutableListOf(
                 CartItemView(
-                    0,
+                    1,
                     "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
-                    " کفش خوب",
-                    10000,
+                    " کفش افتضاح",
+                    40000,
                     20000,
                     12,
-                    OffPrice(20000, 30000),
+                    OffPrice(50000, 40000),
                     2
                 ),
                 CartItemView(
-                    1,
-                    "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                    2,
+                    "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
                     " کفش خوب",
                     10000,
-                    20000,
+                    30000,
                     12,
-                    OffPrice(20000, 30000),
+                    OffPrice(60000, 45000),
                     3
+                ),
+                CartItemView(
+                    3,
+                    "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                    " کفش ورزشی",
+                    10000,
+                    30000,
+                    12,
+                    OffPrice(60000, 45000),
+                    3
+                ),
+                CartItemView(
+                    4,
+                    "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
+                    " کفش باحال",
+                    10000,
+                    30000,
+                    12,
+                    OffPrice(60000, 45000),
+                    6
+                ),
+                CartItemView(
+                    5,
+                    "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
+                    " کفش راحتی",
+                    20000,
+                    60000,
+                    12,
+                    OffPrice(60000, 45000),
+                    2
                 )
+
             )
         cartAdapter.submitList(adapterList)
         cartAdapter.remove = {
             adapterList.removeAt(it)
             cartAdapter.submitList(adapterList)
+            cartAdapter.notifyItemRemoved(it)
+            cartAdapter.notifyItemRangeChanged(it,adapterList.size)
         }
     }
 }

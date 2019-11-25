@@ -3,6 +3,7 @@ package com.example.store.features.dashboard.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.example.store.R
 import com.example.store.features.user.ProfileFragment
 import dagger.android.support.DaggerAppCompatActivity
@@ -23,6 +24,8 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val toolbar = findViewById<Toolbar>(R.id.tb_dashboard)
+        setSupportActionBar(toolbar)
 
         bottom_navigation_view.menu.getItem(2).isEnabled = false
 

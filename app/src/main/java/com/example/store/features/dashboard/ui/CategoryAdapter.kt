@@ -49,8 +49,8 @@ class CategoryAdapter (
         holder.pieceRecyclerView.layoutManager =
             object : LinearLayoutManager(context, HORIZONTAL, true) {
                 override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-                    lp?.width = (width / 3)
-                    lp?.setMargins(8, 8, 8, 8)
+                    lp?.width = width * 38 / 100
+                    lp?.setMargins(6, 6, 6, 6)
                     return super.checkLayoutParams(lp)
                 }
             }

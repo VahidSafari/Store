@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSurface">@android:color/transparent</item>
     </style>
 
     <style name="TitleTextView" parent="android:Widget.TextView">
@@ -96,6 +97,13 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:fontFamily">@font/iran_yekan_bold</item>
     </style>
+
+    <style name="til"
+        parent="Widget.Design.TextInputLayout">
+        <item name="colorControlActivated">#27e905</item>
+        <item name="android:textColorHint">#27e905</item>
+    </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

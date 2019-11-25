@@ -6,11 +6,11 @@
     tools:context=".features.dashboard.ui.ListFragment"
     android:background="@color/colorPrimary">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        style="@style/TitleTextView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/list"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_list"
+        tools:itemCount="6" />
 
 </FrameLayout>

@@ -7,8 +7,10 @@
     <color name="PrimaryBlack">#000000</color>
     <color name="coolBlue">#498FE1</color>
     <color name="coolGreen">#43A047</color>
+    <color name="coolGreenLight">#66A768</color>
     <color name="lightGray">#F4F4F4</color>
     <color name="coolCyan">#00BDD3</color>
     <color name="purpleBlue">#4890E4</color>
     <color name="mediumGray">#CECBCF</color>
+    <color name="darkGray">#A3ACA8</color>
 </resources>
