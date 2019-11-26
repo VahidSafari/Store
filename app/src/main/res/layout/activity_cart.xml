@@ -94,7 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:background="@drawable/background_mame"
+        android:background="@drawable/background_ripple"
         android:gravity="center"
         android:insetLeft="0dp"
         android:insetTop="0dp"
