@@ -1,9 +1,12 @@
 package com.example.store.core.util
 
+import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.store.R
+import com.example.store.features.dashboard.ui.ColorThemeView
+import com.example.store.features.dashboard.ui.HeaderAdapterItemType
 import com.example.store.features.dashboard.ui.OffPrice
 import com.google.android.material.textview.MaterialTextView
 import com.squareup.picasso.Picasso
@@ -48,3 +51,15 @@ fun hideIfZero(view:TextView, offPrice: OffPrice) {
         view.text = ""
     else view.text = " تا ${offPrice.startOffPrice} تومان ${offPrice.endOffPrice}"
 }
+
+@BindingAdapter("themeTextColor")
+fun setTextViewColor(textView: TextView, colorThemeView: Int){
+    textView.setTextColor(
+        when(colorThemeView){
+            ColorThemeView.LIGHT.type -> Color.parseColor("#000000")
+            ColorThemeView.DARK.type -> Color.parseColor("#E52A3D")
+            else -> Color.parseColor("#4890E4")
+        }
+    )
+}
+

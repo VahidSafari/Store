@@ -32,7 +32,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_cart_title"
-            style="@style/ItemTitleTextView"
+            android:textAppearance="@style/ItemTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
@@ -46,7 +46,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_cart_price"
-            style="@style/PriceTextView"
+            android:textAppearance="@style/PriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_4sdp"
@@ -59,7 +59,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/item_cart_offprice"
-            style="@style/OffPriceTextView"
+            android:textAppearance="@style/OffPriceTextView"
             hideIfZero="@{cartItemView.offPrice}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

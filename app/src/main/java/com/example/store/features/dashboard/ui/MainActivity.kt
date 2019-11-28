@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
 import com.example.store.R
+import com.example.store.databinding.ActivityMainBinding
 import com.example.store.features.user.ProfileFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -23,7 +25,11 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this,R.layout.activity_main)
+
+        binding.colorThemeView = ColorThemeView.LIGHT
+
         val toolbar = findViewById<Toolbar>(R.id.tb_dashboard)
         setSupportActionBar(toolbar)
 

@@ -63,7 +63,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_order_title"
-                    style="@style/TitleTextView"
+                    android:textAppearance="@style/TitleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -101,7 +101,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_order_items_title"
-            style="@style/TitleTextView"
+            android:textAppearance="@style/TitleTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_12sdp"

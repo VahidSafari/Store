@@ -34,7 +34,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_item_specification_title"
-            style="@style/CategoryTitleTextView"
+            android:textAppearance="@style/CategoryTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"

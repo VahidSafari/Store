@@ -1,134 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cl_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    app:layout_insetEdge="bottom"
-    tools:context=".features.dashboard.ui.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/abl_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:layout_gravity="top">
+    <data>
+        <variable
+            name="colorThemeView"
+            type="com.example.store.features.dashboard.ui.ColorThemeView" />
+    </data>
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:layout_scrollInterpolator="@android:anim/decelerate_interpolator">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/tb_dashboard"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                app:contentInsetStart="0dp"
-                app:layout_scrollFlags="scroll|snap|enterAlways">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/iv_storeIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="4dp"
-                        android:paddingTop="8dp"
-                        android:paddingEnd="8dp"
-                        android:paddingBottom="8dp"
-                        android:src="@drawable/profile_not_registred_bitmap_2x"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tv_store_name"
-                        style="@style/TitleTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/dash_board_name"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_storeIcon"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cl_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        app:defaultNavHost="true"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        app:layout_anchor="@id/bap_main"
-        />
+        android:fitsSystemWindows="true"
+        app:layout_insetEdge="bottom"
+        tools:context=".features.dashboard.ui.MainActivity">
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bap_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:contentInsetStart="0dp"
-        app:hideOnScroll="true"
-        app:elevation="0dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/abl_dashboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent">
+            android:fitsSystemWindows="true"
+            android:layout_gravity="top">
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_navigation_view"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                app:itemIconTint="@color/bottom_nav_item_color"
-                app:itemRippleColor="@color/colorSecondaryDark"
-                app:itemTextAppearanceActive="@style/OffPriceTextView"
-                app:itemTextAppearanceInactive="@style/OffPriceTextView"
-                android:background="@color/colorPrimary"
-                app:itemTextColor="@color/PrimaryBlack"
-                app:labelVisibilityMode="selected"
-                app:menu="@menu/bottom_nav_menu"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:elevation="@dimen/_6sdp">
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:layout_scrollInterpolator="@android:anim/decelerate_interpolator">
 
-            </com.google.android.material.bottomnavigation.BottomNavigationView>
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tb_dashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    app:contentInsetStart="0dp"
+                    app:layout_scrollFlags="scroll|snap|enterAlways">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/iv_storeIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="4dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:src="@drawable/profile_not_registred_bitmap_2x"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_store_name"
+                            android:textAppearance="@style/TitleTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            themeTextColor="@{colorThemeView.type}"
+                            android:text="@string/dash_board_name"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_storeIcon"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <fragment
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:defaultNavHost="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_anchor="@id/bap_main" />
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bap_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:contentInsetStart="0dp"
+            app:hideOnScroll="true"
+            app:elevation="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/main_list_1_2x"
-                app:backgroundTint="@color/colorAccent"
-                app:borderWidth="0dp"
-                app:elevation="8dp"
-                app:fabSize="normal"
-                app:layout_dodgeInsetEdges="none"
-                app:tint="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="@dimen/_8sdp"/>
+                android:background="@android:color/transparent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_navigation_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    app:itemIconTint="@color/bottom_nav_item_color"
+                    app:itemRippleColor="@color/colorSecondaryDark"
+                    app:itemTextAppearanceActive="@style/OffPriceTextView"
+                    app:itemTextAppearanceInactive="@style/OffPriceTextView"
+                    android:background="@color/colorPrimary"
+                    app:itemTextColor="@color/PrimaryBlack"
+                    app:labelVisibilityMode="selected"
+                    app:menu="@menu/bottom_nav_menu"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:elevation="@dimen/_6sdp">
 
-    </com.google.android.material.bottomappbar.BottomAppBar>
+                </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/main_list_1_2x"
+                    app:backgroundTint="@color/colorAccent"
+                    app:borderWidth="0dp"
+                    app:elevation="8dp"
+                    app:fabSize="normal"
+                    app:layout_dodgeInsetEdges="none"
+                    app:tint="@color/colorPrimary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="@dimen/_8sdp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

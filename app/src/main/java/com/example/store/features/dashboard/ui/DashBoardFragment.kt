@@ -42,7 +42,6 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
         //fetching data and submit to the adapter
         srl_dashboard.setOnRefreshListener(this)
 
-
         val actionBarHeight = with(TypedValue().also {
             context?.theme?.resolveAttribute(
                 android.R.attr.actionBarSize,

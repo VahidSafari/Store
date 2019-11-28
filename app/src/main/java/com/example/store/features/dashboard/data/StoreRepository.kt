@@ -2,6 +2,10 @@ package com.example.store.features.dashboard.data
 
 import com.example.store.core.api.NetworkHandler
 import com.example.store.core.api.Result
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class StoreRepository @Inject constructor(
@@ -12,6 +16,7 @@ class StoreRepository @Inject constructor(
 
     suspend fun getStoreInfo(): Result<Pair<List<TopSliderEntity>, List<PiecesDto>>>? {
         var result: Result<Pair<List<TopSliderEntity>, List<PiecesDto>>>? = null
+        val job = GlobalScope.launch() {  }
         if (networkHandler.hasNetworkConnection()) {
             when (val response = storeRemoteDataSource.getStoreInformation()) {
                 is Result.Success -> {

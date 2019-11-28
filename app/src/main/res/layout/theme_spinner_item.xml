@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="themeView"
+            type="com.example.store.features.dashboard.ui.ThemeView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_12sdp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_spinner_theme_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@{themeView.name}"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:textAppearance="@style/TitleTextView"
+            android:gravity="start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_spinner_image"
+            app:layout_constraintBottom_toBottomOf="@id/iv_spinner_image" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_spinner_image"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:src="@{themeView.icon}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_4sdp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

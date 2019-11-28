@@ -25,11 +25,11 @@
             android:layout_margin="@dimen/_8sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/mock_item_1"/>
+            tools:src="@drawable/mock_item_1" />
 
         <TextView
             android:id="@+id/tv_piece_name"
-            style="@style/ItemTitleTextView"
+            android:textAppearance="@style/ItemTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
