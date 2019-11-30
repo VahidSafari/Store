@@ -24,7 +24,7 @@ private object CategoryRecyclerAdapterCallback : DiffUtil.ItemCallback<CategoryV
 }
 
 class CategoryAdapter (
-    val itemListener: ()->Unit
+    private val itemListener: ()->Unit
 ):
     ListAdapter<CategoryView, CategoryAdapter.ViewHolder>(CategoryRecyclerAdapterCallback) {
     private lateinit var context: Context

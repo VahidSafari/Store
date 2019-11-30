@@ -13,25 +13,27 @@
     <application
         android:name=".App"
         android:allowBackup="true"
+        android:appCategory="productivity"
         android:configChanges="orientation|keyboardHidden"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="true"
-        android:appCategory="productivity"
+        android:theme="@style/LightAppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".features.dashboard.ui.ItemSpecificationActivity"/>
+        <activity android:name=".features.dashboard.ui.ListActivity"></activity>
+        <activity android:name=".features.dashboard.ui.ItemSpecificationActivity" />
         <activity android:name=".features.dashboard.ui.OrderSuccessActivity" />
         <activity android:name=".features.dashboard.ui.OrderActivity" />
         <activity
             android:name=".features.dashboard.ui.CartActivity"
             android:label="@string/title_activity_cart"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".features.dashboard.ui.MainActivity"
+            android:theme="@style/LightAppTheme.NoActionBar" />
+        <activity
+            android:name=".features.dashboard.ui.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

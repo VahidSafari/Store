@@ -24,22 +24,25 @@ class CartActivity : AppCompatActivity() {
             startActivity(Intent(this, OrderActivity::class.java))
         }
 
-        rv_cart.layoutManager = LinearLayoutManager(this)
-        rv_cart.setHasFixedSize(true)
         val cartAdapter = CartAdapter()
-        rv_cart.adapter = cartAdapter
-        rv_cart.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                DividerItemDecoration.VERTICAL
+        rv_cart.apply {
+            layoutManager = LinearLayoutManager(this@CartActivity)
+            setHasFixedSize(true)
+            adapter = cartAdapter
+            addItemDecoration(
+                DividerItemDecoration(
+                    this@CartActivity,
+                    DividerItemDecoration.VERTICAL
+                )
             )
-        )
+        }
+
         val adapterList =
             mutableListOf(
                 CartItemView(
                     1,
                     "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
-                    " کفش افتضاح",
+                    " کفش عالی",
                     40000,
                     20000,
                     12,
@@ -69,7 +72,7 @@ class CartActivity : AppCompatActivity() {
                 CartItemView(
                     4,
                     "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
-                    " کفش باحال",
+                    " کفش آدیداس",
                     10000,
                     30000,
                     12,
@@ -88,6 +91,7 @@ class CartActivity : AppCompatActivity() {
                 )
 
             )
+
         cartAdapter.submitList(adapterList)
         cartAdapter.remove = {
             adapterList.removeAt(it)

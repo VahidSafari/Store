@@ -10,7 +10,7 @@
         android:id="@+id/abl_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme">
+        android:theme="@style/LightAppTheme">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -19,7 +19,7 @@
             android:background="?attr/colorPrimary"
             app:contentInsetEnd="@dimen/_16sdp"
             app:contentInsetStart="0dp"
-            app:popupTheme="@style/AppTheme">
+            app:popupTheme="@style/LightAppTheme">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -36,17 +36,17 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/iv_back_button"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:layout_height="0dp"
                         android:paddingTop="@dimen/_6sdp"
                         android:paddingBottom="@dimen/_6sdp"
-                        android:scaleType="fitEnd"
-                        android:src="@drawable/back_button"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tv_back"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_arrow"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_back"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@id/tv_back"
+                        android:tint="@color/coolBlue"/>
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tv_back"
@@ -55,9 +55,11 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/back"
-                        app:layout_constraintBottom_toBottomOf="@id/iv_back_button"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/iv_back_button"
-                        app:layout_constraintTop_toTopOf="@id/iv_back_button" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -165,6 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:hint="@string/further_description"
             app:layout_constraintTop_toBottomOf="@id/iet_order_description"
             app:layout_constraintStart_toStartOf="parent"

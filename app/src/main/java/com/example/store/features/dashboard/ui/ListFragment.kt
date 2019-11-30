@@ -1,5 +1,6 @@
 package com.example.store.features.dashboard.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,7 +27,9 @@ class ListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         rv_list.layoutManager =
             LinearLayoutManager(context,LinearLayoutManager.VERTICAL, false)
-        val listAdapter = ListRecyclerAdapter()
+        val listAdapter = ListRecyclerAdapter {
+            startActivity(Intent(activity,ListActivity::class.java))
+        }
         rv_list.adapter = listAdapter
         rv_list.addItemDecoration(
             DividerItemDecoration(

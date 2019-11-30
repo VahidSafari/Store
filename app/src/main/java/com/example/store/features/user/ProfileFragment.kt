@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.store.R
-import com.example.store.features.dashboard.ui.ThemeSpinnerAdapter
-import com.example.store.features.dashboard.ui.ThemeView
+import com.example.store.features.dashboard.ui.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -21,10 +22,46 @@ class ProfileFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
-
-
+    
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        rv_profile_actions.layoutManager = LinearLayoutManager(context)
+        val profileActionsListAdapter = ProfileActionsAdapter {
+            //TODO: navigate to appropriate activity
+        }
+
+        rv_profile_actions.adapter = profileActionsListAdapter
+        rv_profile_actions.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        profileActionsListAdapter.submitList(
+            listOf(
+                ListView(
+                    1,
+                    "ویرایش اطلاعات"
+                ),
+                ListView(
+                    2,
+                    "سوابق خرید"
+                    ),
+                ListView(
+                    3,
+                    "آدرس ها"
+                ),
+                ListView(
+                    4,
+                    "توافق نامه"
+                ),
+                ListView(
+                    5,
+                    "پشتیبانی"
+                )
+            )
+        )
         val metrics = DisplayMetrics()
         activity?.windowManager?.defaultDisplay?.getMetrics(metrics)
         val params = sp_theme.layoutParams
@@ -43,15 +80,16 @@ class ProfileFragment : Fragment() {
             sp_theme.adapter = themeAdapter
         }
         sp_theme.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
 
-            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                when(parent?.getItemAtPosition(position).toString()){
-                }
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                p1: View?,
+                position: Int,
+                p3: Long
+            ) {
+                //TODO: Change theme
             }
-
         }
     }
 }

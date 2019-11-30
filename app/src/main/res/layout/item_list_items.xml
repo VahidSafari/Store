@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemView"
+            type="com.example.store.features.dashboard.ui.ItemView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_cart_piece"
+            RoundedCornerImage="@{itemView.imageUrl}"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/mock_item_1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_item_cart_title"
+            android:textAppearance="@style/ItemTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:text="@{itemView.name}"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@id/iv_cart_piece"
+            app:layout_constraintTop_toTopOf="@id/iv_cart_piece"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_cart_price"
+            tools:text="کفش به شدت مناسب" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_item_cart_price"
+            android:textAppearance="@style/PriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:text="@{` تا ` + itemView.startPrice + ` تومان ` + itemView.endPrice}"
+            android:textDirection="rtl"
+            app:layout_constraintBottom_toBottomOf="@id/iv_cart_piece"
+            app:layout_constraintEnd_toStartOf="@id/iv_cart_piece"
+            tools:text="تا 100000 تومان 200000" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/item_cart_offprice"
+            android:textAppearance="@style/OffPriceTextView"
+            hideIfZero="@{itemView.offPrice}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:textDirection="rtl"
+            app:layout_constraintBottom_toBottomOf="@id/tv_item_cart_price"
+            app:layout_constraintEnd_toStartOf="@id/tv_item_cart_price"
+            tools:text="تا 3000000 تومان 40000000" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

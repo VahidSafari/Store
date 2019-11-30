@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="colorThemeView"
-            type="com.example.store.features.dashboard.ui.ColorThemeView" />
-    </data>
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/cl_main"
         android:layout_width="match_parent"
@@ -60,7 +54,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            themeTextColor="@{colorThemeView.type}"
                             android:text="@string/dash_board_name"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/iv_storeIcon"

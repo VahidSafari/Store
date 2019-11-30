@@ -28,8 +28,6 @@ class MainActivity : DaggerAppCompatActivity() {
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        binding.colorThemeView = ColorThemeView.LIGHT
-
         val toolbar = findViewById<Toolbar>(R.id.tb_dashboard)
         setSupportActionBar(toolbar)
 
