@@ -18,11 +18,12 @@
             android:fitsSystemWindows="true"
             android:layout_gravity="top">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:layout_scrollInterpolator="@android:anim/decelerate_interpolator">
+<!--            <com.google.android.material.appbar.CollapsingToolbarLayout-->
+<!--                android:id="@+id/ctl_dashboard"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_scrollFlags="scroll|enterAlways"-->
+<!--                app:layout_scrollInterpolator="@android:anim/decelerate_interpolator">-->
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/tb_dashboard"
@@ -64,7 +65,7 @@
 
                 </androidx.appcompat.widget.Toolbar>
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+<!--            </com.google.android.material.appbar.CollapsingToolbarLayout>-->
 
         </com.google.android.material.appbar.AppBarLayout>
 
