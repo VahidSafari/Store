@@ -40,23 +40,23 @@ class ListFragment : Fragment() {
         val listItems = mutableListOf(
             ListView(
                 1,
-                "مواد"
+                "مواد غذایی"
             ),
             ListView(
                 2,
-                "مواد مناسب"
+                "کالای دیجیتال"
             ),
             ListView(
                 3,
-                "مواد نامناسب"
+                "لوازم تحریر"
             ),
             ListView(
                 4,
-                "خودرو"
+                "مد و پوشاک"
             ),
             ListView(
                 5,
-                "اسباب بازی"
+                "ورزش و سفر"
             )
         )
         listAdapter.submitList(listItems)

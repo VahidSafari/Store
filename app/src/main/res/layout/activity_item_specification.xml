@@ -234,6 +234,7 @@
             android:insetBottom="0dp"
             android:text="@string/add_to_cart"
             android:theme="@style/GreenButtonThemeOverlay"
+            android:textAppearance="@style/TitleTextView"
             app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

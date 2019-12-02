@@ -37,6 +37,18 @@
         <item name="android:textColor">@color/PrimaryBlack</item>
     </style>
 
+    <style name="FactorTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iran_yekan_bold</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/ashGray</item>
+    </style>
+
+    <style name="ProfileTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iran_yekan_regular</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/PrimaryBlack</item>
+    </style>
+
     <style name="PriceTextView" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/iran_yekan_regular</item>
         <item name="android:textColor">@color/PrimaryBlack</item>
@@ -81,12 +93,12 @@
 
     <style name="GreenButtonThemeOverlay">
         <item name="colorPrimary">@color/coolGreen</item>
-        <item name="android:fontFamily">@font/iran_yekan_regular</item>
+        <item name="android:fontFamily">@font/iran_yekan_bold</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
     <style name="CyanButtonThemeOverlay">
-        <item name="colorPrimary">@color/coolCyan</item>
+        <item name="colorPrimary">@color/cyan</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:fontFamily">@font/iran_yekan_bold</item>
 
@@ -97,6 +109,7 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:fontFamily">@font/iran_yekan_bold</item>
     </style>
+
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

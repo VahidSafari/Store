@@ -12,7 +12,7 @@
         android:layout_margin="@dimen/_8sdp"
         android:background="@drawable/rounded_corner"
         android:hint="@string/search_phrase"
-        style="@style/TitleTextView"
+        style="@style/ItemTextView"
         android:padding="@dimen/_6sdp"
         android:gravity="center_vertical"
         android:maxLines="1"

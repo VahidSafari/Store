@@ -54,11 +54,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
             when (it.itemId) {
                 R.id.fragment_profile -> {
-                    val params =
-                        toolbar.layoutParams as AppBarLayout.LayoutParams
-                    params.scrollFlags = 0
-                    tb_dashboard.layoutParams = params
-                    bap_main.hideOnScroll = false
 
                     if (currentFragment != profileFragmentTag) {
                         exitApp = false
@@ -82,6 +77,12 @@ class MainActivity : DaggerAppCompatActivity() {
                         supportFragmentManager.findFragmentByTag(profileFragmentTag)
                             ?.let { fragment ->
 
+                                val params =
+                                    toolbar.layoutParams as AppBarLayout.LayoutParams
+                                params.scrollFlags = 0
+                                tb_dashboard.layoutParams = params
+                                bap_main.hideOnScroll = false
+
                                 currentFragment = profileFragmentTag
                                 supportFragmentManager.beginTransaction()
                                     .show(fragment)
@@ -92,14 +93,6 @@ class MainActivity : DaggerAppCompatActivity() {
                 }
 
                 R.id.fragment_dashboard -> {
-
-                    val params =
-                        toolbar.layoutParams as AppBarLayout.LayoutParams
-                    params.scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or
-                            AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP or
-                            AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
-                    tb_dashboard.layoutParams = params
-                    bap_main.hideOnScroll = true
 
                     if (currentFragment != dashBoardFragmentTag) {
                         exitApp = false
@@ -126,6 +119,15 @@ class MainActivity : DaggerAppCompatActivity() {
 
                         supportFragmentManager.findFragmentByTag(dashBoardFragmentTag)
                             ?.let { fragment ->
+
+                                val params =
+                                    toolbar.layoutParams as AppBarLayout.LayoutParams
+                                params.scrollFlags = (AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                                        or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS or
+                                        AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP)
+                                tb_dashboard.layoutParams = params
+                                bap_main.hideOnScroll = true
+
                                 currentFragment = dashBoardFragmentTag
                                 supportFragmentManager.beginTransaction()
                                     .show(fragment)
@@ -137,11 +139,6 @@ class MainActivity : DaggerAppCompatActivity() {
                 }
 
                 R.id.fragment_list -> {
-
-                    val params =
-                        toolbar.layoutParams as AppBarLayout.LayoutParams
-                    params.scrollFlags = 0
-                    bap_main.hideOnScroll = false
 
                     if (currentFragment != listFragmentTag) {
                         exitApp = false
@@ -167,6 +164,7 @@ class MainActivity : DaggerAppCompatActivity() {
                             val params =
                                 toolbar.layoutParams as AppBarLayout.LayoutParams
                             params.scrollFlags = 0
+                            tb_dashboard.layoutParams = params
                             bap_main.hideOnScroll = false
 
                             currentFragment = listFragmentTag
@@ -180,11 +178,6 @@ class MainActivity : DaggerAppCompatActivity() {
                 }
 
                 R.id.fragment_search -> {
-
-                    val params =
-                        toolbar.layoutParams as AppBarLayout.LayoutParams
-                    params.scrollFlags = 0
-                    bap_main.hideOnScroll = false
 
                     if (currentFragment != searchFragmentTag) {
                         exitApp = false
@@ -211,6 +204,7 @@ class MainActivity : DaggerAppCompatActivity() {
                                 val params =
                                     toolbar.layoutParams as AppBarLayout.LayoutParams
                                 params.scrollFlags = 0
+                                tb_dashboard.layoutParams = params
                                 bap_main.hideOnScroll = false
 
                                 currentFragment = searchFragmentTag

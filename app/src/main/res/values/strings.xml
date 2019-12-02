@@ -46,4 +46,7 @@
     <string name="support">پشتیبانی</string>
     <string name="profile_mock_name">وحید صفری</string>
     <string name="profile_mock_phone">09154753364</string>
+    <string name="agreement_dialog_text">تمام کالاهای این فروشگاه دارای ضمانت ۷ روزه برگشت می باشد</string>
+    <string name="agreed">بازگشت</string>
+    <string name="unit">ت</string>
 </resources>

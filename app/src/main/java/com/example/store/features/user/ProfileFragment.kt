@@ -1,18 +1,29 @@
 package com.example.store.features.user
 
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.lifecycle.lifecycleScope
 import com.example.store.R
-import com.example.store.features.dashboard.ui.*
+import com.example.store.features.dashboard.ui.PaymentHistory
+import com.example.store.features.dashboard.ui.ThemeSpinnerAdapter
+import com.example.store.features.dashboard.ui.ThemeView
+import kotlinx.android.synthetic.main.dialog_agreement.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class ProfileFragment : Fragment() {
@@ -32,6 +43,39 @@ class ProfileFragment : Fragment() {
         params.height = ViewGroup.LayoutParams.WRAP_CONTENT
         sp_theme.requestLayout()
         sp_theme.setSelection(0)
+
+        cl_support.setOnClickListener {
+            lifecycleScope.launch {
+                Toast.makeText(
+                    context,
+                    " در حال باز کردن سایت پشتیبانی ",
+                    Toast.LENGTH_SHORT
+                ).show()
+                delay(600)
+                val uri: Uri = Uri.parse("http://www.google.com")
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
+            }
+        }
+
+        cl_agreement.setOnClickListener {
+            context?.let {
+                val agreementDialog = Dialog(it)
+                agreementDialog.apply {
+                    setContentView(R.layout.dialog_agreement)
+                    btn_agreement.setOnClickListener {
+                        dismiss()
+                    }
+                    show()
+                }
+            }
+        }
+
+        cl_history.setOnClickListener {
+            startActivity(Intent(activity,PaymentHistory::class.java))
+        }
+
+        nsv_profile.isNestedScrollingEnabled = true
 
         val themeList = listOf(
             ThemeView(1, "Light", R.drawable.ic_sun),

@@ -5,14 +5,14 @@
     <item
         android:id="@+id/fragment_profile"
         android:enabled="true"
-        android:icon="@drawable/profile_not_registered_user2x"
+        android:icon="@drawable/user"
         android:title="@string/menu_profile"
         android:visible="true"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/fragment_search"
         android:enabled="true"
-        android:icon="@drawable/search_result_search_2x"
+        android:icon="@drawable/search_small"
         android:title="@string/menu_search"
         android:visible="true"
         app:showAsAction="ifRoom" />
@@ -27,14 +27,14 @@
     <item
         android:id="@+id/fragment_list"
         android:enabled="true"
-        android:icon="@drawable/profile_not_registred_list_2x"
+        android:icon="@drawable/list"
         android:title="@string/menu_list"
         android:visible="true"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/fragment_dashboard"
         android:enabled="true"
-        android:icon="@drawable/search_result_home2x"
+        android:icon="@drawable/home"
         android:title="@string/menu_dashboard"
         android:visible="true"
         app:showAsAction="ifRoom" />

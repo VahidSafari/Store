@@ -9,8 +9,11 @@
     <color name="coolGreen">#43A047</color>
     <color name="coolGreenLight">#66A768</color>
     <color name="lightGray">#F4F4F4</color>
-    <color name="coolCyan">#00BDD3</color>
+    <color name="lightCyan">#70E9FF</color>
+    <color name="cyan">#00BDD3</color>
     <color name="purpleBlue">#4890E4</color>
     <color name="mediumGray">#CECBCF</color>
     <color name="darkGray">#A3ACA8</color>
+    <color name="ashGray">#6B6B6B</color>
+
 </resources>
