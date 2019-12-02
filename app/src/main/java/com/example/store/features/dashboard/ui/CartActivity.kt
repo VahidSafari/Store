@@ -97,7 +97,7 @@ class CartActivity : AppCompatActivity() {
             adapterList.removeAt(it)
             cartAdapter.submitList(adapterList)
             cartAdapter.notifyItemRemoved(it)
-            cartAdapter.notifyItemRangeChanged(it,adapterList.size)
+            cartAdapter.notifyItemRangeChanged(it, adapterList.size)
         }
     }
 }

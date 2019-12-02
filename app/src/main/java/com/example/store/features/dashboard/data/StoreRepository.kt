@@ -16,7 +16,7 @@ class StoreRepository @Inject constructor(
 
     suspend fun getStoreInfo(): Result<Pair<List<TopSliderEntity>, List<PiecesDto>>>? {
         var result: Result<Pair<List<TopSliderEntity>, List<PiecesDto>>>? = null
-        val job = GlobalScope.launch() {  }
+        val job = GlobalScope.launch {  }
         if (networkHandler.hasNetworkConnection()) {
             when (val response = storeRemoteDataSource.getStoreInformation()) {
                 is Result.Success -> {

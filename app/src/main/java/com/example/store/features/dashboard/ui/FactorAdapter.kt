@@ -15,7 +15,9 @@ private object FactorAdapterCallback : DiffUtil.ItemCallback<FactorView>() {
     }
 
     override fun areContentsTheSame(oldItem: FactorView, newItem: FactorView): Boolean {
-        return (oldItem.totalPrice == newItem.totalPrice)
+        return (oldItem.totalPrice == newItem.totalPrice &&
+                oldItem.state == newItem.state &&
+                oldItem.productList == newItem.productList)
     }
 }
 
