@@ -1,6 +1,5 @@
 package com.example.store.core.util
 
-import android.graphics.Color
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter

@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.store.R
 import com.example.store.databinding.ItemCategoryBinding
-import com.example.store.features.dashboard.ui.PieceRecyclerAdapter
-import kotlin.math.roundToInt
 
 private object CategoryRecyclerAdapterCallback : DiffUtil.ItemCallback<CategoryView>() {
     override fun areItemsTheSame(oldItem: CategoryView, newItem: CategoryView): Boolean {

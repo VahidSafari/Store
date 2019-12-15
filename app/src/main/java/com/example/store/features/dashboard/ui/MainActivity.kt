@@ -45,7 +45,6 @@ class MainActivity : DaggerAppCompatActivity() {
             )
             .commitNow()
 
-
         fab.setOnClickListener {
             startActivity(Intent(this, CartActivity::class.java))
         }

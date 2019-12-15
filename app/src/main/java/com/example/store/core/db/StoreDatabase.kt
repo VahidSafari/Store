@@ -7,7 +7,7 @@ import com.example.store.features.dashboard.data.PieceEntity
 import com.example.store.features.dashboard.data.StoreDao
 import com.example.store.features.dashboard.data.TopSliderEntity
 
-@Database(entities = [TopSliderEntity::class,CategoryEntity::class,PieceEntity::class], version = 1)
+@Database(entities = [TopSliderEntity::class,CategoryEntity::class,PieceEntity::class], version = 1, exportSchema = false)
 abstract class StoreDatabase : RoomDatabase() {
     abstract fun getStoreDao(): StoreDao
 }

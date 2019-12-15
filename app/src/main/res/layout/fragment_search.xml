@@ -13,9 +13,11 @@
         android:background="@drawable/rounded_corner"
         android:hint="@string/search_phrase"
         style="@style/ItemTextView"
+        android:textDirection="rtl"
         android:padding="@dimen/_6sdp"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textCursorDrawable="@null"/>
 
 </FrameLayout>

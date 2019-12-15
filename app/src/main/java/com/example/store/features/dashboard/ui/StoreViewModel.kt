@@ -2,13 +2,10 @@ package com.example.store.features.dashboard.ui
 
 import androidx.lifecycle.*
 import com.example.store.features.dashboard.data.StoreRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import com.example.store.core.api.Result
 import com.example.store.features.dashboard.data.PiecesDto
-import com.example.store.features.dashboard.data.StoreResponse
 import com.example.store.features.dashboard.data.TopSliderEntity
 
 class StoreViewModel @Inject constructor(private val storeRepository: StoreRepository) : ViewModel() {

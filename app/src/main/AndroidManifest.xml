@@ -11,7 +11,7 @@
     <dist:module dist:instant="true" />
 
     <application
-        android:name=".App"
+        android:name="com.example.store.App"
         android:allowBackup="true"
         android:appCategory="productivity"
         android:configChanges="orientation|keyboardHidden"
@@ -24,24 +24,24 @@
         android:theme="@style/LightAppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".features.dashboard.ui.PaymentHistory"></activity>
-        <activity android:name=".features.dashboard.ui.SplashScreenActivity">
+        <activity android:name="com.example.store.features.dashboard.ui.PaymentHistory"></activity>
+        <activity android:name="com.example.store.features.dashboard.ui.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.dashboard.ui.ListActivity" />
-        <activity android:name=".features.dashboard.ui.ItemSpecificationActivity" />
-        <activity android:name=".features.dashboard.ui.OrderSuccessActivity" />
-        <activity android:name=".features.dashboard.ui.OrderActivity" />
+        <activity android:name="com.example.store.features.dashboard.ui.ListActivity" />
+        <activity android:name="com.example.store.features.dashboard.ui.ItemSpecificationActivity" />
+        <activity android:name="com.example.store.features.dashboard.ui.OrderSuccessActivity" />
+        <activity android:name="com.example.store.features.dashboard.ui.OrderActivity" />
         <activity
-            android:name=".features.dashboard.ui.CartActivity"
+            android:name="com.example.store.features.dashboard.ui.CartActivity"
             android:label="@string/title_activity_cart"
             android:theme="@style/LightAppTheme.NoActionBar" />
         <activity
-            android:name=".features.dashboard.ui.MainActivity"
+            android:name="com.example.store.features.dashboard.ui.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

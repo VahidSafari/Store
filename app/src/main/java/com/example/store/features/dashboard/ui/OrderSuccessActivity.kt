@@ -1,11 +1,8 @@
 package com.example.store.features.dashboard.ui
 
-import android.app.ActivityManager
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 import com.example.store.R
 import kotlinx.android.synthetic.main.activity_order_success.*
 

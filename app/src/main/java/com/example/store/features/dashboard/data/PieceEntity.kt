@@ -3,8 +3,6 @@ package com.example.store.features.dashboard.data
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import androidx.room.PrimaryKey
-import com.example.store.features.dashboard.ui.CategoryView
 import com.example.store.features.dashboard.ui.ItemView
 import com.example.store.features.dashboard.ui.OffPrice
 

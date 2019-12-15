@@ -1,9 +1,7 @@
 package com.example.store.features.user
 
 
-import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -23,7 +21,6 @@ import kotlinx.android.synthetic.main.dialog_agreement.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class ProfileFragment : Fragment() {

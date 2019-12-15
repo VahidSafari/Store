@@ -137,12 +137,6 @@ class RoundedCornerTransformation @JvmOverloads constructor(
                 right,
                 bottom
             )
-            else -> canvas.drawRoundRect(
-                RectF(mMargin.toFloat(), mMargin.toFloat(), right, bottom),
-                mRadius.toFloat(),
-                mRadius.toFloat(),
-                paint
-            )
         }
     }
 
