@@ -33,6 +33,13 @@ abstract class StoreDao {
     @Query("SELECT * FROM TopSliderEntity")
     abstract suspend fun getTopSliderItems(): List<TopSliderEntity>
 
+    @Query(
+        """SELECT * 
+        FROM PieceEntity as pe JOIN piecesFts as pf ON pe.id == pf.docid
+        WHERE pf.title MATCH :searchPhrase"""
+    )
+    abstract suspend fun search(searchPhrase: String): List<PieceEntity>?
+
     suspend fun insertCategory(piecesDtos: List<PiecesDto>) = withContext(Dispatchers.IO) {
         piecesDtos.forEach {
             insertCategory(it.categoryEntity)

@@ -13,13 +13,13 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-    RetrofitModule::class,
-    StoreModule::class,
+        RetrofitModule::class,
+        StoreModule::class,
         RoomModule::class,
-    AndroidSupportInjectionModule::class
+        AndroidSupportInjectionModule::class
     ]
 )
-interface ApplicationComponent : AndroidInjector<App>{
+interface ApplicationComponent : AndroidInjector<App> {
 
     @Component.Builder
     interface Builder {

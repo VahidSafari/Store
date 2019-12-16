@@ -17,6 +17,7 @@ import com.example.store.R
 import com.example.store.core.api.Result
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_dash_board.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,6 +40,7 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         //fetching data and submit to the adapter
         srl_dashboard.setOnRefreshListener(this)
 
@@ -58,7 +60,11 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
             actionBarHeight + actionBarHeight / 2
         )
 
-        storeViewModel.getStoreInfo()
+        lifecycleScope.launch(Dispatchers.IO) {
+            val job = storeViewModel.populateDataBase()
+            job.join()
+            storeViewModel.getStoreInfo()
+        }
 
         rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
         val headerAdapter =
@@ -69,33 +75,32 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
             }
         rv_fragment_dash_board.adapter = headerAdapter
 
-//        storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer { result ->
-//            when (result) {
-//                is Result.Success -> {
-//                    if (result.data.first.isNotEmpty() && result.data.second.isNotEmpty())
-//                        headerAdapter.submitList(listOf(StoreView(
-//                            result.data.first.map { it.toTopSliderView() },
-//                            result.data.second.map { it.toCategoryView() }
-//                        )))
-//                }
-//                is Result.Error -> {
-//                    if (result.data?.first?.isNotEmpty() == true)
-//                        result.data.let {
-//                            headerAdapter.submitList(listOf(StoreView(
-//                                result.data.first.map { it.toTopSliderView() },
-//                                result.data.second.map { it.toCategoryView() }
-//                            )))
-//                        }
-//                    srl_dashboard.isRefreshing = false
-//                    Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
-//                }
-//                is Result.Loading -> {
-//                    srl_dashboard.isRefreshing = true
-//                }
-//            }
-//        })
-
-        headerAdapter.submitList(
+        storeViewModel.storeInfo.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is Result.Success -> {
+                    if (result.data.first.isNotEmpty() && result.data.second.isNotEmpty())
+                        headerAdapter.submitList(listOf(StoreView(
+                            result.data.first.map { it.toTopSliderView() },
+                            result.data.second.map { it.toCategoryView() }
+                        )))
+                }
+                is Result.Error -> {
+                    if (result.data?.first?.isNotEmpty() == true)
+                        result.data.let {
+                            headerAdapter.submitList(listOf(StoreView(
+                                result.data.first.map { it.toTopSliderView() },
+                                result.data.second.map { it.toCategoryView() }
+                            )))
+                        }
+                    srl_dashboard.isRefreshing = false
+                    Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
+                }
+                is Result.Loading -> {
+                    srl_dashboard.isRefreshing = true
+                }
+            }
+        })
+        /*headerAdapter.submitList(
             listOf(
                 StoreView(
                     listOf(
@@ -207,7 +212,7 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
                             )
                         ),
                         CategoryView(
-                            1,
+                            3,
                             "جدیدترین ها",
                             listOf(
                                 ItemView(
@@ -260,7 +265,7 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
                     )
                 )
             )
-        )
+        )*/
     }
 
     override fun onRefresh() {

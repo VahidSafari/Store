@@ -23,7 +23,7 @@ data class PieceEntity (
     val imageUrl: String,
     val startPrice: Int,
     val endPrice: Int,
-    val offPrecent: Int,
+    val offPercent: Int,
     val startOffPrice: Int,
     val endOffPrice: Int,
 
@@ -35,7 +35,7 @@ data class PieceEntity (
         title,
         startPrice,
         endPrice,
-        offPrecent,
+        offPercent,
         OffPrice(
             startOffPrice,
             endOffPrice

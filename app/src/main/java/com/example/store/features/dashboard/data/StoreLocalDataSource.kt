@@ -40,4 +40,6 @@ class StoreLocalDataSource @Inject constructor(
         }
         return result
     }
+
+    suspend fun search(searchPhrase: String) = db.getStoreDao().search(searchPhrase)
 }
