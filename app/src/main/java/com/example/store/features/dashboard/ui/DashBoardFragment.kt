@@ -60,11 +60,8 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
             actionBarHeight + actionBarHeight / 2
         )
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            val job = storeViewModel.populateDataBase()
-            job.join()
-            storeViewModel.getStoreInfo()
-        }
+        val job = storeViewModel.populateDataBase()
+        job.invokeOnCompletion { storeViewModel.getStoreInfo() }
 
         rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
         val headerAdapter =

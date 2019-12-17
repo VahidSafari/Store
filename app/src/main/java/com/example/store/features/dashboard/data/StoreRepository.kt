@@ -212,6 +212,7 @@ class StoreRepository @Inject constructor(
         storeLocalDataSource.insertCategories(categories)
     }
 
+
     suspend fun getStoreInfo(): Result<Pair<List<TopSliderEntity>, List<PiecesDto>>>? {
 
         var result: Result<Pair<List<TopSliderEntity>, List<PiecesDto>>>? = null

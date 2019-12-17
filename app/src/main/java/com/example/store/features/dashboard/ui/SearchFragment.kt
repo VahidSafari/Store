@@ -1,13 +1,20 @@
 package com.example.store.features.dashboard.ui
 
+import android.content.Context
+import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.SearchView
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.store.R
 import dagger.android.support.DaggerFragment
@@ -33,12 +40,74 @@ class SearchFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        storeViewModel.search("کفش")
-        storeViewModel.searchResult.observe(viewLifecycleOwner, Observer {
-            if (it == null || it.isEmpty())
-                tv_search_result.text = "محصول موردنظر یافت نشد :("
-            else if (it.isNotEmpty())
-                tv_search_result.text = it[0].title
+        sv_search_product.setOnQueryTextFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                showInputMethod(v.findFocus())
+            }
+        }
+
+        val searchTextView = sv_search_product.findViewById<TextView>(R.id.search_src_text)
+        searchTextView.typeface =
+            Typeface.createFromAsset(activity?.assets,"fonts/iran_yekan_regular.ttf")
+        sv_search_product.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    storeViewModel.search(it)
+                }
+                return false
+            }
         })
+
+        val listItemAdapter = ListItemsAdapter {
+            startActivity(
+                Intent(
+                    activity,
+                    ItemSpecificationActivity::class.java
+                )
+            )
+        }
+        rv_product_search_results.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = listItemAdapter
+            addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+        }
+
+        storeViewModel.searchResult.observe(viewLifecycleOwner, Observer { pieceList ->
+            if (pieceList == null || pieceList.isEmpty()) {
+                tv_search_result.visibility = View.VISIBLE
+                rv_product_search_results.visibility = View.GONE
+            }
+            else if (pieceList.isNotEmpty()) {
+                tv_search_result.visibility = View.GONE
+                rv_product_search_results.visibility = View.VISIBLE
+                listItemAdapter.submitList(pieceList.map { it.toItemView() })
+            }
+        })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        sv_search_product.requestFocus()
+    }
+
+    private fun hideInputMethod(view: View) {
+        (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+            .hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun showInputMethod(view: View) {
+        (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+            .showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 }

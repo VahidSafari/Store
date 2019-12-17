@@ -1,7 +1,11 @@
 package com.example.store.features.dashboard.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -86,8 +90,9 @@ class MainActivity : DaggerAppCompatActivity() {
                                 supportFragmentManager.beginTransaction()
                                     .show(fragment)
                                     .commitNow()
+                                window.setSoftInputMode(0)
                             }
-                        
+
                     }
                 }
 
@@ -131,8 +136,9 @@ class MainActivity : DaggerAppCompatActivity() {
                                 supportFragmentManager.beginTransaction()
                                     .show(fragment)
                                     .commitNow()
+                                window.setSoftInputMode(0)
                             }
-                        
+
                     }
 
                 }
@@ -170,8 +176,9 @@ class MainActivity : DaggerAppCompatActivity() {
                             supportFragmentManager.beginTransaction()
                                 .show(fragment)
                                 .commitNow()
+                            window.setSoftInputMode(0)
                         }
-                        
+
                     }
 
                 }
@@ -210,6 +217,9 @@ class MainActivity : DaggerAppCompatActivity() {
                                 supportFragmentManager.beginTransaction()
                                     .show(fragment)
                                     .commitNow()
+                                window.setSoftInputMode(
+                                    WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
+                                )
                             }
                     }
                 }
@@ -238,6 +248,7 @@ class MainActivity : DaggerAppCompatActivity() {
                             .show(it)
                             .commitNow()
                         bottom_navigation_view.selectedItemId = R.id.fragment_list
+                        window.setSoftInputMode(0)
                     }
                 }
                 profileFragmentTag -> {
@@ -246,8 +257,8 @@ class MainActivity : DaggerAppCompatActivity() {
                         supportFragmentManager.beginTransaction()
                             .show(it)
                             .commitNow()
-                        bottom_navigation_view.selectedItemId =
-                            R.id.fragment_profile
+                        bottom_navigation_view.selectedItemId = R.id.fragment_profile
+                        window.setSoftInputMode(0)
                     }
                 }
                 searchFragmentTag -> {
@@ -256,8 +267,8 @@ class MainActivity : DaggerAppCompatActivity() {
                         supportFragmentManager.beginTransaction()
                             .show(it)
                             .commitNow()
-                        bottom_navigation_view.selectedItemId =
-                            R.id.fragment_search
+                        bottom_navigation_view.selectedItemId = R.id.fragment_search
+                        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
                     }
                 }
                 dashBoardFragmentTag -> {
@@ -266,9 +277,8 @@ class MainActivity : DaggerAppCompatActivity() {
                         supportFragmentManager.beginTransaction()
                             .show(it)
                             .commitNow()
-                        bottom_navigation_view.selectedItemId =
-                            R.id.fragment_dashboard
-
+                        bottom_navigation_view.selectedItemId = R.id.fragment_dashboard
+                        window.setSoftInputMode(0)
                     }
                 }
             }

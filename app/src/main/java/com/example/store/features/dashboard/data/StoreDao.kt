@@ -35,7 +35,7 @@ abstract class StoreDao {
 
     @Query(
         """SELECT * 
-        FROM PieceEntity as pe JOIN piecesFts as pf ON pe.id == pf.docid
+        FROM PieceEntity as pe JOIN piecesFts as pf ON pe.id == pf.id
         WHERE pf.title MATCH :searchPhrase"""
     )
     abstract suspend fun search(searchPhrase: String): List<PieceEntity>?

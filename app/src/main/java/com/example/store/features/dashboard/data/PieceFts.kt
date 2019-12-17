@@ -4,14 +4,18 @@ import androidx.room.Entity
 import androidx.room.Fts4
 
 @Fts4(contentEntity = PieceEntity::class)
-@Entity(tableName = "piecesFts")
+@Entity(
+    tableName = "piecesFts"
+)
 data class PieceFts(
-    val id: Int,
+    val id: String,
     val title: String,
     val imageUrl: String,
     val startPrice: String,
     val endPrice: String,
     val offPercent: String,
     val startOffPrice: String,
-    val endOffPrice: String
+    val endOffPrice: String,
+    val categoryId: String
 )
+
