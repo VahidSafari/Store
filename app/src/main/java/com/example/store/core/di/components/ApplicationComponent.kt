@@ -19,7 +19,7 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class
     ]
 )
-interface ApplicationComponent : AndroidInjector<App> {
+interface ApplicationComponent : AndroidInjector<App>{
 
     @Component.Builder
     interface Builder {

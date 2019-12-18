@@ -50,4 +50,5 @@
     <string name="agreed">بازگشت</string>
     <string name="unit">ت</string>
     <string name="not_found">محصول موردنظر یافت نشد :(</string>
+    <string name="delivered">تحویل داده شده</string>
 </resources>

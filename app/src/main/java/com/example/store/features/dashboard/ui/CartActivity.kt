@@ -89,15 +89,16 @@ class CartActivity : AppCompatActivity() {
                     OffPrice(60000, 45000),
                     2
                 )
-
             )
 
         cartAdapter.submitList(adapterList)
         cartAdapter.remove = {
             adapterList.removeAt(it)
-            cartAdapter.submitList(adapterList)
-            cartAdapter.notifyItemRemoved(it)
-            cartAdapter.notifyItemRangeChanged(it, adapterList.size)
+            cartAdapter.apply {
+                submitList(adapterList)
+                notifyItemRemoved(it)
+                notifyItemRangeChanged(it, adapterList.size)
+            }
         }
     }
 }

@@ -35,8 +35,8 @@ abstract class StoreDao {
 
     @Query(
         """SELECT * 
-        FROM PieceEntity as pe JOIN piecesFts as pf ON pe.id == pf.id
-        WHERE pf.title MATCH :searchPhrase"""
+        FROM PieceEntity
+        WHERE title LIKE :searchPhrase"""
     )
     abstract suspend fun search(searchPhrase: String): List<PieceEntity>?
 
@@ -46,5 +46,14 @@ abstract class StoreDao {
             insertPieces(it.pieces)
         }
     }
+
+    @Query("INSERT INTO CartEntity(pieceId,categoryId) VALUES(:pieceId,:categoryId)")
+    abstract fun insertCartItem(pieceId: Int, categoryId: Int)
+
+    @Query("SELECT * FROM PieceEntity WHERE id = :pieceId AND categoryId = :categoryId")
+    abstract suspend fun getCartEntities(pieceId: Int, categoryId: Int): List<PieceEntity>
+
+    @Delete
+    abstract fun removeCartItem(cartEntity: CartEntity)
 
 }

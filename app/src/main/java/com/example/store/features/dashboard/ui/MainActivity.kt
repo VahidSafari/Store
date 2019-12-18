@@ -3,6 +3,8 @@ package com.example.store.features.dashboard.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -40,6 +42,10 @@ class MainActivity : DaggerAppCompatActivity() {
         bottom_navigation_view.menu.getItem(2).isEnabled = false
 
         bottom_navigation_view.selectedItemId = R.id.fragment_dashboard
+
+        tb_dashboard.setNavigationOnClickListener {
+            bottom_navigation_view.selectedItemId = R.id.fragment_search
+        }
 
         supportFragmentManager.beginTransaction()
             .add(
@@ -90,9 +96,7 @@ class MainActivity : DaggerAppCompatActivity() {
                                 supportFragmentManager.beginTransaction()
                                     .show(fragment)
                                     .commitNow()
-                                window.setSoftInputMode(0)
                             }
-
                     }
                 }
 
@@ -136,7 +140,6 @@ class MainActivity : DaggerAppCompatActivity() {
                                 supportFragmentManager.beginTransaction()
                                     .show(fragment)
                                     .commitNow()
-                                window.setSoftInputMode(0)
                             }
 
                     }
@@ -176,7 +179,6 @@ class MainActivity : DaggerAppCompatActivity() {
                             supportFragmentManager.beginTransaction()
                                 .show(fragment)
                                 .commitNow()
-                            window.setSoftInputMode(0)
                         }
 
                     }
@@ -217,9 +219,7 @@ class MainActivity : DaggerAppCompatActivity() {
                                 supportFragmentManager.beginTransaction()
                                     .show(fragment)
                                     .commitNow()
-                                window.setSoftInputMode(
-                                    WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
-                                )
+                                (fragment as SearchFragment).showKeyboard()
                             }
                     }
                 }
@@ -248,7 +248,6 @@ class MainActivity : DaggerAppCompatActivity() {
                             .show(it)
                             .commitNow()
                         bottom_navigation_view.selectedItemId = R.id.fragment_list
-                        window.setSoftInputMode(0)
                     }
                 }
                 profileFragmentTag -> {
@@ -258,7 +257,6 @@ class MainActivity : DaggerAppCompatActivity() {
                             .show(it)
                             .commitNow()
                         bottom_navigation_view.selectedItemId = R.id.fragment_profile
-                        window.setSoftInputMode(0)
                     }
                 }
                 searchFragmentTag -> {
@@ -268,7 +266,6 @@ class MainActivity : DaggerAppCompatActivity() {
                             .show(it)
                             .commitNow()
                         bottom_navigation_view.selectedItemId = R.id.fragment_search
-                        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
                     }
                 }
                 dashBoardFragmentTag -> {
@@ -278,7 +275,6 @@ class MainActivity : DaggerAppCompatActivity() {
                             .show(it)
                             .commitNow()
                         bottom_navigation_view.selectedItemId = R.id.fragment_dashboard
-                        window.setSoftInputMode(0)
                     }
                 }
             }
@@ -298,4 +294,9 @@ class MainActivity : DaggerAppCompatActivity() {
             }
         }
     }
+
+    fun navigateToProfileFragment(){
+
+    }
+
 }

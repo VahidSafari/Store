@@ -41,5 +41,13 @@ class StoreLocalDataSource @Inject constructor(
         return result
     }
 
+    suspend fun getCartItems(pieceId: Int, categoryId: Int): List<PieceEntity>{
+        var result : List<PieceEntity> = listOf()
+        withContext(Dispatchers.IO) {
+            result = db.getStoreDao().getCartEntities(pieceId, categoryId)
+        }
+        return result
+    }
+
     suspend fun search(searchPhrase: String) = db.getStoreDao().search(searchPhrase)
 }

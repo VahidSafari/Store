@@ -3,6 +3,7 @@ package com.example.store.features.dashboard.ui
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.store.R
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import javax.inject.Inject
 
@@ -48,16 +50,21 @@ class SearchFragment : DaggerFragment() {
 
         val searchTextView = sv_search_product.findViewById<TextView>(R.id.search_src_text)
         searchTextView.typeface =
-            Typeface.createFromAsset(activity?.assets,"fonts/iran_yekan_regular.ttf")
+            Typeface.createFromAsset(activity?.assets, "fonts/iran_yekan_regular.ttf")
         sv_search_product.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    if (query.isNotEmpty())
+                        storeViewModel.search("%$query%")
+                }
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    storeViewModel.search(it)
+                    if (newText.isNotEmpty())
+                        storeViewModel.search("%$newText%")
                 }
                 return false
             }
@@ -87,8 +94,7 @@ class SearchFragment : DaggerFragment() {
             if (pieceList == null || pieceList.isEmpty()) {
                 tv_search_result.visibility = View.VISIBLE
                 rv_product_search_results.visibility = View.GONE
-            }
-            else if (pieceList.isNotEmpty()) {
+            } else if (pieceList.isNotEmpty()) {
                 tv_search_result.visibility = View.GONE
                 rv_product_search_results.visibility = View.VISIBLE
                 listItemAdapter.submitList(pieceList.map { it.toItemView() })
@@ -96,18 +102,14 @@ class SearchFragment : DaggerFragment() {
         })
     }
 
-    override fun onStart() {
-        super.onStart()
-        sv_search_product.requestFocus()
-    }
-
-    private fun hideInputMethod(view: View) {
-        (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-            .hideSoftInputFromWindow(view.windowToken, 0)
-    }
-
     private fun showInputMethod(view: View) {
         (context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
             .showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+    }
+
+    fun showKeyboard() {
+        sv_search_product.requestFocus()
+        if (Build.VERSION.SDK_INT <= 22)
+            showInputMethod(sv_search_product)
     }
 }

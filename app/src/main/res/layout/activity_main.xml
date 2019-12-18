@@ -23,7 +23,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/actionBarSize"
                     app:contentInsetStart="0dp"
-                    app:layout_scrollFlags="scroll|snap|enterAlways">
+                    app:layout_scrollFlags="scroll|snap|enterAlways"
+                    app:navigationIcon="@drawable/ic_search_black_24dp"
+                    app:navigationContentDescription="@string/search">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

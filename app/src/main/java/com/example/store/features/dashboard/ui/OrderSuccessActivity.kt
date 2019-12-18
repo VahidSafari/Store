@@ -19,6 +19,16 @@ class OrderSuccessActivity : AppCompatActivity() {
             this.onBackPressed()
         }
 
+        btn_followup.setOnClickListener {
+            overridePendingTransition(R.anim.left_in, R.anim.right_out)
+            startActivity(
+                Intent(
+                    this,
+                    PaymentHistory::class.java
+                )
+            )
+        }
+
         btn_back_to_homepage.setOnClickListener {
             overridePendingTransition(R.anim.left_in, R.anim.right_out)
             startActivity(

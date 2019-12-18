@@ -69,4 +69,6 @@ class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
             }
         }
     }
+
+
 }

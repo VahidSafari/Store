@@ -17,15 +17,15 @@ class StoreRepository @Inject constructor(
         val topSliderList = listOf(
             TopSliderEntity(
                 1,
-                "https://mootanroo.com/sites/default/files/users/user167479/slide-farben-mobile.jpg"
+                "https://mootanroo.com/sites/default/files/users/user167479/slaild-farben-desktop.jpg"
             ),
             TopSliderEntity(
                 2,
-                "https://mootanroo.com/sites/default/files/users/user167479/slide-vichy-mobile.jpg"
+                "https://mootanroo.com/sites/default/files/users/user167479/slide-vichy-desktop.jpg"
             ),
             TopSliderEntity(
                 3,
-                "https://mootanroo.com/sites/default/files/users/user167479/slide-my-mobile.jpg"
+                "https://mootanroo.com/sites/default/files/users/user167479/slide-my-desktop.jpg"
             )
         )
         val categories = listOf(
@@ -37,7 +37,7 @@ class StoreRepository @Inject constructor(
                 listOf(
                     PieceEntity(
                         1,
-                        " کفش عالی",
+                        "کفش عالی",
                         "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
                         40000,
                         20000,
@@ -48,7 +48,7 @@ class StoreRepository @Inject constructor(
                     ),
                     PieceEntity(
                         2,
-                        " کفش خوب",
+                        "کفش خوب",
                         "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
                         10000,
                         30000,
@@ -59,7 +59,7 @@ class StoreRepository @Inject constructor(
                     ),
                     PieceEntity(
                         3,
-                        " کفش بی نظیر",
+                        "کفش بی نظیر",
                         "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
                         40000,
                         20000,
@@ -78,7 +78,7 @@ class StoreRepository @Inject constructor(
                 listOf(
                     PieceEntity(
                         1,
-                        " ویلا",
+                        "ویلا",
                         "http://pluspng.com/img-png/shirt-hd-png-dress-shirt-png-hd-png-image-480.png",
                         6500000,
                         10000000,
@@ -100,7 +100,7 @@ class StoreRepository @Inject constructor(
                     ),
                     PieceEntity(
                         3,
-                        " کفش بی نظیر",
+                        "کفش بی نظیر",
                         "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
                         21100,
                         24000,
@@ -111,7 +111,7 @@ class StoreRepository @Inject constructor(
                     ),
                     PieceEntity(
                         4,
-                        "کفش ارزان",
+                        "marvelous shoes",
                         "https://demo.accesspressthemes.com/wordpress-plugins/wp-popup-banners-pro/wp-content/uploads/2017/04/shoes.png",
                         2000,
                         3000,
@@ -122,7 +122,7 @@ class StoreRepository @Inject constructor(
                     ),
                     PieceEntity(
                         5,
-                        "کفش ورزشی",
+                        "good shoes",
                         "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
                         40000,
                         50000,
@@ -133,7 +133,7 @@ class StoreRepository @Inject constructor(
                     ),
                     PieceEntity(
                         6,
-                        "کفش زیبا",
+                        "shoes",
                         "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
                         53000,
                         68000,
@@ -273,4 +273,5 @@ class StoreRepository @Inject constructor(
     }
 
     suspend fun search(searchPhrase: String) = storeLocalDataSource.search(searchPhrase)
+
 }
