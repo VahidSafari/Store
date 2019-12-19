@@ -4,6 +4,7 @@ import com.example.store.features.dashboard.ui.MainActivity
 import com.example.store.features.dashboard.data.StoreLocalDataSource
 import com.example.store.features.dashboard.data.StoreRemoteDataSource
 import com.example.store.features.dashboard.data.StoreRepository
+import com.example.store.features.dashboard.ui.CartActivity
 import com.example.store.features.dashboard.ui.DashBoardFragment
 import com.example.store.features.dashboard.ui.SearchFragment
 import dagger.Module
@@ -29,4 +30,7 @@ abstract class StoreModule {
 
     @ContributesAndroidInjector
     abstract fun contributeDashBoardFragment(): DashBoardFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeCartActivity(): CartActivity
 }

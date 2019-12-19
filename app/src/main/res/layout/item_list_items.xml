@@ -58,7 +58,7 @@
             tools:text="تا 100000 تومان 200000" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/item_cart_offprice"
+            android:id="@+id/item_cart_off_price"
             android:textAppearance="@style/OffPriceTextView"
             hideIfZero="@{itemView.offPrice}"
             android:layout_width="wrap_content"

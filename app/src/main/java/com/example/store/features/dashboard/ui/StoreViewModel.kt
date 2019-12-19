@@ -8,6 +8,7 @@ import com.example.store.core.api.Result
 import com.example.store.features.dashboard.data.PieceEntity
 import com.example.store.features.dashboard.data.PiecesDto
 import com.example.store.features.dashboard.data.TopSliderEntity
+import kotlinx.coroutines.Dispatchers
 
 class StoreViewModel @Inject constructor(private val storeRepository: StoreRepository) :
     ViewModel() {
@@ -36,5 +37,4 @@ class StoreViewModel @Inject constructor(private val storeRepository: StoreRepos
     fun populateDataBase() = viewModelScope.launch {
         storeRepository.populateDataBase()
     }
-
 }

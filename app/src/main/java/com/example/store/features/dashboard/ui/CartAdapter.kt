@@ -13,17 +13,20 @@ import com.example.store.databinding.ItemCartBinding
 
 private object CartRecyclerAdapterCallback : DiffUtil.ItemCallback<CartItemView>() {
     override fun areItemsTheSame(oldItem: CartItemView, newItem: CartItemView): Boolean {
-        return (oldItem.id == newItem.id)
+        return (
+                oldItem.pieceId == newItem.pieceId &&
+                        oldItem.categoryId == newItem.categoryId
+                )
     }
 
     override fun areContentsTheSame(oldItem: CartItemView, newItem: CartItemView): Boolean {
         return (oldItem.count == oldItem.count &&
-                oldItem.name == newItem.name &&
+                oldItem.title == newItem.title &&
                 oldItem.imageUrl == newItem.imageUrl &&
                 oldItem.startPrice == newItem.startPrice &&
                 oldItem.endPrice == newItem.endPrice &&
-                oldItem.offPrice.startOffPrice == newItem.offPrice.startOffPrice &&
-                newItem.offPrice.endOffPrice == newItem.offPrice.endOffPrice
+                oldItem.startOffPrice == newItem.startOffPrice &&
+                newItem.endOffPrice == newItem.endOffPrice
                 )
     }
 }
@@ -31,7 +34,7 @@ private object CartRecyclerAdapterCallback : DiffUtil.ItemCallback<CartItemView>
 class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
     CartRecyclerAdapterCallback
 ) {
-    lateinit var remove: (Int) -> Unit
+    lateinit var remove: (Int, Int) -> Unit
 
     inner class ViewHolder(icBinding: ItemCartBinding) : RecyclerView.ViewHolder(icBinding.root) {
         internal val holderBinding = icBinding
@@ -59,7 +62,7 @@ class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
                 item.count--
                 holder.holderBinding.cartItemView = item
             } else {
-                remove(position)
+                remove(item.pieceId,item.categoryId)
             }
         }
         holder.plusImageView.setOnClickListener {

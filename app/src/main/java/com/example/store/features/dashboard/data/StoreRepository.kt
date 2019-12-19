@@ -2,9 +2,6 @@ package com.example.store.features.dashboard.data
 
 import com.example.store.core.api.NetworkHandler
 import com.example.store.core.api.Result
-import com.example.store.features.dashboard.ui.OffPrice
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class StoreRepository @Inject constructor(
@@ -273,5 +270,14 @@ class StoreRepository @Inject constructor(
     }
 
     suspend fun search(searchPhrase: String) = storeLocalDataSource.search(searchPhrase)
+
+    suspend fun getCartItems() = storeLocalDataSource.getCartItems()
+
+    fun removeCartItem(pieceId: Int, categoryId: Int) =
+        storeLocalDataSource.removeCartItem(pieceId, categoryId)
+
+    fun insertCartItem(pieceId: Int, categoryId: Int) =
+        storeLocalDataSource.insertCartItem(pieceId, categoryId)
+
 
 }

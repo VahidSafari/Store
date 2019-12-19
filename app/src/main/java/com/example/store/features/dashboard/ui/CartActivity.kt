@@ -2,14 +2,27 @@ package com.example.store.features.dashboard.ui
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.store.R
+import com.example.store.features.dashboard.data.PieceEntity
 import kotlinx.android.synthetic.main.activity_cart.*
+import javax.inject.Inject
 
 
 class CartActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var storeViewModelFactory: ViewModelProvider.Factory
+    private val cartViewModel: CartViewModel by viewModels {
+        storeViewModelFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +50,7 @@ class CartActivity : AppCompatActivity() {
             )
         }
 
-        val adapterList =
+        /*val adapterList =
             mutableListOf(
                 CartItemView(
                     1,
@@ -91,14 +104,17 @@ class CartActivity : AppCompatActivity() {
                 )
             )
 
-        cartAdapter.submitList(adapterList)
-        cartAdapter.remove = {
-            adapterList.removeAt(it)
-            cartAdapter.apply {
-                submitList(adapterList)
-                notifyItemRemoved(it)
-                notifyItemRangeChanged(it, adapterList.size)
-            }
+        cartAdapter.submitList(adapterList)*/
+
+
+        cartViewModel.getCartItems()
+        cartViewModel.cartItems.observe(this, Observer {
+            cartAdapter.submitList(it)
+        })
+
+        cartAdapter.remove = { pieceId, categoryId ->
+            cartViewModel.removeCartItem(pieceId, categoryId)
+            cartViewModel.getCartItems()
         }
     }
 }

@@ -1,15 +1,21 @@
 package com.example.store.features.dashboard.data
 
+import androidx.annotation.NonNull
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import com.example.store.features.dashboard.ui.ItemView
 import com.example.store.features.dashboard.ui.OffPrice
+import com.google.gson.annotations.SerializedName
 
 
 @Entity(
-    indices = [Index("categoryId")],
-    primaryKeys = ["id","categoryId"],
+    indices = [
+        Index(value = ["id"], unique = true),
+        Index(value = ["categoryId"], unique = true)
+    ],
+    primaryKeys = ["id", "categoryId"],
     foreignKeys = [ForeignKey(
         onDelete = ForeignKey.CASCADE,
         entity = CategoryEntity::class,
@@ -17,7 +23,10 @@ import com.example.store.features.dashboard.ui.OffPrice
         childColumns = ["categoryId"]
     )]
 )
-data class PieceEntity (
+data class PieceEntity(
+    @ColumnInfo(name = "id")
+    @NonNull
+    @SerializedName("id")
     val id: Int,
     val title: String,
     val imageUrl: String,
@@ -26,7 +35,9 @@ data class PieceEntity (
     val offPercent: Int,
     val startOffPrice: Int,
     val endOffPrice: Int,
-
+    @ColumnInfo(name = "categoryId")
+    @NonNull
+    @SerializedName("categoryId")
     val categoryId: Int
 ) {
     fun toItemView() = ItemView(

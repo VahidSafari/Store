@@ -1,12 +1,17 @@
 package com.example.store.features.dashboard.data
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.annotation.NonNull
+import androidx.room.*
+import com.google.gson.annotations.SerializedName
 
-@Entity
+@Entity(
+    indices = [Index(value = ["id"], unique = true)]
+)
 data class CategoryEntity @JvmOverloads constructor (
     @PrimaryKey
+    @NonNull
+    @SerializedName("id")
+    @ColumnInfo(name = "id")
     val id : Int,
     val title: String,
     @Ignore

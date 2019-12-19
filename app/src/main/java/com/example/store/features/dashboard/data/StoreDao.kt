@@ -1,6 +1,7 @@
 package com.example.store.features.dashboard.data
 
 import androidx.room.*
+import com.example.store.features.dashboard.ui.CartItemView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -50,10 +51,17 @@ abstract class StoreDao {
     @Query("INSERT INTO CartEntity(pieceId,categoryId) VALUES(:pieceId,:categoryId)")
     abstract fun insertCartItem(pieceId: Int, categoryId: Int)
 
-    @Query("SELECT * FROM PieceEntity WHERE id = :pieceId AND categoryId = :categoryId")
-    abstract suspend fun getCartEntities(pieceId: Int, categoryId: Int): List<PieceEntity>
+    @Query("DELETE FROM CartEntity WHERE pieceId=:pieceId AND categoryId=:categoryId")
+    abstract fun removeCartItem(pieceId: Int, categoryId: Int)
 
-    @Delete
-    abstract fun removeCartItem(cartEntity: CartEntity)
+    @Query(
+        """
+            SELECT ce.pieceId, ce.categoryId, imageUrl, title, startPrice, endPrice, offPercent,
+             startOffPrice, endOffPrice, count
+            FROM PieceEntity as pe INNER JOIN CartEntity as ce 
+            ON pe.id=ce.pieceId AND pe.categoryId=ce.categoryId
+            """
+    )
+    abstract suspend fun getCartItems(): List<CartItemView>
 
 }
