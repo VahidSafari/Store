@@ -1,10 +1,8 @@
 package com.example.store.core.di.components
 
 import com.example.store.App
-import com.example.store.core.di.modules.CartViewModelModule
-import com.example.store.core.di.modules.StoreModule
-import com.example.store.core.di.modules.RetrofitModule
-import com.example.store.core.di.modules.RoomModule
+import com.example.store.core.di.modules.*
+import com.example.store.features.dashboard.ui.CartActivity
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

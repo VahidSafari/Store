@@ -1,12 +1,10 @@
 package com.example.store.core.di.modules
 
-import com.example.store.features.dashboard.ui.MainActivity
+import androidx.databinding.BindingAdapter
 import com.example.store.features.dashboard.data.StoreLocalDataSource
 import com.example.store.features.dashboard.data.StoreRemoteDataSource
 import com.example.store.features.dashboard.data.StoreRepository
-import com.example.store.features.dashboard.ui.CartActivity
-import com.example.store.features.dashboard.ui.DashBoardFragment
-import com.example.store.features.dashboard.ui.SearchFragment
+import com.example.store.features.dashboard.ui.*
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -33,4 +31,10 @@ abstract class StoreModule {
 
     @ContributesAndroidInjector
     abstract fun contributeCartActivity(): CartActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeItemSpecificationActivity(): ItemSpecificationActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeOrderActivity(): OrderActivity
 }

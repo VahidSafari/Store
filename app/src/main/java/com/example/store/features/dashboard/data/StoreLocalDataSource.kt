@@ -34,6 +34,8 @@ class StoreLocalDataSource @Inject constructor(
             }
         }
 
+    suspend fun getPiece(pieceId: Int): PieceEntity? = db.getStoreDao().getPiece(pieceId)
+
     suspend fun getTopSliderItems(): List<TopSliderEntity> {
         var result: List<TopSliderEntity> = listOf()
         withContext(Dispatchers.IO) {
@@ -44,16 +46,16 @@ class StoreLocalDataSource @Inject constructor(
 
     suspend fun getCartItems() = db.getStoreDao().getCartItems()
 
-    fun insertCartItem(pieceId: Int, categoryId: Int) =
+    fun insertCartItem(pieceId: Int) =
         try {
-            db.getStoreDao().insertCartItem(pieceId, categoryId)
+            db.getStoreDao().insertCartItem(pieceId)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-    fun removeCartItem(pieceId: Int, categoryId: Int) =
+    fun removeCartItem(pieceId: Int) =
         try {
-            db.getStoreDao().removeCartItem(pieceId, categoryId)
+            db.getStoreDao().removeCartItem(pieceId)
         } catch (e: Exception) {
             e.printStackTrace()
         }

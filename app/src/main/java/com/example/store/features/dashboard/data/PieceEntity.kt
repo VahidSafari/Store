@@ -13,9 +13,9 @@ import com.google.gson.annotations.SerializedName
 @Entity(
     indices = [
         Index(value = ["id"], unique = true),
-        Index(value = ["categoryId"], unique = true)
+        Index(value = ["categoryId"], unique = false)
     ],
-    primaryKeys = ["id", "categoryId"],
+    primaryKeys = ["id"],
     foreignKeys = [ForeignKey(
         onDelete = ForeignKey.CASCADE,
         entity = CategoryEntity::class,

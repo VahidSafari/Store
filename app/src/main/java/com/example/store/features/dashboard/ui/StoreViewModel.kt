@@ -22,6 +22,7 @@ class StoreViewModel @Inject constructor(private val storeRepository: StoreRepos
     val searchResult: LiveData<List<PieceEntity>?>
         get() = _searchResult
 
+
     fun getStoreInfo() {
         viewModelScope.launch {
             _storeInfo.value = storeRepository.getStoreInfo()

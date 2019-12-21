@@ -5,7 +5,14 @@ import androidx.room.RoomDatabase
 import com.example.store.features.dashboard.data.*
 
 @Database(
-    entities = [TopSliderEntity::class,CategoryEntity::class,PieceEntity::class, PieceFts::class, CartEntity::class],
+    entities =
+    [
+        TopSliderEntity::class,
+        CategoryEntity::class,
+        PieceEntity::class,
+        PieceFts::class,
+        CartEntity::class
+    ],
     version = 1,
     exportSchema = false
 )

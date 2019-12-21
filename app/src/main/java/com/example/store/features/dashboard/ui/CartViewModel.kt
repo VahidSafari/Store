@@ -16,16 +16,28 @@ class CartViewModel @Inject constructor(private val storeRepository: StoreReposi
     val cartItems: LiveData<List<CartItemView>?>
         get() = _cartItems
 
-    fun getCartItems() = viewModelScope.launch(Dispatchers.IO) {
-        _cartItems.value = storeRepository.getCartItems()
+    private val _piece: MutableLiveData<ItemView?> = MutableLiveData()
+    val piece: LiveData<ItemView?>
+        get() = _piece
+
+    fun getCartItems() {
+        viewModelScope.launch {
+            _cartItems.value = storeRepository.getCartItems()
+        }
     }
 
-    fun insertCartItem(pieceId: Int, categoryId: Int) = viewModelScope.launch(Dispatchers.IO) {
-        storeRepository.insertCartItem(pieceId, categoryId)
+    fun insertCartItem(pieceId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        storeRepository.insertCartItem(pieceId)
     }
 
-    fun removeCartItem(pieceId: Int, categoryId: Int) = viewModelScope.launch(Dispatchers.IO) {
-        storeRepository.insertCartItem(pieceId, categoryId)
+    fun removeCartItem(pieceId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        storeRepository.insertCartItem(pieceId)
+    }
+
+    fun getPiece(pieceId: Int) {
+        viewModelScope.launch {
+            _piece.value = storeRepository.getPiece(pieceId)
+        }
     }
 
 }

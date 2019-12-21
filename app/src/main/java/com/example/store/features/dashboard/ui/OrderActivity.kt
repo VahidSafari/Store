@@ -2,13 +2,24 @@ package com.example.store.features.dashboard.ui
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.store.R
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_order.*
+import javax.inject.Inject
 
-class OrderActivity : AppCompatActivity() {
+class OrderActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var storeViewModelFactory: ViewModelProvider.Factory
+    private val cartViewModel: CartViewModel by viewModels {
+        storeViewModelFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +36,6 @@ class OrderActivity : AppCompatActivity() {
         }
 
         rv_order.layoutManager = LinearLayoutManager(this)
-        rv_order.setHasFixedSize(true)
         val orderAdapter = OrderAdapter()
         rv_order.adapter = orderAdapter
         rv_order.addItemDecoration(
@@ -34,25 +44,13 @@ class OrderActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        orderAdapter.submitList(
-            listOf(
-                ProductView(
-                    1,
-                    "کفش مناسب",
-                    20000,
-                    10000,
-                    3
-                ),
-                ProductView(
-                    2,
-                    "کفش نامناسب",
-                    15000,
-                    10000,
-                    2
-                )
-            )
-        )
 
+        cartViewModel.getCartItems()
+        cartViewModel.cartItems.observe(this, Observer {
+            it?.let {
+                orderAdapter.submitList(it.map { cartItemView -> cartItemView.toProductView() })
+            }
+        })
     }
 
     override fun onBackPressed() {

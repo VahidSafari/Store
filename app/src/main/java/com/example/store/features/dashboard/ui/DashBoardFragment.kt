@@ -17,7 +17,6 @@ import com.example.store.R
 import com.example.store.core.api.Result
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_dash_board.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -65,10 +64,15 @@ class DashBoardFragment : DaggerFragment(), SwipeRefreshLayout.OnRefreshListener
 
         rv_fragment_dash_board.layoutManager = LinearLayoutManager(context)
         val headerAdapter =
-            MainPageAdapter(
-                viewLifecycleOwner
-            ) {
-                startActivity(Intent(activity, ItemSpecificationActivity::class.java))
+            MainPageAdapter(viewLifecycleOwner) { pieceId ->
+                startActivity(
+                    Intent(
+                        activity,
+                        ItemSpecificationActivity::class.java
+                    ).apply {
+                        putExtra("pieceId", pieceId)
+                    }
+                )
             }
         rv_fragment_dash_board.adapter = headerAdapter
 

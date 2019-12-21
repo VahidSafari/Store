@@ -3,20 +3,17 @@ package com.example.store.features.dashboard.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.store.R
-import com.example.store.features.dashboard.data.PieceEntity
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_cart.*
 import javax.inject.Inject
 
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var storeViewModelFactory: ViewModelProvider.Factory
@@ -112,8 +109,8 @@ class CartActivity : AppCompatActivity() {
             cartAdapter.submitList(it)
         })
 
-        cartAdapter.remove = { pieceId, categoryId ->
-            cartViewModel.removeCartItem(pieceId, categoryId)
+        cartAdapter.remove = { pieceId ->
+            cartViewModel.removeCartItem(pieceId)
             cartViewModel.getCartItems()
         }
     }

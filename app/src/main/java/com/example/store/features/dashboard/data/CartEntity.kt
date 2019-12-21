@@ -6,30 +6,22 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 
 @Entity(
-    primaryKeys = ["pieceId", "categoryId"],
+    primaryKeys = ["pieceId"],
     indices = [
-        Index(value = ["pieceId"], unique = true),
-        Index(value = ["categoryId"], unique = true)
+        Index(value = ["pieceId"], unique = true)
     ],
     foreignKeys = [
         ForeignKey(
-            onDelete = ForeignKey.SET_DEFAULT,
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE,
             entity = PieceEntity::class,
             parentColumns = ["id"],
             childColumns = ["pieceId"]
-        ),
-        ForeignKey(
-            onDelete = ForeignKey.SET_DEFAULT,
-            entity = CategoryEntity::class,
-            parentColumns = ["id"],
-            childColumns = ["categoryId"]
         )
     ]
 )
 data class CartEntity(
     @ColumnInfo(name = "pieceId")
     val pieceId: Int,
-    @ColumnInfo(name = "categoryId")
-    val categoryId: Int,
     var count: Int
 )

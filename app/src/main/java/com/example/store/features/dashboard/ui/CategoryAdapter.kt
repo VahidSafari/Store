@@ -22,7 +22,7 @@ private object CategoryRecyclerAdapterCallback : DiffUtil.ItemCallback<CategoryV
 }
 
 class CategoryAdapter (
-    private val itemListener: ()->Unit
+    private val itemListener: (Int)->Unit
 ):
     ListAdapter<CategoryView, CategoryAdapter.ViewHolder>(CategoryRecyclerAdapterCallback) {
     private lateinit var context: Context

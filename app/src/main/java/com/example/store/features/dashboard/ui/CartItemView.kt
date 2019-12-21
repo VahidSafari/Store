@@ -11,4 +11,12 @@ data class CartItemView(
     val startOffPrice: Int,
     val endOffPrice: Int,
     var count: Int
-)
+) {
+    fun toProductView() = ProductView(
+        pieceId,
+        title,
+        startPrice,
+        endPrice,
+        count
+    )
+}

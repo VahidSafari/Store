@@ -23,7 +23,7 @@ private object HeaderRecyclerAdapterCallback : DiffUtil.ItemCallback<StoreView>(
 
 class MainPageAdapter(
     private val viewLifecycleOwner: LifecycleOwner,
-    private val itemListener: () -> Unit
+    private val itemListener: (Int) -> Unit
 ) : ListAdapter<StoreView, RecyclerView.ViewHolder>(HeaderRecyclerAdapterCallback) {
     private lateinit var headerRecyclerView: RecyclerView
     private lateinit var categoryRecyclerView: RecyclerView
@@ -47,8 +47,9 @@ class MainPageAdapter(
 
 
     override fun getItemCount(): Int {
-        return if(super.getItemCount() == 0) 0 else super.getItemCount()+1
+        return if (super.getItemCount() == 0) 0 else super.getItemCount() + 1
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(0)
         when (holder) {

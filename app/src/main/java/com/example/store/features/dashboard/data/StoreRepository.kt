@@ -74,7 +74,7 @@ class StoreRepository @Inject constructor(
                 ),
                 listOf(
                     PieceEntity(
-                        1,
+                        4,
                         "ویلا",
                         "http://pluspng.com/img-png/shirt-hd-png-dress-shirt-png-hd-png-image-480.png",
                         6500000,
@@ -85,7 +85,7 @@ class StoreRepository @Inject constructor(
                         2
                     ),
                     PieceEntity(
-                        2,
+                        5,
                         "پنیر تازه",
                         "https://www.freepngimg.com/thumb/cheese/10-cheese-png-image-thumb.png",
                         99000,
@@ -96,7 +96,7 @@ class StoreRepository @Inject constructor(
                         2
                     ),
                     PieceEntity(
-                        3,
+                        6,
                         "کفش بی نظیر",
                         "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
                         21100,
@@ -107,7 +107,7 @@ class StoreRepository @Inject constructor(
                         2
                     ),
                     PieceEntity(
-                        4,
+                        7,
                         "marvelous shoes",
                         "https://demo.accesspressthemes.com/wordpress-plugins/wp-popup-banners-pro/wp-content/uploads/2017/04/shoes.png",
                         2000,
@@ -118,7 +118,7 @@ class StoreRepository @Inject constructor(
                         2
                     ),
                     PieceEntity(
-                        5,
+                        8,
                         "good shoes",
                         "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
                         40000,
@@ -129,7 +129,7 @@ class StoreRepository @Inject constructor(
                         2
                     ),
                     PieceEntity(
-                        6,
+                        9,
                         "shoes",
                         "http://www.pngall.com/wp-content/uploads/2016/03/Shoes-Free-Download-PNG.png",
                         53000,
@@ -148,7 +148,7 @@ class StoreRepository @Inject constructor(
                 ),
                 listOf(
                     PieceEntity(
-                        1,
+                        10,
                         "خانه ی بزرگ",
                         "https://www.housingpedia.com/wp-content/uploads/house-flip.png",
                         400000,
@@ -159,7 +159,7 @@ class StoreRepository @Inject constructor(
                         3
                     ),
                     PieceEntity(
-                        2,
+                        11,
                         "کفش مارک",
                         "https://demo.accesspressthemes.com/wordpress-plugins/wp-popup-banners-pro/wp-content/uploads/2017/04/shoes.png",
                         912000,
@@ -170,7 +170,7 @@ class StoreRepository @Inject constructor(
                         3
                     ),
                     PieceEntity(
-                        3,
+                        12,
                         " کفش بی نظیر",
                         "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
                         1200000,
@@ -181,7 +181,7 @@ class StoreRepository @Inject constructor(
                         3
                     ),
                     PieceEntity(
-                        4,
+                        13,
                         "کفش ارزان",
                         "https://demo.accesspressthemes.com/wordpress-plugins/wp-popup-banners-pro/wp-content/uploads/2017/04/shoes.png",
                         2000,
@@ -192,7 +192,7 @@ class StoreRepository @Inject constructor(
                         3
                     ),
                     PieceEntity(
-                        5,
+                        14,
                         "کفش ورزشی",
                         "http://pluspng.com/img-png/shoes-png-sneaker-png-transparent-image-2500.png",
                         40000,
@@ -208,7 +208,6 @@ class StoreRepository @Inject constructor(
         storeLocalDataSource.insertTopSliderItems(topSliderList)
         storeLocalDataSource.insertCategories(categories)
     }
-
 
     suspend fun getStoreInfo(): Result<Pair<List<TopSliderEntity>, List<PiecesDto>>>? {
 
@@ -271,13 +270,15 @@ class StoreRepository @Inject constructor(
 
     suspend fun search(searchPhrase: String) = storeLocalDataSource.search(searchPhrase)
 
+    suspend fun getPiece(pieceId: Int) = storeLocalDataSource.getPiece(pieceId)?.toItemView()
+
     suspend fun getCartItems() = storeLocalDataSource.getCartItems()
 
-    fun removeCartItem(pieceId: Int, categoryId: Int) =
-        storeLocalDataSource.removeCartItem(pieceId, categoryId)
+    fun removeCartItem(pieceId: Int) =
+        storeLocalDataSource.removeCartItem(pieceId)
 
-    fun insertCartItem(pieceId: Int, categoryId: Int) =
-        storeLocalDataSource.insertCartItem(pieceId, categoryId)
+    fun insertCartItem(pieceId: Int) =
+        storeLocalDataSource.insertCartItem(pieceId)
 
 
 }

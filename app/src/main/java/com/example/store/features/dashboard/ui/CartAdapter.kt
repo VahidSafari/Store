@@ -13,9 +13,8 @@ import com.example.store.databinding.ItemCartBinding
 
 private object CartRecyclerAdapterCallback : DiffUtil.ItemCallback<CartItemView>() {
     override fun areItemsTheSame(oldItem: CartItemView, newItem: CartItemView): Boolean {
-        return (
-                oldItem.pieceId == newItem.pieceId &&
-                        oldItem.categoryId == newItem.categoryId
+        return (oldItem.pieceId == newItem.pieceId &&
+                oldItem.categoryId == newItem.categoryId
                 )
     }
 
@@ -34,7 +33,7 @@ private object CartRecyclerAdapterCallback : DiffUtil.ItemCallback<CartItemView>
 class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
     CartRecyclerAdapterCallback
 ) {
-    lateinit var remove: (Int, Int) -> Unit
+    lateinit var remove: (Int) -> Unit
 
     inner class ViewHolder(icBinding: ItemCartBinding) : RecyclerView.ViewHolder(icBinding.root) {
         internal val holderBinding = icBinding
@@ -62,7 +61,7 @@ class CartAdapter : ListAdapter<CartItemView, CartAdapter.ViewHolder>(
                 item.count--
                 holder.holderBinding.cartItemView = item
             } else {
-                remove(item.pieceId,item.categoryId)
+                remove(item.pieceId)
             }
         }
         holder.plusImageView.setOnClickListener {

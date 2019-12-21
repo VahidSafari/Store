@@ -4,6 +4,7 @@ import androidx.room.*
 import com.example.store.features.dashboard.ui.CartItemView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.http.GET
 
 @Dao
 abstract class StoreDao {
@@ -22,6 +23,9 @@ abstract class StoreDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertPieces(pieces: List<PieceEntity>)
+
+    @Query("SELECT * FROM PieceEntity WHERE id=:pieceId")
+    abstract suspend fun getPiece(pieceId: Int): PieceEntity?
 
     @Transaction
     @Query("SELECT * FROM CategoryEntity")
@@ -48,18 +52,18 @@ abstract class StoreDao {
         }
     }
 
-    @Query("INSERT INTO CartEntity(pieceId,categoryId) VALUES(:pieceId,:categoryId)")
-    abstract fun insertCartItem(pieceId: Int, categoryId: Int)
+    @Query("INSERT INTO CartEntity(pieceId,count) VALUES(:pieceId,1)")
+    abstract fun insertCartItem(pieceId: Int)
 
-    @Query("DELETE FROM CartEntity WHERE pieceId=:pieceId AND categoryId=:categoryId")
-    abstract fun removeCartItem(pieceId: Int, categoryId: Int)
+    @Query("DELETE FROM CartEntity WHERE pieceId=:pieceId")
+    abstract fun removeCartItem(pieceId: Int)
 
     @Query(
         """
-            SELECT ce.pieceId, ce.categoryId, imageUrl, title, startPrice, endPrice, offPercent,
+            SELECT ce.pieceId, pe.categoryId, imageUrl, title, startPrice, endPrice, offPercent,
              startOffPrice, endOffPrice, count
             FROM PieceEntity as pe INNER JOIN CartEntity as ce 
-            ON pe.id=ce.pieceId AND pe.categoryId=ce.categoryId
+            ON pe.id=ce.pieceId
             """
     )
     abstract suspend fun getCartItems(): List<CartItemView>

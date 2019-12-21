@@ -20,21 +20,21 @@ private object PieceRecyclerAdapterCallback : DiffUtil.ItemCallback<ItemView>() 
 }
 
 class PieceRecyclerAdapter(
-    val itemListener: ()->Unit
-):
-ListAdapter<ItemView,PieceRecyclerAdapter.ViewHolder>(PieceRecyclerAdapterCallback){
+    val itemListener: (Int) -> Unit
+) :
+    ListAdapter<ItemView, PieceRecyclerAdapter.ViewHolder>(PieceRecyclerAdapterCallback) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding : ItemPieceBinding =
+        val binding: ItemPieceBinding =
             DataBindingUtil.inflate(
                 inflater,
                 R.layout.item_piece,
                 parent,
                 false
-                )
+            )
         return ViewHolder(binding)
     }
 
@@ -43,11 +43,11 @@ ListAdapter<ItemView,PieceRecyclerAdapter.ViewHolder>(PieceRecyclerAdapterCallba
         holder.itemView.tag = getItem(position)
         holder.holderBinding.itemView = item
         holder.itemView.setOnClickListener {
-            itemListener()
+            itemListener(item.id)
         }
     }
 
-    inner class ViewHolder(pBinding : ItemPieceBinding) : RecyclerView.ViewHolder(pBinding.root){
+    inner class ViewHolder(pBinding: ItemPieceBinding) : RecyclerView.ViewHolder(pBinding.root) {
         internal val holderBinding = pBinding
     }
 }

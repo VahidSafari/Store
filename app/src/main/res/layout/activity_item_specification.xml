@@ -19,11 +19,50 @@
             android:id="@+id/rv_item_specification"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:padding="@dimen/_30sdp"
             app:layout_constraintBottom_toTopOf="@id/midGuideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_preview" />
+            tools:listitem="@layout/item_preview"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_back_container_item_specification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_back_button_item_specification"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:adjustViewBounds="true"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_arrow"
+                android:tint="@color/coolBlue"
+                app:layout_constraintBottom_toBottomOf="@id/tv_back_item_specification"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_back_item_specification" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_back_item_specification"
+                style="@style/backTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:gravity="center"
+                android:text="@string/back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_back_button_item_specification"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/midGuideline"

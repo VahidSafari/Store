@@ -9,11 +9,13 @@ import com.example.store.features.dashboard.ui.StoreViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 
 @Module
 abstract class ViewModelModule {
 
+    @Singleton
     @Binds
     @IntoMap
     @ViewModelKey(StoreViewModel::class)
