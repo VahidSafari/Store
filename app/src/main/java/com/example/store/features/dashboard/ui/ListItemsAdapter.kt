@@ -27,7 +27,7 @@ private object ListItemRecyclerAdapterCallback : DiffUtil.ItemCallback<ItemView>
 }
 
 class ListItemsAdapter(
-    val itemListener: () -> Unit
+    val itemListener: (Int) -> Unit
 ) : ListAdapter<ItemView, ListItemsAdapter.ViewHolder>(
     ListItemRecyclerAdapterCallback
 ) {
@@ -55,7 +55,7 @@ class ListItemsAdapter(
         holder.itemView.tag = getItem(position)
         holder.holderBinding.itemView = item
         holder.itemView.setOnClickListener {
-            itemListener()
+            itemListener(item.id)
         }
     }
 }

@@ -11,7 +11,9 @@ import com.example.store.features.dashboard.data.*
         CategoryEntity::class,
         PieceEntity::class,
         PieceFts::class,
-        CartEntity::class
+        CartEntity::class,
+        ListEntity::class,
+        ParentChildEntity::class
     ],
     version = 1,
     exportSchema = false

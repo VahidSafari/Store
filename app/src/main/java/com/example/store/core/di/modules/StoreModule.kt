@@ -1,6 +1,5 @@
 package com.example.store.core.di.modules
 
-import androidx.databinding.BindingAdapter
 import com.example.store.features.dashboard.data.StoreLocalDataSource
 import com.example.store.features.dashboard.data.StoreRemoteDataSource
 import com.example.store.features.dashboard.data.StoreRepository

@@ -70,12 +70,14 @@ class SearchFragment : DaggerFragment() {
             }
         })
 
-        val listItemAdapter = ListItemsAdapter {
+        val listItemAdapter = ListItemsAdapter { pieceId ->
             startActivity(
                 Intent(
                     activity,
                     ItemSpecificationActivity::class.java
-                )
+                ).apply {
+                    putExtra("pieceId", pieceId)
+                }
             )
         }
         rv_product_search_results.apply {

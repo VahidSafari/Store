@@ -18,13 +18,15 @@ class ListActivity : AppCompatActivity() {
         rv_list.apply {
             layoutManager = LinearLayoutManager(this@ListActivity)
             setHasFixedSize(true)
-            adapter = ListItemsAdapter {
+            adapter = ListItemsAdapter {pieceId ->
                 startActivity(
                     Intent
                         (
                         this@ListActivity,
                     ItemSpecificationActivity::class.java
-                    )
+                    ).apply {
+                        putExtra("pieceId", pieceId)
+                    }
                 )
             }
             addItemDecoration(

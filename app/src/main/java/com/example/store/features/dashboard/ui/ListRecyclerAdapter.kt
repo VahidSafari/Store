@@ -1,6 +1,7 @@
 package com.example.store.features.dashboard.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
@@ -20,9 +21,10 @@ private object ListRecyclerAdapterCallback : DiffUtil.ItemCallback<ListView>() {
     }
 }
 
-class ListRecyclerAdapter (
-    val itemListener: () -> Unit
-): ListAdapter<ListView, ListRecyclerAdapter.ViewHolder>(
+class ListRecyclerAdapter(
+    val flatListItemEvent: () -> Unit,
+    val nestedListItemEvent: (Int) -> Unit
+) : ListAdapter<ListView, ListRecyclerAdapter.ViewHolder>(
     ListRecyclerAdapterCallback
 ) {
     override fun onCreateViewHolder(
@@ -30,7 +32,7 @@ class ListRecyclerAdapter (
         viewType: Int
     ): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding : ItemListBinding =
+        val binding: ItemListBinding =
             DataBindingUtil.inflate(inflater, R.layout.item_list, parent, false)
         return ViewHolder(binding)
     }
@@ -38,10 +40,21 @@ class ListRecyclerAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.lBinding.listView = item
-        holder.itemView.setOnClickListener {
-            itemListener()
+        when (item.type) {
+            ListItemType.NESTED -> {
+                holder.itemView.setOnClickListener {
+                    nestedListItemEvent(item.id)
+                }
+            }
+            ListItemType.FLATTEN -> {
+                holder.lBinding.ivArrow.visibility = View.GONE
+                holder.itemView.setOnClickListener {
+                    flatListItemEvent()
+                }
+            }
         }
     }
 
-    inner class ViewHolder(internal val lBinding: ItemListBinding): RecyclerView.ViewHolder(lBinding.root)
+    inner class ViewHolder(internal val lBinding: ItemListBinding) :
+        RecyclerView.ViewHolder(lBinding.root)
 }
