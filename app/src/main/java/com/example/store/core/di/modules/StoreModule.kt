@@ -1,39 +1,46 @@
 package com.example.store.core.di.modules
 
-import com.example.store.features.dashboard.data.StoreLocalDataSource
-import com.example.store.features.dashboard.data.StoreRemoteDataSource
-import com.example.store.features.dashboard.data.StoreRepository
+import com.example.store.features.dashboard.data.*
 import com.example.store.features.dashboard.ui.*
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Module(includes = [ViewModelModule::class])
-abstract class StoreModule {
+@Module(includes = [StoreViewModelModule::class])
+interface StoreModule {
 
     @ContributesAndroidInjector
-    abstract fun contributeActivity() : MainActivity
+    fun contributeActivity() : MainActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeStoreRemoteDataSource() : StoreRemoteDataSource
+    fun contributeStoreRemoteDataSource() : StoreRemoteDataSource
 
     @ContributesAndroidInjector
-    abstract fun contributeStoreRepository() : StoreRepository
+    fun contributeStoreRepository() : StoreRepository
 
     @ContributesAndroidInjector
-    abstract fun contributeStoreLocalDataSource(): StoreLocalDataSource
+    fun contributeStoreLocalDataSource(): StoreLocalDataSource
 
     @ContributesAndroidInjector
-    abstract fun contributeSearchFragment(): SearchFragment
+    fun contributeSearchFragment(): SearchFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeDashBoardFragment(): DashBoardFragment
+    fun contributeDashBoardFragment(): DashBoardFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeCartActivity(): CartActivity
+    fun contributeCartActivity(): CartActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeItemSpecificationActivity(): ItemSpecificationActivity
+    fun contributeItemSpecificationActivity(): ItemSpecificationActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeOrderActivity(): OrderActivity
+    fun contributeOrderActivity(): OrderActivity
+
+    @ContributesAndroidInjector
+    fun contributeListLocalDataSource(): ListLocalDataSource
+
+    @ContributesAndroidInjector
+    fun contributeListRepository(): ListRepository
+
+    @ContributesAndroidInjector
+    fun contributeListFragment(): ListFragment
 }

@@ -1,17 +1,26 @@
 package com.example.store.features.dashboard.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.store.R
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_list.*
+import javax.inject.Inject
 
-class ListFragment : Fragment() {
+class ListFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var storeViewModelFactory: ViewModelProvider.Factory
+    private val listViewModel: ListViewModel by viewModels {
+        storeViewModelFactory
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +35,8 @@ class ListFragment : Fragment() {
         rv_list.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         val listAdapter = ListRecyclerAdapter(
-            { startActivity(Intent(activity, ListActivity::class.java)) },
-            {}
+            {  },
+            {  }
         )
         rv_list.adapter = listAdapter
         rv_list.addItemDecoration(
@@ -36,65 +45,27 @@ class ListFragment : Fragment() {
                 DividerItemDecoration.VERTICAL
             )
         )
-        val listItems = mutableListOf(
-            ListView(
-                1,
-                "مواد غذایی",
-                ListItemType.NESTED
-            ),
-            ListView(
-                2,
-                "کالای دیجیتال",
-                ListItemType.FLATTEN
-            ),
-            ListView(
-                3,
-                "لوازم تحریر",
-                ListItemType.FLATTEN
-            ),
-            ListView(
-                4,
-                "مد و پوشاک",
-                ListItemType.NESTED
-            ),
-            ListView(
-                5,
-                "ورزش و سفر",
-                ListItemType.FLATTEN
-            )
-        )
-        listAdapter.submitList(listItems)
+
+        arguments?.let {
+            listViewModel.getlistItems(it.getInt(argumentKeyName))
+        }
+        listViewModel.listItems.observe(this, Observer {
+            listAdapter.submitList(it)
+        })
     }
 
-    fun newInstance(list: List<ListView>): ListFragment {
-        val listItems = mutableListOf(
-            ListView(
-                1,
-                "مواد غذایی",
-                ListItemType.NESTED
-            ),
-            ListView(
-                2,
-                "کالای دیجیتال",
-                ListItemType.FLATTEN
-            ),
-            ListView(
-                3,
-                "لوازم تحریر",
-                ListItemType.FLATTEN
-            ),
-            ListView(
-                4,
-                "مد و پوشاک",
-                ListItemType.NESTED
-            ),
-            ListView(
-                5,
-                "ورزش و سفر",
-                ListItemType.FLATTEN
-            )
-        )
-        return ListFragment()
+    companion object {
+
+        const val argumentKeyName: String = "parentId"
+
+        fun newInstance(parentId: Int): ListFragment {
+            val args = Bundle()
+            args.putInt("parentId",parentId)
+            val listFragment = ListFragment()
+            listFragment.arguments = args
+            return listFragment
+        }
+
     }
 
 }

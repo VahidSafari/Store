@@ -67,5 +67,4 @@ abstract class StoreDao {
             """
     )
     abstract suspend fun getCartItems(): List<CartItemView>
-
 }

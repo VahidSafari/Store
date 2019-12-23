@@ -23,6 +23,7 @@ class MainActivity : DaggerAppCompatActivity() {
     private val fragmentStack = Stack<String>()
     private var isBackPressed = false
     private var exitApp = false
+    private val listFragmentStack = Stack<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -229,7 +230,9 @@ class MainActivity : DaggerAppCompatActivity() {
                     when (fragmentType) {
                         MainActivityFragmentType.PROFILE -> ProfileFragment()
                         MainActivityFragmentType.SEARCH -> SearchFragment()
-                        MainActivityFragmentType.LIST -> ListFragment()
+                        MainActivityFragmentType.LIST -> {
+                            ListFragment.newInstance(1)
+                        }
                         MainActivityFragmentType.DASHBOARD -> DashBoardFragment()
                     },
                     fragmentType.toString()

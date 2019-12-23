@@ -16,7 +16,8 @@ import javax.inject.Singleton
         StoreModule::class,
         RoomModule::class,
         CartViewModelModule::class,
-        AndroidSupportInjectionModule::class
+        AndroidSupportInjectionModule::class,
+        ListViewModelModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<App>{

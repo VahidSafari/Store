@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 
 @Module
-abstract class ViewModelModule {
+abstract class StoreViewModelModule {
 
     @Singleton
     @Binds

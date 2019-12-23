@@ -20,4 +20,5 @@ import com.example.store.features.dashboard.data.*
 )
 abstract class StoreDatabase : RoomDatabase() {
     abstract fun getStoreDao(): StoreDao
+    abstract fun getListDao(): ListDao
 }
