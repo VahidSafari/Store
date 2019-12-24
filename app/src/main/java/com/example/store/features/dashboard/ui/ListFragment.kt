@@ -47,7 +47,7 @@ class ListFragment : DaggerFragment() {
         )
 
         arguments?.let {
-            listViewModel.getlistItems(it.getInt(argumentKeyName))
+            listViewModel.getListItems(it.getInt(argumentKeyName))
         }
         listViewModel.listItems.observe(this, Observer {
             listAdapter.submitList(it)

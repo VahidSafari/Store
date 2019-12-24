@@ -45,7 +45,7 @@ abstract class StoreDao {
     )
     abstract suspend fun search(searchPhrase: String): List<PieceEntity>?
 
-    suspend fun insertCategory(piecesDtos: List<PiecesDto>) = withContext(Dispatchers.IO) {
+    suspend fun insertCategory(piecesDtos: List<PiecesDto>) {
         piecesDtos.forEach {
             insertCategory(it.categoryEntity)
             insertPieces(it.pieces)

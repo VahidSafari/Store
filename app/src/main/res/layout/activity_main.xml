@@ -93,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/actionBarSize"
                     app:itemIconTint="@color/bottom_nav_item_color"
-                    app:itemRippleColor="@color/colorSecondaryDark"
+                    app:itemRippleColor="@null"
                     app:itemTextAppearanceActive="@style/OffPriceTextView"
                     app:itemTextAppearanceInactive="@style/OffPriceTextView"
                     android:background="@color/colorPrimary"

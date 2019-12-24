@@ -16,7 +16,7 @@ class ListViewModel @Inject constructor(private val listRepository: ListReposito
     val listItems: LiveData<List<ListView>?>
         get() = _listItems
 
-    fun getlistItems(parentId: Int) = viewModelScope.launch {
+    fun getListItems(parentId: Int) = viewModelScope.launch {
         _listItems.value = listRepository.getListChildren(parentId)
     }
 

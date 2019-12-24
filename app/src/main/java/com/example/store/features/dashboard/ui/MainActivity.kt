@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.store.R
 import com.example.store.databinding.ActivityMainBinding
 import com.example.store.features.user.ProfileFragment
@@ -23,7 +24,7 @@ class MainActivity : DaggerAppCompatActivity() {
     private val fragmentStack = Stack<String>()
     private var isBackPressed = false
     private var exitApp = false
-    private val listFragmentStack = Stack<Int>()
+    private val listFragmentStack = Stack<Int>() // Int -> parent_id of the ListFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,88 +58,29 @@ class MainActivity : DaggerAppCompatActivity() {
 
             when (it.itemId) {
                 R.id.fragment_profile -> {
-
                     if (currentFragment != MainActivityFragmentType.PROFILE) {
-
                         showNextFragmentAndHidePrevious(MainActivityFragmentType.PROFILE)
-
-                        supportFragmentManager.findFragmentByTag(profileFragmentTag)
-                            ?.let { fragment ->
-
-                                showAppBarsOnScroll()
-
-                                currentFragment = MainActivityFragmentType.PROFILE
-                                supportFragmentManager.beginTransaction()
-                                    .show(fragment)
-                                    .commitNow()
-                            }
                     }
                 }
 
                 R.id.fragment_dashboard -> {
-
                     if (currentFragment != MainActivityFragmentType.DASHBOARD) {
-
                         showNextFragmentAndHidePrevious(MainActivityFragmentType.DASHBOARD)
-
-                        supportFragmentManager.findFragmentByTag(dashBoardFragmentTag)
-                            ?.let { fragment ->
-
-                                hideAppBarsOnScroll()
-
-                                currentFragment = MainActivityFragmentType.DASHBOARD
-                                supportFragmentManager.beginTransaction()
-                                    .show(fragment)
-                                    .commitNow()
-                            }
-
                     }
                 }
-
 
                 R.id.fragment_list -> {
-
                     if (currentFragment != MainActivityFragmentType.LIST) {
-
                         showNextFragmentAndHidePrevious(MainActivityFragmentType.LIST)
-
-                        supportFragmentManager.findFragmentByTag(listFragmentTag)?.let { fragment ->
-
-                            showAppBarsOnScroll()
-
-                            currentFragment = MainActivityFragmentType.LIST
-                            supportFragmentManager.beginTransaction()
-                                .show(fragment)
-                                .commitNow()
-                        }
-
                     }
                 }
-
 
                 R.id.fragment_search -> {
-
                     //Checks if the selected fragment is not the same with previous fragment
                     if (currentFragment != MainActivityFragmentType.SEARCH) {
-
                         showNextFragmentAndHidePrevious(MainActivityFragmentType.SEARCH)
-
-                        //Prevents app bar and bottom app bar from hiding on scroll behaviour
-                        //shows the fragment
-                        supportFragmentManager.findFragmentByTag(searchFragmentTag)
-                            ?.let { fragment ->
-
-                                showAppBarsOnScroll()
-
-                                currentFragment = MainActivityFragmentType.SEARCH
-                                supportFragmentManager.beginTransaction()
-                                    .show(fragment)
-                                    .commitNow()
-                                (fragment as SearchFragment).showKeyboard()
-                            }
                     }
                 }
-
             }
             return@setOnNavigationItemSelectedListener true
         }
@@ -160,7 +102,7 @@ class MainActivity : DaggerAppCompatActivity() {
             when (fragmentStack.pop()) {
                 listFragmentTag -> {
                     currentFragment = MainActivityFragmentType.LIST
-                    supportFragmentManager.findFragmentByTag(listFragmentTag)?.let {
+                    getFragment(listFragmentTag)?.let {
                         supportFragmentManager.beginTransaction()
                             .show(it)
                             .commitNow()
@@ -180,7 +122,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
                 searchFragmentTag -> {
                     currentFragment = MainActivityFragmentType.SEARCH
-                    supportFragmentManager.findFragmentByTag(searchFragmentTag)?.let {
+                    getFragment(searchFragmentTag)?.let {
                         supportFragmentManager.beginTransaction()
                             .show(it)
                             .commitNow()
@@ -190,7 +132,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
                 dashBoardFragmentTag -> {
                     currentFragment = MainActivityFragmentType.DASHBOARD
-                    supportFragmentManager.findFragmentByTag(dashBoardFragmentTag)?.let {
+                    getFragment(dashBoardFragmentTag)?.let {
                         supportFragmentManager.beginTransaction()
                             .show(it)
                             .commitNow()
@@ -220,36 +162,54 @@ class MainActivity : DaggerAppCompatActivity() {
         //prevents app from exiting
         exitApp = false
 
-        //Creates the fragment if it has not been created yet
-        val nextFragment =
-            supportFragmentManager.findFragmentByTag(fragmentType.toString())
-        if (nextFragment == null) {
+        //Hides previous fragment and pushes it to fragments stack
+        getFragment(currentFragment.toString())?.let {
             supportFragmentManager.beginTransaction()
-                .add(
-                    R.id.nav_host_fragment,
-                    when (fragmentType) {
-                        MainActivityFragmentType.PROFILE -> ProfileFragment()
-                        MainActivityFragmentType.SEARCH -> SearchFragment()
-                        MainActivityFragmentType.LIST -> {
-                            ListFragment.newInstance(1)
-                        }
-                        MainActivityFragmentType.DASHBOARD -> DashBoardFragment()
-                    },
-                    fragmentType.toString()
-                )
+                .hide(it)
+                .commitNow()
+            if (!isBackPressed)
+                fragmentStack.push(it.tag)
+            isBackPressed = false
+        }
+
+        val nextFragment = getFragment(fragmentType.toString())
+        nextFragment?.let {
+            currentFragment = fragmentType
+            supportFragmentManager.beginTransaction()
+                .show(it)
                 .commitNow()
         }
 
-        //Hides previous fragment and pushes it to fragments stack
-        supportFragmentManager.findFragmentByTag(currentFragment.toString())?.let { fragment ->
-            supportFragmentManager.beginTransaction()
-                .hide(fragment)
-                .commitNow()
-            if (!isBackPressed)
-                fragmentStack.push(fragment.tag)
-            isBackPressed = false
-        }
+        if (fragmentType == MainActivityFragmentType.DASHBOARD) {
+            hideAppBarsOnScroll()
+        } else showAppBarsOnScroll()
+
+        if (fragmentType == MainActivityFragmentType.SEARCH)
+            (nextFragment as SearchFragment).showKeyboard()
+
     }
+
+    private fun getFragment(fragmentTag: String): Fragment? {
+        val fragment = supportFragmentManager.findFragmentByTag(fragmentTag)
+        if (fragment == null) {
+            supportFragmentManager.beginTransaction()
+                .add(
+                    R.id.nav_host_fragment,
+                    when (fragmentTag) {
+                        MainActivityFragmentType.PROFILE.toString() -> ProfileFragment()
+                        MainActivityFragmentType.SEARCH.toString() -> SearchFragment()
+                        MainActivityFragmentType.DASHBOARD.toString() -> DashBoardFragment()
+                        else -> ListFragment.newInstance(1)
+                    },
+//                    if (fragmentType == MainActivityFragmentType.LIST )
+                    fragmentTag
+//                else listFragmentStack.peek().toString()
+                )
+                .commitNow()
+            return supportFragmentManager.findFragmentByTag(fragmentTag)
+        } else return fragment
+    }
+
 
     private fun hideAppBarsOnScroll() {
         val params =
